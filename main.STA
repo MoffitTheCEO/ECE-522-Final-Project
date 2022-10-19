@@ -1,0 +1,63 @@
+
+ROM used:   1496/44032 (3%)
+            1496/44032 (3%) including unused fragments
+
+            0.3 Average locations per line
+            1.0 Average locations per statement
+
+RAM used:   736/16294 (5%) at main() level
+            738/16294 (5%) worst case
+
+Stack used: 54 worst case (14 in main + 40 for interrupts)
+Stack size: 144
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   59    25   2  main.c
+   36     0   0  main.h
+ 1184     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\33FJ64MC802.h
+   22     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\assert.h
+   61     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\float.h
+ 2227   926  63  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\math.h
+   32     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stddef.h
+ 1352   524  36  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdlib.h
+  435     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\string.h
+   28     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\ctype.h
+   37     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdio.h
+  168     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdint.h
+----- -----
+ 5641  1475 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     20   1    2   1124  9.9  @delay_ms1
+0     56   2    0     21  0.9  dmaerr_isr
+0     24   1    0   1071 10.4  @const1584
+0     36   1    0     22  1.2  DMA_0_ISR
+0     40   1    0     12  0.8  Timer_ISR
+0    498  17  207    777  6.6  MAIN
+0     28   1    0    671  6.4  @const1593
+0    256   9    0     22  1.2  @PRINTFD16_115200_5718_5719
+0     26   1    0     12  0.8  @const1597
+ Inline         0    748  6.6  @cinit1
+
+Program metrics:
+    Functions               10
+    Statements              1475
+    Comments                1192
+    Volume (V)              6353
+    Difficulty (D)          47.6
+    Effort to implement (E) 302471
+    Time to implement (T)   4 hours, 40 minutes
+    Est Delivered Bugs (B)  2
+    Cyclomatic Complexity   18
+    Maintainability (MI)    9
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-001FE   508  0  
+00200-0ABFE   984  42536  
+
+
+

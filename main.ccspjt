@@ -1,0 +1,111 @@
+[PROJECT]
+Target=main.hex
+Processor_Text=DSPIC33FJ64MC802
+CCSVerions=5.068
+Compiler=PCD
+CCSVersion=5.068
+Development_Mode=
+ToolSuite=CCS
+[Target Data]
+FileList=main.c
+BuildTool=C-COMPILER
+OptionString=+FD
+AdditionalOptionString=
+BuildRequired=1
+[Directories]
+Include=
+Library=
+LinkerScript=
+output=
+[C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\DMA ADC Normal UART\main]
+Type=4
+[mru-list]
+1=main.c
+
+[ProjectLog]
+Days=2
+D1=16-10-2022
+D1_L=8
+D1_L1=[47642]Project Opened.
+D1_L2=[47659]Started Editing.
+D1_L3=[48668]Stopped Editing.
+D1_L4=[52120]Started Debugging.
+D1_L5=[52182]Project Opened.
+D1_L6=[52436]Started Editing.
+D1_L7=[52828]Stopped Editing.
+TotalEdit=49
+TotalDebug=0
+D1_E=2
+D1_D=0
+D1_L8=[60618]Project Closed.
+D2=18-10-2022
+D2_L=18
+D2_L1=[65279]Project Opened.
+D2_L2=[65513]Started Editing.
+D2_L3=[66099]Project Opened.
+D2_L4=[66103]Started Editing.
+D2_L5=[66493]Stopped Editing.
+D2_L6=[66493]Started Debugging.
+D2_L7=[67124]Stopped Debugging.
+D2_L8=[67516]Project Opened.
+D2_L9=[67898]Started Debugging.
+D2_L10=[67996]Project Opened.
+D2_L11=[68012]Project Closed.
+D2_L12=[68012]Project Opened.
+D2_L13=[68379]Project Opened.
+D2_L14=[68428]Started Editing.
+D2_L15=[69824]Stopped Editing.
+D2_L16=[69852]Started Editing.
+D2_L17=[71541]Stopped Editing.
+D2_E=47
+D2_D=0
+D2_L18=[71541]Project Closed.
+
+[Opened Files]
+1=main.c
+t1=33
+2=main.h
+t2=25
+Count=3
+3=..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\assert.h
+t3=3
+4=..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\math.h
+t4=28
+[main.c]
+Type=4
+Path=
+FileList=
+BuildTool=
+OptionString=
+AdditionalOptionString=
+
+[defines]
+buildcount=53
+enabled=0
+chip=1
+D1=
+V1=
+
+[fileformats]
+forcecoff=1
+debug=4
+error=2
+object=0
+list=0
+scratch=0
+sta=1
+tre=1
+expandtree=0
+allerrors=1
+allwarnings=1
+stayupne=3
+stayupoe=0
+
+[Windows]
+0=0000 %S 0 0 796 451 3 0
+
+[CompilerVersion]
+Fixed=
+[Units]
+Count=1
+1=main (main)

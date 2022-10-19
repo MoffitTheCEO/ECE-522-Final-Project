@@ -1,0 +1,12 @@
+ÀÄmain
+   ÃÄMAIN  0/498  Ram=207
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄ@delay_ms1  0/20  Ram=2
+   ³  ÃÄ@const1593  0/28  Ram=0
+   ³  ÃÄ@PRINTFD16_115200_5718_5719  0/256  Ram=0
+   ³  ÃÄ@const1597  0/26  Ram=0
+   ³  ÀÄ@PRINTFD16_115200_5718_5719  0/256  Ram=0
+   ÃÄdmaerr_isr  0/56  Ram=0
+   ³  ÀÄ@const1584  0/24  Ram=0
+   ÃÄDMA_0_ISR  0/36  Ram=0
+   ÀÄTimer_ISR  0/40  Ram=0
