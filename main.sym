@@ -1,70 +1,70 @@
 W0      @SCRATCH
 W0L     _RETURN_
-W0 -W2  @MULFF48.P1
+W0      @PRINTFD16_115200_5718_5719.P1
 W0 -W1  @READ_ROM_MEMORY.P2
 W0 -W2  @ADDFF48.P3
 W0 -W2  @DIVFF48.P4
-W0 -W1  @DIV3232B.P5
-W0      @delay_ms1.P6
-W0 -W1  @ADDFF.P7
+W0 -W2  @F48TO64.P5
+W0 -W1  @DIV3232B.P6
+W0      @delay_ms1.P7
 W0      @delay_us1.P8
 W0 -W1  @FLT.P9
 W0 -W3  @DIVFF64.P10
 W0 -W3  @MULS6464.P11
 W0 -W1  @MUL3232.P12
 W0 -W3  @F64TOI64.P13
-W0 -W3  @I64TOF64.P14
-W0 -W3  @MULFF64.P15
-W0 -W3  @I64TOF48.P16
-W0 -W3  @F64TOSI64.P17
-W0 -W1  @SFTOI.P18
-W0      @SITOF.P19
-W0      @ITOF.P20
-W0 -W3  @ADDFF64.P21
-W0 -W1  @MULFF.P22
-W0 -W2  @F48TO64.P23
-W0 -W3  @FLT64.P24
-W0 -W2  @F48TOSI64.P25
-W0 -W1  @DIVFF.P26
-W0 -W3  @SI64TOF48.P27
-W0 -W2  @DIVS4848.P28
-W0 -W3  @DIVS6464.P29
-W0 -W2  @FLT48.P30
-W0 -W3  @SI64TOF64.P31
+W0 -W3  @DIVS6464.P14
+W0 -W3  @I64TOF64.P15
+W0 -W3  @MULFF64.P16
+W0 -W3  @I64TOF48.P17
+W0 -W3  @F64TOSI64.P18
+W0 -W1  @SFTOI.P19
+W0      @SITOF.P20
+W0      @ITOF.P21
+W0 -W3  @ADDFF64.P22
+W0 -W1  @MULFF.P23
+W0 -W2  @FLT48.P24
+W0 -W1  @ADDFF.P25
+W0 -W2  @F48TOSI64.P26
+W0 -W1  @DIVFF.P27
+W0 -W3  @SI64TOF48.P28
+W0 -W2  @MULFF48.P29
+W0 -W3  @FLT64.P30
+W0 -W2  @DIVS4848.P31
 W0 -W1  @DIVS3232A.P32
 W0 -W2  @MULS4848.P33
-W0 -W1  @MULS3232.P34
-W0      @PRINTFD16_115200_5718_5719.P35
+W0 -W3  @SI64TOF64.P34
+W0 -W1  @MULS3232.P35
 W1      @SCRATCH
 W1      @READ_PACKED_MEMORY.P1
 W1      @WRITE_PACKED_MEMORY.P2
-W2 -W3  @DIV3232B.P1
-W2 -W3  @MULFF.P2
-W2      @READ_PACKED_MEMORY.P3
-W2 -W3  @DIVFF.P4
-W2 -W3  @MULS3232.P5
-W2 -W3  @ADDFF.P6
-W2 -W3  @FLT.P7
-W2      @WRITE_PACKED_MEMORY.P8
-W2      @READ_ROM_MEMORY.P9
-W2 -W3  @MUL3232.P10
+W2      @WRITE_PACKED_MEMORY.P1
+W2      @READ_ROM_MEMORY.P2
+W2 -W3  @MULFF.P3
+W2      @READ_PACKED_MEMORY.P4
+W2 -W3  @DIV3232B.P5
+W2 -W3  @MULS3232.P6
+W2 -W3  @MUL3232.P7
+W2 -W3  @FLT.P8
+W2 -W3  @DIVFF.P9
+W2 -W3  @ADDFF.P10
 W2 -W3  @DIVS3232A.P11
-W3      @WRITE_PACKED_MEMORY.P1
-W3      @READ_ROM_MEMORY.P2
-W3 -W5  @DIVS4848.P3
-W3      @READ_PACKED_MEMORY.P4
-W3 -W5  @FLT48.P5
-W3 -W5  @MULFF48.P6
+W3 -W5  @DIVS4848.P1
+W3 -W5  @FLT48.P2
+W3 -W5  @MULS4848.P3
+W3      @WRITE_PACKED_MEMORY.P4
+W3 -W5  @MULFF48.P5
+W3      @READ_PACKED_MEMORY.P6
 W3 -W5  @DIVFF48.P7
-W3 -W5  @MULS4848.P8
+W3      @READ_ROM_MEMORY.P8
 W3 -W5  @ADDFF48.P9
-W4 -W7  @DIVFF64.P1
-W4 -W7  @ADDFF64.P2
-W4 -W7  @MULFF64.P3
-W4 -W7  @MULS6464.P4
-W4      @PRINTFD16_115200_5718_5719.P5
+W4 -W7  @MULFF64.P1
+W4 -W7  @MULS6464.P2
+W4 -W7  @DIVFF64.P3
+W4 -W7  @FLT64.P4
+W4 -W7  @ADDFF64.P5
 W4 -W7  @DIVS6464.P6
-W4 -W7  @FLT64.P7
+W4      @PRINTFD16_115200_5718_5719.P7
 630.6   C1OUT
 630.7   C2OUT
 85A-85B rs232_errors
@@ -75,34 +75,31 @@ W4 -W7  @FLT64.P7
 90C-90D strtok.save
 90E-911 _Randseed
 912     DMA_DONE
-914-915 MAIN.index
-916-917 MAIN.i
-4000-40C7 MAIN.DMA_BUFFER
+914-915 MAIN.i
+4000-40C7 DMA_ADC_BUFFER
+40C8-412B DMA_UART_TX_BUFFER
 4770-47FF Stack
 
 ROM Allocation:
-000200  @const1584.call
-000218  @const1593.call
-000234  @const1597.call
-00024E  dmaerr_isr
-000286  DMA_0_ISR
-0002AA  Timer_ISR
-0002D2  @delay_ms1
-0002E6  @PRINTFD16_115200_5718_5719
-0003E6  MAIN
-0003E6  @cinit1
-000436  @cinit2
+000200  @const1596.call
+00021C  DMA_0_ISR
+000240  DMA_1_ISR
+000260  Timer_ISR
+000288  @delay_ms1
+00029C  @PRINTFD16_115200_5718_5719
+00039C  @cinit1
+00039C  MAIN
+0003EC  @cinit2
 0136  StrtoulGO
 0136  StrtolGO
 
 Project Directory:
-    C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\DMA ADC Normal UART\
+    C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\
 
 Project Files:
-    main.c                                                  [18-Oct-22 19:47  CRC=B70D8B05]
-    main.h                                                  [18-Oct-22 19:46  CRC=F27F1218]
+    main.c                                                  [18-Oct-22 20:59  CRC=456F0566]
+    main.h                                                  [18-Oct-22 21:00  CRC=218CDA04]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\33FJ64MC802.h [27-Jan-17 19:45  CRC=5B12944B]
-    ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\assert.h [22-Sep-15 09:56  CRC=598B3985]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\float.h [01-Aug-07 15:50  CRC=8BC4079E]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\math.h [22-Sep-16 08:36  CRC=9CF8C837]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stddef.h [05-Sep-14 11:47  CRC=897CEC6C]
@@ -112,10 +109,10 @@ Project Files:
     ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdio.h [31-Jul-07 14:24  CRC=4E4534F4]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdint.h [06-May-16 10:24  CRC=FE3369EA]
 
-Source signature=CB4D3597
+Source signature=2F313E5F
 Program memory checksum=0000
 Program memory CRC=0000
-Hex file CRC=2E23
+Hex file CRC=EDE9
 
 Units:
     main (main)

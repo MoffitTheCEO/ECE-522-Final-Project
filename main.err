@@ -1,5 +1,4 @@
---- Info 300 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\DMA ADC Normal UART\main.h" Line 8(1,1): More info:   Actual Clock is 39920833
->>> Warning 215 "C:\Program Files (x86)\PICC\Drivers\assert.h" Line 13(8,14): Undefined identifier
-      Memory usage:   ROM=3%      RAM=5% - 5%
-      0 Errors,  1 Warnings.
+--- Info 300 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 8(1,1): More info:   Actual Clock is 39920833
+      Memory usage:   ROM=3%      RAM=4% - 4%
+      0 Errors,  0 Warnings.
 Build Successful.
