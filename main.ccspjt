@@ -23,7 +23,7 @@ Type=4
 1=main.c
 
 [ProjectLog]
-Days=2
+Days=3
 D1=16-10-2022
 D1_L=8
 D1_L1=[47642]Project Opened.
@@ -64,17 +64,32 @@ D2_L19=[71759]Project Opened.
 D2_L20=[71902]Started Editing.
 D2_L21=[72725]Stopped Editing.
 D2_L22=[72916]Started Editing.
+D3=19-10-2022
+D3_L=13
+D3_L1=[64695]Stopped Editing.
+D3_L2=[65603]Started Editing.
+D3_L3=[68466]Stopped Editing.
+D3_L4=[68783]Started Editing.
+D3_L5=[71337]Stopped Editing.
+D3_L6=[71341]Started Editing.
+D3_L7=[73713]Stopped Editing.
+D3_L8=[74650]Started Editing.
+D3_L9=[75215]Stopped Editing.
+D3_L10=[75257]Started Editing.
+D3_L11=[75967]Stopped Editing.
+D3_L12=[76693]Started Editing.
+D3_L13=[77103]Stopped Editing.
 
 [Opened Files]
 1=main.c
-t1=49
+t1=61
 2=main.h
-t2=49
-Count=4
+t2=62
+Count=2
 3=..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\33FJ64MC802.h
-t3=852
+t3=208
 4=..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\assert.h
-t4=3
+t4=1
 [main.c]
 Type=4
 Path=
@@ -84,7 +99,7 @@ OptionString=
 AdditionalOptionString=
 
 [defines]
-buildcount=93
+buildcount=160
 enabled=0
 chip=1
 D1=

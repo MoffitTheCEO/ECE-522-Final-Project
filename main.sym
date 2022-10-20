@@ -1,70 +1,71 @@
 W0      @SCRATCH
 W0L     _RETURN_
-W0      @PRINTFD16_115200_5718_5719.P1
+W0 -W1  @FLT.P1
 W0 -W1  @READ_ROM_MEMORY.P2
-W0 -W2  @ADDFF48.P3
-W0 -W2  @DIVFF48.P4
-W0 -W2  @F48TO64.P5
+W0 -W1  @SFTOI.P3
+W0      @ITOF.P4
+W0 -W3  @F64TOI64.P5
 W0 -W1  @DIV3232B.P6
-W0      @delay_ms1.P7
-W0      @delay_us1.P8
-W0 -W1  @FLT.P9
-W0 -W3  @DIVFF64.P10
-W0 -W3  @MULS6464.P11
-W0 -W1  @MUL3232.P12
-W0 -W3  @F64TOI64.P13
-W0 -W3  @DIVS6464.P14
-W0 -W3  @I64TOF64.P15
-W0 -W3  @MULFF64.P16
-W0 -W3  @I64TOF48.P17
-W0 -W3  @F64TOSI64.P18
-W0 -W1  @SFTOI.P19
-W0      @SITOF.P20
-W0      @ITOF.P21
-W0 -W3  @ADDFF64.P22
+W0 -W2  @MULS4848.P7
+W0 -W1  @ADDFF.P8
+W0 -W2  @DIVS4848.P9
+W0 -W3  @FLT64.P10
+W0 -W2  @ADDFF48.P11
+W0 -W2  @FLT48.P12
+W0 -W3  @MULFF64.P13
+W0 -W2  @F48TOSI64.P14
+W0 -W3  @MULS6464.P15
+W0 -W3  @I64TOF48.P16
+W0 -W3  @DIVS6464.P17
+W0 -W2  @MULFF48.P18
+W0 -W3  @ADDFF64.P19
+W0 -W1  @MUL3232.P20
+W0 -W1  @DIVS3232A.P21
+W0 -W1  @FTOSI64.P22
 W0 -W1  @MULFF.P23
-W0 -W2  @FLT48.P24
-W0 -W1  @ADDFF.P25
-W0 -W2  @F48TOSI64.P26
-W0 -W1  @DIVFF.P27
-W0 -W3  @SI64TOF48.P28
-W0 -W2  @MULFF48.P29
-W0 -W3  @FLT64.P30
-W0 -W2  @DIVS4848.P31
-W0 -W1  @DIVS3232A.P32
-W0 -W2  @MULS4848.P33
-W0 -W3  @SI64TOF64.P34
-W0 -W1  @MULS3232.P35
+W0 -W2  @F48TO64.P24
+W0 -W3  @DIVFF64.P25
+W0 -W3  @F64TOSI64.P26
+W0      @delay_us1.P27
+W0 -W3  @I64TOF64.P28
+W0 -W2  @DIVFF48.P29
+W0      @SITOF.P30
+W0 -W3  @SI64TOF64.P31
+W0 -W3  @SI64TOF.P32
+W0 -W3  @SI64TOF48.P33
+W0      @delay_ms1.P34
+W0 -W1  @SDTOF.P35
+W0 -W1  @MULS3232.P36
+W0 -W1  @DIVFF.P37
 W1      @SCRATCH
-W1      @READ_PACKED_MEMORY.P1
-W1      @WRITE_PACKED_MEMORY.P2
-W2      @WRITE_PACKED_MEMORY.P1
-W2      @READ_ROM_MEMORY.P2
-W2 -W3  @MULFF.P3
-W2      @READ_PACKED_MEMORY.P4
-W2 -W3  @DIV3232B.P5
-W2 -W3  @MULS3232.P6
-W2 -W3  @MUL3232.P7
-W2 -W3  @FLT.P8
-W2 -W3  @DIVFF.P9
-W2 -W3  @ADDFF.P10
-W2 -W3  @DIVS3232A.P11
-W3 -W5  @DIVS4848.P1
-W3 -W5  @FLT48.P2
-W3 -W5  @MULS4848.P3
-W3      @WRITE_PACKED_MEMORY.P4
-W3 -W5  @MULFF48.P5
-W3      @READ_PACKED_MEMORY.P6
-W3 -W5  @DIVFF48.P7
-W3      @READ_ROM_MEMORY.P8
-W3 -W5  @ADDFF48.P9
-W4 -W7  @MULFF64.P1
-W4 -W7  @MULS6464.P2
-W4 -W7  @DIVFF64.P3
-W4 -W7  @FLT64.P4
-W4 -W7  @ADDFF64.P5
-W4 -W7  @DIVS6464.P6
-W4      @PRINTFD16_115200_5718_5719.P7
+W1      @WRITE_PACKED_MEMORY.P1
+W1      @READ_PACKED_MEMORY.P2
+W2      @READ_ROM_MEMORY.P1
+W2 -W3  @DIVFF.P2
+W2 -W3  @DIVS3232A.P3
+W2      @WRITE_PACKED_MEMORY.P4
+W2 -W3  @ADDFF.P5
+W2      @READ_PACKED_MEMORY.P6
+W2 -W3  @MULFF.P7
+W2 -W3  @DIV3232B.P8
+W2 -W3  @FLT.P9
+W2 -W3  @MUL3232.P10
+W2 -W3  @MULS3232.P11
+W3 -W5  @ADDFF48.P1
+W3      @READ_ROM_MEMORY.P2
+W3 -W5  @DIVS4848.P3
+W3 -W5  @DIVFF48.P4
+W3      @WRITE_PACKED_MEMORY.P5
+W3 -W5  @FLT48.P6
+W3 -W5  @MULS4848.P7
+W3 -W5  @MULFF48.P8
+W3      @READ_PACKED_MEMORY.P9
+W4 -W7  @MULS6464.P1
+W4 -W7  @FLT64.P2
+W4 -W7  @MULFF64.P3
+W4 -W7  @ADDFF64.P4
+W4 -W7  @DIVS6464.P5
+W4 -W7  @DIVFF64.P6
 630.6   C1OUT
 630.7   C2OUT
 85A-85B rs232_errors
@@ -74,22 +75,65 @@ W4      @PRINTFD16_115200_5718_5719.P7
 8DC-90B qat_64
 90C-90D strtok.save
 90E-911 _Randseed
-912     DMA_DONE
-914-915 MAIN.i
-4000-40C7 DMA_ADC_BUFFER
-40C8-412B DMA_UART_TX_BUFFER
-4770-47FF Stack
+912-913 frequency
+914     ConversionValue
+915     UARTRX
+916-A15 AnalogData
+A16-A17 CSharpCoefficent
+A18-A19 InitialTriggerValue
+A1A-A1B TriggerValue
+A1C-A1D ByteConversionResult
+A1E-A21 Accumulator
+A22-E21 DigitizedData
+E22-E25 MaxAnalogValue
+E26-E29 MinAnalogValue
+E2A-E31 AverageAnalogValue
+E32-EB1 InputSamples
+EB2-EB5 OutputValue
+EB6-EB9 AverageDivider
+EBA-EBD AverageMultiplier
+EBE-EC1 CSharpCoefficentRecieved
+EC2-EC5 CoefficentIndex
+EC6-EC9 InputIndex
+ECA-ECD CurrentIndex
+ECE-ED1 NumberCSharpByteRecieved
+ED2-ED5 ErrorCounter
+ED6     DMADoneFlag
+ED7     NormalizeFlag
+ED8     UARTRXFlag
+ED9     UARTTXFlag
+EDA     HandShakeFlag
+EDC-F5B fir_coef
+F5C-F5F MAIN.index
+F60-F63 AccumulateAnalogData.NumberOfDigitizationRequired
+F60-F63 NormalizeData.index
+F64-F65 NormalizeData.i
+F64-F67 AccumulateAnalogData.DMAADCIndex
+F68-F6B AccumulateAnalogData.index
+F6C-F6F AccumulateAnalogData.index
+4000-41FF DMA_ADC_BUFFER
+4200-42FF DMA_UART_TX_BUFFER
+4760-47FF Stack
 
 ROM Allocation:
-000200  @const1596.call
-00021C  DMA_0_ISR
-000240  DMA_1_ISR
-000260  Timer_ISR
-000288  @delay_ms1
-00029C  @PRINTFD16_115200_5718_5719
-00039C  @cinit1
-00039C  MAIN
-0003EC  @cinit2
+000200  DMA_0_ISR
+000224  DMA_1_ISR
+000244  Timer_ISR
+00026C  @GETCH_BIU_1
+00028E  ISR_UART2
+0002B8  @MULS3232
+0002FA  @FTOSI64
+00034A  @MULS6464
+0003E0  @SI64TOF
+000448  @SFTOI
+000474  AccumulateAnalogData
+0006A6  @SDTOF
+0006F4  @DIVFF
+0007BE  @DIVS6464
+0008B6  NormalizeData
+000AAE  @cinit1
+000AAE  MAIN
+000B44  @cinit2
 0136  StrtoulGO
 0136  StrtolGO
 
@@ -97,8 +141,8 @@ Project Directory:
     C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\
 
 Project Files:
-    main.c                                                  [18-Oct-22 20:59  CRC=456F0566]
-    main.h                                                  [18-Oct-22 21:00  CRC=218CDA04]
+    main.c                                                  [19-Oct-22 21:20  CRC=383D1BEE]
+    main.h                                                  [19-Oct-22 21:19  CRC=CCD70A12]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\33FJ64MC802.h [27-Jan-17 19:45  CRC=5B12944B]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\float.h [01-Aug-07 15:50  CRC=8BC4079E]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\math.h [22-Sep-16 08:36  CRC=9CF8C837]
@@ -109,10 +153,10 @@ Project Files:
     ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdio.h [31-Jul-07 14:24  CRC=4E4534F4]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdint.h [06-May-16 10:24  CRC=FE3369EA]
 
-Source signature=2F313E5F
+Source signature=CD4984F5
 Program memory checksum=0000
 Program memory CRC=0000
-Hex file CRC=EDE9
+Hex file CRC=204D
 
 Units:
     main (main)

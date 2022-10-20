@@ -1,60 +1,69 @@
 
-ROM used:   1426/44032 (3%)
-            1426/44032 (3%) including unused fragments
+ROM used:   3300/44032 (7%)
+            3300/44032 (7%) including unused fragments
 
-            0.3 Average locations per line
-            1.0 Average locations per statement
+            0.6 Average locations per line
+            2.1 Average locations per statement
 
-RAM used:   634/16294 (4%) at main() level
-            636/16294 (4%) worst case
+RAM used:   2725/16294 (17%) at main() level
+            2809/16294 (17%) worst case
 
-Stack used: 52 worst case (14 in main + 38 for interrupts)
-Stack size: 144
+Stack used: 70 worst case (28 in main + 42 for interrupts)
+Stack size: 160
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   68    27   2  main.c
-   36     0   0  main.h
+  192    91   6  main.c
+   89     0   0  main.h
  1184     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\33FJ64MC802.h
    61     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\float.h
- 2227   926  63  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\math.h
+ 2227   926  60  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\math.h
    32     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stddef.h
- 1352   524  35  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdlib.h
+ 1352   524  34  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdlib.h
   435     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\string.h
    28     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\ctype.h
    37     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdio.h
   168     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdint.h
 ----- -----
- 5628  1477 Total
+ 5805  1541 Total
 
 Page ROM  %  RAM    Vol Diff  Functions:
 ---- --- --- ---    --- ----  ----------
-0     20   1    2             @delay_ms1
+0     34   1    3             @GETCH_BIU_1
+0     44   1   65    555  5.7  @SFTOI
+0    202   3   66             @DIVFF
+0     66   1    8             @MULS3232
+0    150   2    0             @MULS6464
+0    248   4    0             @DIVS6464
 0     36   1    0     22  1.2  DMA_0_ISR
-0     32   1    0      5  1.0  DMA_1_ISR
+0     32   0    0      5  1.0  DMA_1_ISR
 0     40   1    0     12  0.8  Timer_ISR
-0    502  18    5    992  6.2  MAIN
-0     28   1    0   1023  7.3  @const1596
-0    256   9    0             @PRINTFD16_115200_5718_5719
- Inline         0             @cinit1
+0     42   1    0     42  1.4  ISR_UART2
+0    566   9    4    972  7.3  MAIN
+0    562   9   25   1049  8.5  AccumulateAnalogData
+0     80   1    0      3  0.0  @FTOSI64
+0    104   2    0      3  0.0  @SI64TOF
+0    504   8    6   1188  7.3  NormalizeData
+0     78   1   65      3  0.0  @SDTOF
+ Inline         0      3  0.0  @cinit1
 
 Program metrics:
-    Functions               5
-    Statements              1477
-    Comments                1182
-    Volume (V)              2490
-    Difficulty (D)          17.2
-    Effort to implement (E) 42878
-    Time to implement (T)   40 minutes
-    Est Delivered Bugs (B)  0
-    Cyclomatic Complexity   4
-    Maintainability (MI)    -2
+    Functions               12
+    Statements              1541
+    Comments                1042
+    Volume (V)              5332
+    Difficulty (D)          37.2
+    Effort to implement (E) 198575
+    Time to implement (T)   3 hours, 4 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   20
+    Maintainability (MI)    108
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-001FE   508  0  
-00200-0ABFE   914  42606  
+00200-0ABFE  2788  40732  
 
 
 

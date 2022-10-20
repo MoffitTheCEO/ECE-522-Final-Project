@@ -1,4 +1,11 @@
 --- Info 300 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 8(1,1): More info:   Actual Clock is 39920833
-      Memory usage:   ROM=3%      RAM=4% - 4%
-      0 Errors,  0 Warnings.
+>>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 39(16,25): Variable never used:   frequency
+>>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 44(15,31): Variable never used:   CSharpCoefficent
+>>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 49(14,34): Variable never used:   ByteConversionResult
+>>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 66(11,35): Variable never used:   CSharpCoefficentRecieved
+>>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 70(11,35): Variable never used:   NumberCSharpByteRecieved
+>>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 77(10,20): Variable never used:   UARTTXFlag
+>>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 78(10,23): Variable never used:   HandShakeFlag
+      Memory usage:   ROM=7%      RAM=17% - 17%
+      0 Errors,  7 Warnings.
 Build Successful.
