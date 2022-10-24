@@ -1,69 +1,69 @@
 
-ROM used:   3300/44032 (7%)
-            3300/44032 (7%) including unused fragments
+ROM used:   3504/22016 (8%)
+            3504/22016 (8%) including unused fragments
 
             0.6 Average locations per line
-            2.1 Average locations per statement
+            2.2 Average locations per statement
 
-RAM used:   2725/16294 (17%) at main() level
-            2809/16294 (17%) worst case
+RAM used:   2435/16294 (15%) at main() level
+            2470/16294 (15%) worst case
 
-Stack used: 70 worst case (28 in main + 42 for interrupts)
-Stack size: 160
+Stack used: 62 worst case (46 in main + 16 for interrupts)
+Stack size: 30
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  192    91   6  main.c
-   89     0   0  main.h
- 1184     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\33FJ64MC802.h
-   61     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\float.h
- 2227   926  60  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\math.h
-   32     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stddef.h
- 1352   524  34  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdlib.h
-  435     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\string.h
-   28     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\ctype.h
-   37     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdio.h
-  168     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdint.h
+  243   124   8  main.c
+  100     0   0  main.h
+ 1139     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Devices\33FJ64MC802.h
+   61     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\float.h
+ 2229   921  59  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\math.h
+   32     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\stddef.h
+ 1351   524  33  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\stdlib.h
+  423     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\string.h
+   28     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\ctype.h
+   37     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\stdio.h
+  163     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\stdint.h
 ----- -----
- 5805  1541 Total
+ 5806  1569 Total
 
-Page ROM  %  RAM    Vol Diff  Functions:
----- --- --- ---    --- ----  ----------
-0     34   1    3             @GETCH_BIU_1
-0     44   1   65    555  5.7  @SFTOI
-0    202   3   66             @DIVFF
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     34   0    3             @GETCH_BIU_1
+0     44   1    4             @SFTOI
+0    202   3    8             @DIVFF
 0     66   1    8             @MULS3232
 0    150   2    0             @MULS6464
 0    248   4    0             @DIVS6464
-0     36   1    0     22  1.2  DMA_0_ISR
-0     32   0    0      5  1.0  DMA_1_ISR
-0     40   1    0     12  0.8  Timer_ISR
-0     42   1    0     42  1.4  ISR_UART2
-0    566   9    4    972  7.3  MAIN
-0    562   9   25   1049  8.5  AccumulateAnalogData
-0     80   1    0      3  0.0  @FTOSI64
-0    104   2    0      3  0.0  @SI64TOF
-0    504   8    6   1188  7.3  NormalizeData
-0     78   1   65      3  0.0  @SDTOF
- Inline         0      3  0.0  @cinit1
+0     36   1    0    22  1.2  DMA_0_ISR
+0     32   0    0     5  1.0  DMA_1_ISR
+0    192   3    0   894  6.3  Timer_ISR
+0     42   1    0    42  1.4  ISR_UART2
+0    650   9    0  1002  7.3  MAIN
+0    564   8   21  1121  9.0  AccumulateAnalogData
+0     74   1    0             @FTOSI64
+0     98   1    0             @SI64TOF
+0    482   7    0  1220  7.3  NormalizeData
+0     78   1    4             @SDTOF
+ Inline         0             @cinit1
 
 Program metrics:
-    Functions               12
-    Statements              1541
-    Comments                1042
-    Volume (V)              5332
-    Difficulty (D)          37.2
-    Effort to implement (E) 198575
-    Time to implement (T)   3 hours, 4 minutes
+    Functions               7
+    Statements              1569
+    Comments                1024
+    Volume (V)              5817
+    Difficulty (D)          33.2
+    Effort to implement (E) 193395
+    Time to implement (T)   2 hours, 59 minutes
     Est Delivered Bugs (B)  1
-    Cyclomatic Complexity   20
-    Maintainability (MI)    108
+    Cyclomatic Complexity   21
+    Maintainability (MI)    42
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-001FE   508  0  
-00200-0ABFE  2788  40732  
+00200-0ABFE  2992  40528  
 
 
 

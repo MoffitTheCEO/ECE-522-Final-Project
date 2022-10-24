@@ -72,15 +72,26 @@ IndexType ErrorCounter = 0; // error detection
 
 FlagType DMADoneFlag = 0;
 FlagType NormalizeFlag = 0;
-
 FlagType UARTRXFlag = 0;   // serial flag
 FlagType UARTTXFlag = 0;       // flag to send data out
 FlagType HandShakeFlag = 1;    // handshake
+FlagType TriggerFlag = 0;
+FlagType DMAFlag = 0;
 
 void AccumulateAnalogData(IndexType);
 void NormalizeData();
 
-signed int16 fir_coef[COEF_LENGTH] = {  };
+signed int16 fir_coef[COEF_LENGTH] =
+{  
+       -12,     -4,      5,     17,     31,     48,     65,     79,     86, // 50HZ AND 100HZ LPF FS 2000HZ  freq = 8000
+       83,     64,     26,    -31,   -106,   -194,   -284,   -366,   -424,
+       -442,   -405,   -300,   -120,    139,    470,    862,   1295,   1744,
+       2182,   2578,   2904,   3137,   3257,   3257,   3137,   2904,   2578,
+       2182,   1744,   1295,    862,    470,    139,   -120,   -300,   -405,
+       -442,   -424,   -366,   -284,   -194,   -106,    -31,     26,     64,
+       83,     86,     79,     65,     48,     31,     17,      5,     -4,
+       -12
+};
 
 #endif // MAIN_H
 

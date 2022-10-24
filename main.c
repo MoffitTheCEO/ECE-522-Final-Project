@@ -1,7 +1,7 @@
 #include "main.h"
 
 #BANK_DMA
-unsigned int16  DMA_ADC_BUFFER[BUFFER_SIZE];
+unsigned int8 DMA_ADC_BUFFER[BUFFER_SIZE];
 #BANK_DMA
 char DMA_UART_TX_BUFFER[BUFFER_SIZE];
 //Todo:: Two DMA Buffers for real time data sampling
@@ -21,7 +21,54 @@ void DMA_1_ISR(void)
 #INT_TIMER1
 void Timer_ISR()
 {
-   read_adc();
+   if(NormalizeFlag == 1)
+   {
+      read_adc();
+   }
+   else
+   {
+      unsigned int8 ADCValue = 0;
+      
+      if (TriggerFlag != 2)
+      {
+          ADCValue = read_adc();
+      }
+      
+      if (DMAFlag == 0)
+      {
+         disable_interrupts(INT_DMA0);
+         memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE);
+         DMAFlag = 1;
+      }
+      
+      if((ADCValue == TriggerValue) && (TriggerFlag == 0))
+      {
+         DMA_ADC_BUFFER[0] = ADCValue;
+         TriggerFlag = 1;
+      }
+      else if( DMA_ADC_BUFFER[1] > ADCValue)
+      {
+         DMA_ADC_BUFFER[1] = ADCValue;
+         TriggerFlag = 2;
+      }
+      else if(TriggerFlag == 2)
+      {
+         if(DMAFlag == 1)
+         {
+            memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE);
+            dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
+            enable_interrupts(INT_DMA0);
+            DMAFlag = 2;
+         }
+         
+         read_adc();//Fill DMA_ADC_BUFFER FROM POSITION 2 -> END OF BUFFER
+      }  
+      else
+      {
+         TriggerFlag = 0;
+      }
+   }
+   
 }
 
 #INT_RDA2      // interrupt handler for the uart RS232 communication
@@ -52,6 +99,8 @@ void main()
    setup_timer1(TMR_INTERNAL ,10000);
    enable_interrupts(INT_TIMER1);
    enable_interrupts(INTR_GLOBAL);
+   
+   NormalizeFlag = 1;
 
    while(TRUE)
    {
@@ -68,10 +117,8 @@ void main()
             AccumulateAnalogData(Index);
          }
          
-         
          if (NormalizeFlag == 1)
          {
-            
             NormalizeData();
          }
          else
@@ -79,9 +126,11 @@ void main()
          
          }
          
-         dma_start(UART_TX_DMA_CHANNEL, DMA_ONE_SHOT | DMA_FORCE_NOW, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
+         dma_start(UART_TX_DMA_CHANNEL, DMA_ONE_SHOT | DMA_FORCE_NOW, &DMA_ADC_BUFFER[0], BUFFER_SIZE);    
          enable_interrupts(INT_DMA0);
          DMADoneFlag = 0;
+         //DMAFlag = 0;
+         //TriggerFlag = 0;
       }      
    }
 }
@@ -89,8 +138,10 @@ void main()
 void AccumulateAnalogData(IndexType NumberOfDigitizationRequired)
 {
    IndexType DMAADCIndex = (NumberOfDigitizationRequired * COEF_LENGTH);
+   IndexType Index;
+   memset(InputSamples, 0, COEF_LENGTH);
    
-   for (IndexType Index = 0; Index < COEF_LENGTH; Index++) //Todo:: Replace with MemCpy()
+   for (Index = 0; Index < COEF_LENGTH; Index++) //Todo:: Replace with MemCpy() 
    {
       InputSamples[Index] = DMA_ADC_BUFFER[DMAADCIndex++];
    }
@@ -100,7 +151,7 @@ void AccumulateAnalogData(IndexType NumberOfDigitizationRequired)
    Accumulator = 0;
    CoefficentIndex = 0;
    
-   for (IndexType Index = 0; Index < COEF_LENGTH; Index++)
+   for (Index = 0; Index < COEF_LENGTH; Index++)
    {
       while (CoefficentIndex < COEF_LENGTH - 1)
       {
@@ -135,7 +186,6 @@ void AccumulateAnalogData(IndexType NumberOfDigitizationRequired)
 
 void NormalizeData()
 {
-   
    if (ErrorCounter < 3000)
    {
       MaxAnalogValue = DigitizedData[64]; //Todo::Remove Gloab Vairables Where Possbile 
@@ -187,5 +237,6 @@ void NormalizeData()
       }
    }
    
+   NormalizeFlag = 0;
    CurrentIndex = 0;
 }

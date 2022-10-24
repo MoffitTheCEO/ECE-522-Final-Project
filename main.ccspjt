@@ -3,7 +3,7 @@ Target=main.hex
 Processor_Text=DSPIC33FJ64MC802
 CCSVerions=5.068
 Compiler=PCD
-CCSVersion=5.068
+CCSVersion=5.008
 Development_Mode=
 ToolSuite=CCS
 [Target Data]
@@ -13,7 +13,7 @@ OptionString=+FD
 AdditionalOptionString=
 BuildRequired=1
 [Directories]
-Include=
+Include=C:\Program Files (x86)\PICC2\Devices\;C:\Program Files (x86)\PICC2\Drivers\;C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\
 Library=
 LinkerScript=
 output=
@@ -86,9 +86,9 @@ t1=61
 2=main.h
 t2=62
 Count=2
-3=..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\33FJ64MC802.h
+3=..\..\..\..\..\..\..\Program Files (x86)\PICC2\Devices\33FJ64MC802.h
 t3=208
-4=..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\assert.h
+4=
 t4=1
 [main.c]
 Type=4
@@ -125,6 +125,30 @@ stayupoe=0
 
 [CompilerVersion]
 Fixed=
+[debugperif]
+selected=Analog/Digital Conv
+[debugbreak]
+count=1
+f1=C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.c
+l1=64
+a.1=742
+f2=C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.c
+l2=13
+a.2=526
+[debugwatch]
+e1=InputSamples
+e2=DMA_ADC_BUFFER
+count=9
+e3=InputSamples
+e4=TriggerValue
+e5=DigitizedData
+e6=Index
+e7=DMAADCIndex
+e8=Accumulator
+e9=NormalizeFlag
+[debugexpr]
+expr=
+sideeffects=1
 [Units]
 Count=1
 1=main (main)
