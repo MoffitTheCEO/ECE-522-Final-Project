@@ -1,7 +1,8 @@
 #include "main.h"
 
+#use delay(clock = 32MHZ, internal = 8MHZ)
 #BANK_DMA
-unsigned int8 DMA_ADC_BUFFER[BUFFER_SIZE];
+unsigned int16 DMA_ADC_BUFFER[BUFFER_SIZE];
 #BANK_DMA
 char DMA_UART_TX_BUFFER[BUFFER_SIZE];
 //Todo:: Two DMA Buffers for real time data sampling
@@ -21,6 +22,7 @@ void DMA_1_ISR(void)
 #INT_TIMER1
 void Timer_ISR()
 {
+   output_toggle(LED_PIN);   
    if(NormalizeFlag == 1)
    {
       read_adc();
@@ -65,6 +67,13 @@ void Timer_ISR()
       }  
       else
       {
+         ErrorCounter++;
+         
+         if (ErrorCounter >= 3000)
+         {
+            NormalizeFlag = 1;
+         }
+         
          TriggerFlag = 0;
       }
    }
@@ -83,7 +92,7 @@ void main()
    memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE);
    memset(DMA_UART_TX_BUFFER, 'a', BUFFER_SIZE);
    
-   setup_dma(ADC_DMA_CHANNEL, DMA_IN_ADC1, DMA_BYTE);
+   setup_dma(ADC_DMA_CHANNEL, DMA_IN_ADC1, DMA_WORD);
    dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
    
    setup_dma(UART_TX_DMA_CHANNEL, DMA_OUT_UART2, DMA_BYTE);
@@ -91,12 +100,17 @@ void main()
    enable_interrupts(INT_DMA0);
    enable_interrupts(INT_DMA1);
    
-   setup_adc_ports(sAN0, VSS_VDD);
-   setup_adc(ADC_CLOCK_INTERNAL);
+//!   setup_adc_ports(sAN0, VSS_VDD);
+//!   setup_adc(ADC_CLOCK_INTERNAL);
+
+   setup_adc(ADC_CLOCK_DIV_2 | ADC_TAD_MUL_4);
+   setup_adc_ports(sAN0 | VSS_VDD);
    
    read_adc();
    
-   setup_timer1(TMR_INTERNAL ,10000);
+   TimerTicks = 53334;
+   
+   setup_timer1(TMR_INTERNAL , TimerTicks);
    enable_interrupts(INT_TIMER1);
    enable_interrupts(INTR_GLOBAL);
    
@@ -126,7 +140,19 @@ void main()
          
          }
          
-         dma_start(UART_TX_DMA_CHANNEL, DMA_ONE_SHOT | DMA_FORCE_NOW, &DMA_ADC_BUFFER[0], BUFFER_SIZE);    
+         //dma_start(UART_TX_DMA_CHANNEL, DMA_ONE_SHOT | DMA_FORCE_NOW, &DMA_ADC_BUFFER[0], BUFFER_SIZE);    
+         //dma_start(UART_TX_DMA_CHANNEL, DMA_ONE_SHOT | DMA_FORCE_NOW, &DigitizedData[0], BUFFER_SIZE); 
+         //DMA THE ANALOG DATA ARRAY ALSO 
+         
+            for (IndexType i = 0; i < BUFFER_SIZE; i++) // send input array data
+            {
+                printf("%c", AnalogData[i]); // send every emelent of the array as a byte
+            }
+
+            for (i = 0; i < BUFFER_SIZE; i++) // send digitized data
+            {
+                printf("%c", DigitizedData[i]); // send every emelent of the array as a byte
+            }
          enable_interrupts(INT_DMA0);
          DMADoneFlag = 0;
          //DMAFlag = 0;
@@ -143,16 +169,17 @@ void AccumulateAnalogData(IndexType NumberOfDigitizationRequired)
    
    for (Index = 0; Index < COEF_LENGTH; Index++) //Todo:: Replace with MemCpy() 
    {
-      InputSamples[Index] = DMA_ADC_BUFFER[DMAADCIndex++];
+      InputSamples[Index] = DMA_ADC_BUFFER[DMAADCIndex++] >> 4;
    }
    
-   DMAADCIndex = (NumberOfDigitizationRequired * COEF_LENGTH);
-   InputIndex = CurrentIndex; 
-   Accumulator = 0;
-   CoefficentIndex = 0;
+   DMAADCIndex = (NumberOfDigitizationRequired * COEF_LENGTH);  
    
    for (Index = 0; Index < COEF_LENGTH; Index++)
    {
+      InputIndex = CurrentIndex; 
+      Accumulator = 0;
+      CoefficentIndex = 0;
+      
       while (CoefficentIndex < COEF_LENGTH - 1)
       {
          Accumulator += (signed int32)InputSamples[InputIndex] * (signed int32)fir_coef[CoefficentIndex];
@@ -176,8 +203,13 @@ void AccumulateAnalogData(IndexType NumberOfDigitizationRequired)
       }
       else
       {
-         OutputValue = (Accumulator - AverageAnalogValue) * AverageMultiplier + (ADC_MAX_DATA_VALUE / 2);
-         ConversionValue = (unsigned int8)OutputValue;
+         float StepOne = Accumulator - AverageAnalogValue;
+         float StepTwo = StepOne * AverageMultiplier;
+         float StepThree = StepTwo + (ADC_MAX_DATA_VALUE / 2);
+         //OutputValue = (Accumulator - AverageAnalogValue) * AverageMultiplier + (ADC_MAX_DATA_VALUE / 2);
+         //ConversionValue = (unsigned int8)OutputValue;
+         ConversionValue = (unsigned int8)StepThree;
+         DebugAccumulator[DMAADCIndex] = Accumulator;
          DigitizedData[DMAADCIndex] = ConversionValue;
       }
    }
@@ -188,11 +220,11 @@ void NormalizeData()
 {
    if (ErrorCounter < 3000)
    {
-      MaxAnalogValue = DigitizedData[64]; //Todo::Remove Gloab Vairables Where Possbile 
-      MinAnalogValue = DigitizedData[64]; //Todo::Remove Gloab Vairables Where Possbile 
-      InitialTriggerValue = DMA_ADC_BUFFER[64];
+      MaxAnalogValue = DigitizedData[COEF_LENGTH]; //Todo::Remove Gloab Vairables Where Possbile 
+      MinAnalogValue = DigitizedData[COEF_LENGTH]; //Todo::Remove Gloab Vairables Where Possbile 
+      InitialTriggerValue = DMA_ADC_BUFFER[COEF_LENGTH];
       
-      for (IndexType Index = 64; Index < BUFFER_SIZE; Index++)
+      for (IndexType Index = COEF_LENGTH + 1 ; Index < BUFFER_SIZE; Index++)
       {
          if (MinAnalogValue > DigitizedData[Index])
          {
@@ -214,27 +246,25 @@ void NormalizeData()
       
       AverageDivider = MaxAnalogValue - MinAnalogValue;
       AverageMultiplier = ((float)ADC_MAX_DATA_VALUE / AverageDivider);
-      AverageAnalogValue = AverageAnalogValue / (137);
+      AverageAnalogValue = AverageAnalogValue / (BUFFER_SIZE - COEF_LENGTH);
       
       TriggerValue = InitialTriggerValue;
                
-      memset(DigitizedData, 0, BUFFER_SIZE);
-      memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE);           
+      memset(DigitizedData, 0, BUFFER_SIZE);          
    }  
    else 
    {
       InitialTriggerValue = DMA_ADC_BUFFER[64];
-      for (int i = 65; i < BUFFER_SIZE; i++)
+      for (IndexType i = 65; i < BUFFER_SIZE; i++)
       {
-        
         if (InitialTriggerValue > DMA_ADC_BUFFER[i])
         {
             InitialTriggerValue = DMA_ADC_BUFFER[i];
-        }
-        
-        TriggerValue = InitialTriggerValue;
-        ErrorCounter = 0; 
+        }             
       }
+      
+      TriggerValue = InitialTriggerValue;
+      ErrorCounter = 0; 
    }
    
    NormalizeFlag = 0;

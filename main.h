@@ -3,31 +3,29 @@
 
 #include <33FJ64MC802.h>
 #device ADC=12
-#device ICD=TRUE
 #device ICSP=1
-#use delay(internal=40MHz)
+#use delay(internal=32MHz)
+//#use delay(internal=40MHz)
+
 
 #FUSES NOWDT                    //No Watch Dog Timer
 #FUSES CKSFSM                   //Clock Switching is enabled, fail Safe clock monitor is enabled
 #FUSES NOJTAG                   //JTAG disabled
+#FUSES FRC_PLL
 
 #pin_select U2TX=PIN_B6
 #pin_select U2RX=PIN_B7
 #USE RS232(UART2, BAUD = 115200, PARITY = N, BITS = 8, STOP = 1, TIMEOUT = 500,  stream = SHARP)) // RECEIVE_BUFFER=255, TRANSMIT_BUFFER=255, TXISR,
 
-#include <float.h>
 #include <math.h>
-#include <stddef.h>
-#include <stdlib.h>
-#include <string.h>
 #include <stdio.h>
-#include <stdint.h>
 #include <ctype.h>
 
 #define BUFFER_SIZE 256
 #define COEF_LENGTH 64
 #define LOADER_PAGES 50
 #define ADC_MAX_DATA_VALUE 255
+#define LED_PIN PIN_B14   
 
 typedef unsigned int32 IndexType;
 typedef unsigned int8 FlagType;
@@ -36,7 +34,7 @@ const unsigned int8 ADC_DMA_CHANNEL = 0;
 const unsigned int8 UART_TX_DMA_CHANNEL = 1;
 const IndexType NumberOfDigitizationRequired = BUFFER_SIZE / COEF_LENGTH;
 
-unsigned int16 Frequency = 0;
+unsigned int16 TimerTicks = 0;
 
 unsigned int8 ConversionValue; // normalized value
 unsigned int8 AnalogData[BUFFER_SIZE]; // input array
@@ -50,6 +48,7 @@ signed int16 ByteConversionResult = 0;     // result of byte convertion
 
 signed int32 Accumulator = 0; // accumulator of the output value in the difference equation calculation
 signed int32 DigitizedData[BUFFER_SIZE];   // output array
+signed int32 DebugAccumulator[BUFFER_SIZE];   // output array
 signed int32 MaxAnalogValue = 0; // use for normalization
 signed int32 MinAnalogValue = 0; // use for normalization
 
@@ -83,14 +82,14 @@ void NormalizeData();
 
 signed int16 fir_coef[COEF_LENGTH] =
 {  
-       -12,     -4,      5,     17,     31,     48,     65,     79,     86, // 50HZ AND 100HZ LPF FS 2000HZ  freq = 8000
-       83,     64,     26,    -31,   -106,   -194,   -284,   -366,   -424,
-       -442,   -405,   -300,   -120,    139,    470,    862,   1295,   1744,
-       2182,   2578,   2904,   3137,   3257,   3257,   3137,   2904,   2578,
-       2182,   1744,   1295,    862,    470,    139,   -120,   -300,   -405,
-       -442,   -424,   -366,   -284,   -194,   -106,    -31,     26,     64,
-       83,     86,     79,     65,     48,     31,     17,      5,     -4,
-       -12
+210,   -167,   -150,   -155,   -171,   -192,   -213,   -231,   -243, // 10 HZ LPF FS 300HZ freq = 53334 Fin
+-246,   -239,   -218,   -183,   -133,    -65,     19,    120,    237,
+368,    511,    664,    823,    984,   1145,   1302,   1449,   1584,
+1703,   1802,   1879,   1931,   1958,   1958,   1931,   1879,   1802,
+1703,   1584,   1449,   1302,   1145,    984,    823,    664,    511,
+368,    237,    120,     19,    -65,   -133,   -183,   -218,   -239,
+-246,   -243,   -231,   -213,   -192,   -171,   -155,   -150,   -167,
+210
 };
 
 #endif // MAIN_H

@@ -1,18 +1,18 @@
 ÀÄmain
-   ÃÄMAIN  0/650  Ram=0
+   ÃÄMAIN  0/786  Ram=5
    ³  ÃÄ@cinit1  (Inline)  Ram=0
-   ³  ÃÄAccumulateAnalogData  0/564  Ram=21
+   ³  ÃÄAccumulateAnalogData  0/576  Ram=19
    ³  ³  ÃÄ@MULS3232  0/66  Ram=8
-   ³  ³  ÃÄ@FTOSI64  0/74  Ram=0
-   ³  ³  ÃÄ@MULS6464  0/150  Ram=0
    ³  ³  ÃÄ@SI64TOF  0/98  Ram=0
+   ³  ³  ÃÄ@MULFF  0/196  Ram=8
+   ³  ³  ÃÄ@ADDFF  0/426  Ram=8
    ³  ³  ÀÄ@SFTOI  0/44  Ram=4
-   ³  ÀÄNormalizeData  0/482  Ram=0
+   ³  ÀÄNormalizeData  0/544  Ram=0
    ³     ÃÄ@SDTOF  0/78  Ram=4
    ³     ÃÄ@DIVFF  0/202  Ram=8
    ³     ÀÄ@DIVS6464  0/248  Ram=0
    ÃÄDMA_0_ISR  0/36  Ram=0
    ÃÄDMA_1_ISR  0/32  Ram=0
-   ÃÄTimer_ISR  0/192  Ram=0
+   ÃÄTimer_ISR  0/234  Ram=0
    ÀÄISR_UART2  0/42  Ram=0
       ÀÄ@GETCH_BIU_1  0/34  Ram=3
