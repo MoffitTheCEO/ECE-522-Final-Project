@@ -1,6 +1,6 @@
 
-ROM used:   4154/22016 (9%)
-            4154/22016 (9%) including unused fragments
+ROM used:   4176/22016 (9%)
+            4176/22016 (9%) including unused fragments
 
             1.0 Average locations per line
             3.5 Average locations per statement
@@ -13,7 +13,7 @@ Stack size: 30
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  273   134  11  main.c
+  282   139  12  main.c
    99     0   0  main.h
  1139     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Devices\33FJ64MC802.h
  2229   921  78  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\math.h
@@ -22,7 +22,7 @@ Lines Stmts  %   Files
    32     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\stddef.h
    28     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\ctype.h
 ----- -----
- 4260  1180 Total
+ 4269  1185 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -30,37 +30,37 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     44   1    4             @SFTOI
 0    196   2    8             @MULFF
 0    426   5    8             @ADDFF
-0    202   2    8   252  6.8  @DIVFF
+0    202   2    8             @DIVFF
 0     36   0    0    22  1.2  DMA_0_ISR
 0     32   0    0     5  1.0  DMA_1_ISR
 0    234   3    0  1026  7.3  Timer_ISR
 0     42   1    0    42  1.4  ISR_UART2
 0    786   9    5  1268  7.2  MAIN
-0    576   7   19  1266  9.7  AccumulateAnalogData
+0    598   7   19  1400 10.2  AccumulateAnalogData
 0     66   1    8             @MULS3232
-0     98   1    0  1071 10.9  @SI64TOF
+0     98   1    0             @SI64TOF
 0    544   7    0  1188  7.3  NormalizeData
 0     78   1    4             @SDTOF
-0    248   3    0  1188  7.3  @DIVS6464
+0    248   3    0             @DIVS6464
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               10
-    Statements              1180
+    Functions               7
+    Statements              1185
     Comments                710
-    Volume (V)              10577
-    Difficulty (D)          60.5
-    Effort to implement (E) 639492
-    Time to implement (T)   9 hours, 52 minutes
-    Est Delivered Bugs (B)  2
-    Cyclomatic Complexity   36
-    Maintainability (MI)    80
+    Volume (V)              6630
+    Difficulty (D)          35.5
+    Effort to implement (E) 235154
+    Time to implement (T)   3 hours, 38 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   25
+    Maintainability (MI)    57
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-001FE   508  0  
-00200-0ABFE  3642  39878  
+00200-0ABFE  3664  39856  
 
 
 

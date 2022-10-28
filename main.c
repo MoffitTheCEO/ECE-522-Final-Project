@@ -212,6 +212,15 @@ void AccumulateAnalogData(IndexType NumberOfDigitizationRequired)
          DebugAccumulator[DMAADCIndex] = Accumulator;
          DigitizedData[DMAADCIndex] = ConversionValue;
       }
+      
+      if (CurrentIndex == 0)
+      {
+        CurrentIndex = COEF_LENGTH - 1;
+      }
+      else
+      {
+        CurrentIndex--;
+      }
    }
   
 }
