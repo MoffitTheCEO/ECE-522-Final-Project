@@ -22,61 +22,63 @@ void DMA_1_ISR(void)
 #INT_TIMER1
 void Timer_ISR()
 {
-   output_toggle(LED_PIN);   
-   if(NormalizeFlag == 1)
-   {
-      read_adc();
-   }
-   else
-   {
-      unsigned int8 ADCValue = 0;
-      
-      if (TriggerFlag != 2)
-      {
-          ADCValue = read_adc();
-      }
-      
-      if (DMAFlag == 0)
-      {
-         disable_interrupts(INT_DMA0);
-         memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE);
-         DMAFlag = 1;
-      }
-      
-      if((ADCValue == TriggerValue) && (TriggerFlag == 0))
-      {
-         DMA_ADC_BUFFER[0] = ADCValue;
-         TriggerFlag = 1;
-      }
-      else if( DMA_ADC_BUFFER[1] > ADCValue)
-      {
-         DMA_ADC_BUFFER[1] = ADCValue;
-         TriggerFlag = 2;
-      }
-      else if(TriggerFlag == 2)
-      {
-         if(DMAFlag == 1)
-         {
-            memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE);
-            dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
-            enable_interrupts(INT_DMA0);
-            DMAFlag = 2;
-         }
-         
-         read_adc();//Fill DMA_ADC_BUFFER FROM POSITION 2 -> END OF BUFFER
-      }  
-      else
-      {
-         ErrorCounter++;
-         
-         if (ErrorCounter >= 3000)
-         {
-            NormalizeFlag = 1;
-         }
-         
-         TriggerFlag = 0;
-      }
-   }
+   output_toggle(LED_PIN); 
+   read_adc();
+//!   if(NormalizeFlag == 1)
+//!   {
+//!      read_adc();
+//!      NormalizeDataCounter++;
+//!   }
+//!   else
+//!   {
+//!      unsigned int16 ADCValue = 0;
+//!      
+//!      if (TriggerFlag != 2)
+//!      {
+//!          ADCValue = QuickDigitize(read_adc());
+//!      }
+//!      
+//!      if (DMAFlag == 0)
+//!      {
+//!         disable_interrupts(INT_DMA0);
+//!         memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2);
+//!         DMAFlag = 1;
+//!      }
+//!      
+//!      if((ADCValue == TriggerValue) && (TriggerFlag == 0))
+//!      {
+//!         DMA_ADC_BUFFER[0] = ADCValue;
+//!         TriggerFlag = 1;
+//!      }
+//!      else if(DMA_ADC_BUFFER[1] > ADCValue)
+//!      {
+//!         DMA_ADC_BUFFER[1] = ADCValue;
+//!         TriggerFlag = 2;
+//!      }
+//!      else if(TriggerFlag == 2)
+//!      {
+//!         if(DMAFlag == 1)
+//!         {
+//!            //memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2);
+//!            dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
+//!            enable_interrupts(INT_DMA0);
+//!            DMAFlag = 2;
+//!         }
+//!         
+//!         read_adc();//Fill DMA_ADC_BUFFER FROM POSITION 2 -> END OF BUFFER
+//!      }  
+//!      else
+//!      {
+//!         ErrorCounter++;
+//!         
+//!         if (ErrorCounter > 3000)
+//!         {
+//!            NormalizeFlag = 1;
+//!         }
+//!         
+//!         TriggerFlag = 0;
+//!      }
+//!   }
    
 }
 
@@ -89,8 +91,8 @@ void ISR_UART2()
 
 void main()
 {   
-   memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE);
-   memset(DMA_UART_TX_BUFFER, 'a', BUFFER_SIZE);
+   memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2);
+   memset(DMA_UART_TX_BUFFER, 'a', BUFFER_SIZE * 2);
    
    setup_dma(ADC_DMA_CHANNEL, DMA_IN_ADC1, DMA_WORD);
    dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
@@ -119,13 +121,9 @@ void main()
    while(TRUE)
    {
       
-      if(DMADoneFlag)
+      if((DMADoneFlag) || (NormalizeDataCounter == BUFFER_SIZE))
       {
          disable_interrupts(INT_DMA0);
-//!         for(unsigned int16 i=0; i< BUFFER_SIZE; i++)
-//!         {
-//!               printf("\n\r ADC Val: %c", DMA_ADC_BUFFER[i]);
-//!         }
          for (IndexType Index = 0; Index < NumberOfDigitizationRequired; Index++)
          {
             AccumulateAnalogData(Index);
@@ -144,19 +142,21 @@ void main()
          //dma_start(UART_TX_DMA_CHANNEL, DMA_ONE_SHOT | DMA_FORCE_NOW, &DigitizedData[0], BUFFER_SIZE); 
          //DMA THE ANALOG DATA ARRAY ALSO 
          
-            for (IndexType i = 0; i < BUFFER_SIZE; i++) // send input array data
-            {
-                printf("%c", AnalogData[i]); // send every emelent of the array as a byte
-            }
+         for (IndexType i = 0; i < BUFFER_SIZE; i++) // send input array data
+         {
+             printf("%c", AnalogData[i]); // send every emelent of the array as a byte
+         }
 
-            for (i = 0; i < BUFFER_SIZE; i++) // send digitized data
-            {
-                printf("%c", DigitizedData[i]); // send every emelent of the array as a byte
-            }
+         for (i = 0; i < BUFFER_SIZE; i++) // send digitized data
+         {
+             printf("%c", DigitizedData[i]); // send every emelent of the array as a byte
+         }
+            
+         CurrentIndex = 0;
          enable_interrupts(INT_DMA0);
          DMADoneFlag = 0;
-         //DMAFlag = 0;
-         //TriggerFlag = 0;
+         DMAFlag = 0;
+         TriggerFlag = 0;
       }      
    }
 }
@@ -165,11 +165,11 @@ void AccumulateAnalogData(IndexType NumberOfDigitizationRequired)
 {
    IndexType DMAADCIndex = (NumberOfDigitizationRequired * COEF_LENGTH);
    IndexType Index;
-   memset(InputSamples, 0, COEF_LENGTH);
+   memset(InputSamples, 0, COEF_LENGTH * 2);
    
    for (Index = 0; Index < COEF_LENGTH; Index++) //Todo:: Replace with MemCpy() 
    {
-      InputSamples[Index] = DMA_ADC_BUFFER[DMAADCIndex++] >> 4;
+      InputSamples[Index] = DMA_ADC_BUFFER[DMAADCIndex++]; // >> 4;
    }
    
    DMAADCIndex = (NumberOfDigitizationRequired * COEF_LENGTH);  
@@ -195,7 +195,7 @@ void AccumulateAnalogData(IndexType NumberOfDigitizationRequired)
          CoefficentIndex++;
       }
       
-      AnalogData[DMAADCIndex++] = InputSamples[Index];
+      AnalogData[DMAADCIndex++] = InputSamples[Index] >> 4;
       
       if (NormalizeFlag == 1)
       {
@@ -225,7 +225,7 @@ void AccumulateAnalogData(IndexType NumberOfDigitizationRequired)
   
 }
 
-void NormalizeData()
+void NormalizeData(void)
 {
    if (ErrorCounter < 3000)
    {
@@ -259,7 +259,7 @@ void NormalizeData()
       
       TriggerValue = InitialTriggerValue;
                
-      memset(DigitizedData, 0, BUFFER_SIZE);          
+      memset(DigitizedData, 0, BUFFER_SIZE * 2);          
    }  
    else 
    {
@@ -276,6 +276,35 @@ void NormalizeData()
       ErrorCounter = 0; 
    }
    
+   NormalizeDataCounter = 0;
    NormalizeFlag = 0;
    CurrentIndex = 0;
+}
+
+unsigned int8 QuickDigitize(unsigned int16 ADCValue)
+{
+    IndexType InputIndex = CurrentIndex;
+    IndexType CoefficentIndex = 0;
+    unsigned int Accumulator = 0;
+    while (CoefficentIndex < COEF_LENGTH - 1)
+      {
+         Accumulator += (signed int32)InputSamples[InputIndex] * (signed int32)fir_coef[CoefficentIndex];
+           // condition for the circular buffer
+         if (InputIndex == COEF_LENGTH - 1)
+         {
+            InputIndex = 0;
+         }
+         else
+         {
+            InputIndex++;
+         }
+         CoefficentIndex++;
+      }
+      
+    float StepOne = Accumulator - AverageAnalogValue;
+    float StepTwo = StepOne * AverageMultiplier;
+    float StepThree = StepTwo + (ADC_MAX_DATA_VALUE / 2);
+    unsigned int8 ConversionValue = (unsigned int8)StepThree;
+      
+    return ConversionValue;  
 }

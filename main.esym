@@ -1,7 +1,7 @@
-D G "__PCD__" 0 0 ""5.008""
-D G "__DEVICE__" 0 0 ""
-D G "__DATE__" 0 0 ""27-Oct-22""
-D G "__TIME__" 0 0 ""20:32:16""
+D G "__PCD__" 0 312 ""5.008""
+D G "__DEVICE__" 0 312 "8206"
+D G "__DATE__" 0 312 ""31-Oct-22""
+D G "__TIME__" 0 312 ""20:16:15""
 D G "MAIN_H" 1 2 ""
 c L "set_tris_a" 2 1 21 "FUNCTION"
 v L "value" 2 39 "int16" `53 
@@ -1936,55 +1936,66 @@ V G "InputIndex" 1 67 "IndexType" `1367
 V G "CurrentIndex" 1 68 "IndexType" `1368 
 V G "NumberCSharpByteRecieved" 1 69 "IndexType" `1369 
 V G "ErrorCounter" 1 70 "IndexType" `1370 
-V G "DMADoneFlag" 1 72 "FlagType" `1371 
-V G "NormalizeFlag" 1 73 "FlagType" `1372 
-V G "UARTRXFlag" 1 74 "FlagType" `1373 
-V G "UARTTXFlag" 1 75 "FlagType" `1374 
-V G "HandShakeFlag" 1 76 "FlagType" `1375 
-V G "TriggerFlag" 1 77 "FlagType" `1376 
-V G "DMAFlag" 1 78 "FlagType" `1377 
-V L "??65535" 1 80 "IndexType" `1379 
-F G "AccumulateAnalogData" 1 80 "void(IndexType )" `1378 
-F G "NormalizeData" 1 81 "void()" `1380 
-V G "fir_coef" 1 83 "sint16[64]" `1381 
-C L "NormalizeData" 1 44 1 "FUNCTION"
-C L "NormalizeData" 1 44 1 "FUNCTION"
-V G "DMA_ADC_BUFFER" 0 5 "int16[256]" `1386 
-V G "DMA_UART_TX_BUFFER" 0 7 "sint8[256]" `1387  "Todo:: Two DMA Buffers for real time data sampling"
-F G "DMA_0_ISR" 0 13 "void()" `1388 
-F G "DMA_1_ISR" 0 19 "void()" `1389 
-F G "Timer_ISR" 0 24 "void()" `1390 
-V L "ADCValue" 0 32 "int8" `1391 
-C L "Timer_ISR" 0 66 1 "FUNCTION"
-F G "ISR_UART2" 0 85 "void()" `1392 
-C L "ISR_UART2" 0 66 1 "FUNCTION"
-C L "ISR_UART2" 0 66 1 "FUNCTION"
-F G "MAIN" 0 91 "void()" `1393 
-C L "MAIN" 0 66 2 "FUNCTION"
-C L "MAIN" 0 66 4 "FUNCTION"
-V L "Index" 0 129 "IndexType" `1396 
-C L "MAIN" 0 66 3 "FUNCTION"
-V L "i" 0 147 "IndexType" `1397 
-C L "MAIN" 0 66 1 "FUNCTION"
-C L "MAIN" 0 66 1 "FUNCTION"
-C L "MAIN" 0 66 1 "FUNCTION"
-C L "MAIN" 0 66 1 "FUNCTION"
-C L "MAIN" 0 66 2 "FUNCTION"
-V L "NumberOfDigitizationRequired" 0 164 "IndexType" `1401 
-F G "AccumulateAnalogData" 0 165 "void(IndexType NumberOfDigitizationRequired)" `1378 
-V L "DMAADCIndex" 0 166 "IndexType" `1400 
-V L "Index" 0 167 "IndexType" `1401 
-C L "AccumulateAnalogData" 0 66 1 "FUNCTION"
-C L "AccumulateAnalogData" 0 66 1 "FUNCTION"
-V L "StepOne" 0 206 "float" `1405 
-V L "StepTwo" 0 207 "float" `1408 
-V L "StepThree" 0 208 "float" `1409 
-C L "AccumulateAnalogData" 0 66 2 "FUNCTION"
-F G "NormalizeData" 0 229 "void()" `1380 
-C L "NormalizeData" 0 66 1 "FUNCTION"
-C L "NormalizeData" 0 66 1 "FUNCTION"
-V L "Index" 0 236 "IndexType" `1410 
-V L "i" 0 267 "IndexType" `1416 
+V G "NormalizeDataCounter" 1 71 "IndexType" `1371 
+V G "DMADoneFlag" 1 73 "FlagType" `1372 
+V G "NormalizeFlag" 1 74 "FlagType" `1373 
+V G "UARTRXFlag" 1 75 "FlagType" `1374 
+V G "UARTTXFlag" 1 76 "FlagType" `1375 
+V G "HandShakeFlag" 1 77 "FlagType" `1376 
+V G "TriggerFlag" 1 78 "FlagType" `1377 
+V G "DMAFlag" 1 79 "FlagType" `1378 
+V L "??65535" 1 81 "IndexType" `1380 
+F G "AccumulateAnalogData" 1 81 "void(IndexType )" `1379 
+F G "NormalizeData" 1 82 "void()" `1381 
+V L "??65535" 1 83 "int16" `1383 
+F G "QuickDigitize" 1 83 "int8(int16 )" `1382 
+V G "fir_coef" 1 84 "sint16[64]" `1384 
+C L "QuickDigitize" 1 44 1 "FUNCTION"
+C L "QuickDigitize" 1 44 1 "FUNCTION"
+V G "DMA_ADC_BUFFER" 0 5 "int16[256]" `1389 
+V G "DMA_UART_TX_BUFFER" 0 7 "sint8[256]" `1390  "Todo:: Two DMA Buffers for real time data sampling"
+F G "DMA_0_ISR" 0 13 "void()" `1391 
+F G "DMA_1_ISR" 0 19 "void()" `1392 
+F G "Timer_ISR" 0 24 "void()" `1393 
+C L "Timer_ISR" 0 27 49 "FUNCTION"
+F G "ISR_UART2" 0 87 "void()" `1394 
+C L "ISR_UART2" 0 27 1 "FUNCTION"
+C L "ISR_UART2" 0 27 1 "FUNCTION"
+F G "MAIN" 0 93 "void()" `1395 
+C L "MAIN" 0 27 2 "FUNCTION"
+V L "Index" 0 127 "IndexType" `1398 
+C L "MAIN" 0 27 3 "FUNCTION"
+V L "i" 0 145 "IndexType" `1399 
+C L "MAIN" 0 27 1 "FUNCTION"
+C L "MAIN" 0 27 1 "FUNCTION"
+C L "MAIN" 0 27 1 "FUNCTION"
+C L "MAIN" 0 27 1 "FUNCTION"
+V L "NumberOfDigitizationRequired" 0 164 "IndexType" `1403 
+F G "AccumulateAnalogData" 0 165 "void(IndexType NumberOfDigitizationRequired)" `1379 
+V L "DMAADCIndex" 0 166 "IndexType" `1402 
+V L "Index" 0 167 "IndexType" `1403 
+C L "AccumulateAnalogData" 0 27 1 "FUNCTION"
+C L "AccumulateAnalogData" 0 27 1 "FUNCTION"
+C L "AccumulateAnalogData" 0 27 1 "FUNCTION"
+V L "StepOne" 0 206 "float" `1407 
+V L "StepTwo" 0 207 "float" `1410 
+V L "StepThree" 0 208 "float" `1411 
+C L "AccumulateAnalogData" 0 27 2 "FUNCTION"
+F G "NormalizeData" 0 229 "void()" `1381 
+C L "NormalizeData" 0 27 1 "FUNCTION"
+C L "NormalizeData" 0 27 1 "FUNCTION"
+V L "Index" 0 236 "IndexType" `1412 
+V L "i" 0 267 "IndexType" `1418 
+V L "ADCValue" 0 284 "int16" `1420 
+F G "QuickDigitize" 0 285 "int8(int16 ADCValue)" `1382 
+V L "InputIndex" 0 286 "IndexType" `1419 
+V L "CoefficentIndex" 0 287 "IndexType" `1420 
+V L "Accumulator" 0 288 "int16" `1421 
+C L "QuickDigitize" 0 27 1 "FUNCTION"
+V L "StepOne" 0 304 "float" `1422 
+V L "StepTwo" 0 305 "float" `1423 
+V L "StepThree" 0 306 "float" `1424 
+V L "ConversionValue" 0 307 "int8" `1425 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1

@@ -68,6 +68,7 @@ IndexType InputIndex= 0;           // used as the index for the input samples ar
 IndexType CurrentIndex = 0;          // keeps track of the current position of the circular buffer
 IndexType NumberCSharpByteRecieved = 0; // counter to track which byte is being recieved
 IndexType ErrorCounter = 0; // error detection
+IndexType NormalizeDataCounter = 0;
 
 FlagType DMADoneFlag = 0;
 FlagType NormalizeFlag = 0;
@@ -79,7 +80,7 @@ FlagType DMAFlag = 0;
 
 void AccumulateAnalogData(IndexType);
 void NormalizeData();
-
+unsigned int8 QuickDigitize(unsigned int16);
 signed int16 fir_coef[COEF_LENGTH] =
 {  
 210,   -167,   -150,   -155,   -171,   -192,   -213,   -231,   -243, // 10 HZ LPF FS 300HZ freq = 53334 Fin
