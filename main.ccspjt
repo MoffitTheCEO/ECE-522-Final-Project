@@ -132,22 +132,22 @@ Fixed=
 [debugperif]
 selected=Analog/Digital Conv
 [debugbreak]
-count=0
+count=1
 f1=C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.c
-l1=126
-a.1=4308
+l1=357
+a.1=3342
 f2=C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.c
-l2=14
-a.2=526
+l2=153
+a.2=3996
 [debugwatch]
-e1=NormalizeDataCounter
-e2=TriggerValue
-count=5
-e3=DMA_ADC_BUFFER
-e4=Index
+e1=Index
+e2=UARTRX
+count=4
+e3=HandShakeFlag
+e4=fir_coef
 e5=InputSamples
-e6=Index
-e7=DMAADCIndex
+e6=UARTRX
+e7=HandShakeFlag
 e8=Accumulator
 e9=NormalizeFlag
 e10=maxAnalogValue

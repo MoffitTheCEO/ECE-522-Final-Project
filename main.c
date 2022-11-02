@@ -19,6 +19,13 @@ void DMA_1_ISR(void)
 {
 }
 
+#INT_RDA2
+void UART2_ISR()
+{
+   UARTRX = fgetc(SHARP);
+   UARTRXFlag = 1;
+}
+
 #INT_TIMER1
 void Timer_ISR()
 {
@@ -79,33 +86,23 @@ void Timer_ISR()
 //!         TriggerFlag = 0;
 //!      }
 //!   }
-   
-}
-
-#INT_RDA2      // interrupt handler for the uart RS232 communication
-void ISR_UART2()
-{
-    UARTRX = fgetc(SHARP); // recieve data
-    UARTRXFlag = 1;         // serial flag turned high
 }
 
 void main()
 {   
-   memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2);
-   memset(DMA_UART_TX_BUFFER, 'a', BUFFER_SIZE * 2);
+   memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE);
+   memset(DMA_UART_TX_BUFFER, 'a', BUFFER_SIZE);
    
    setup_dma(ADC_DMA_CHANNEL, DMA_IN_ADC1, DMA_WORD);
    dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
    
-   setup_dma(UART_TX_DMA_CHANNEL, DMA_OUT_UART2, DMA_BYTE);
+//!   setup_dma(UART_TX_DMA_CHANNEL, DMA_OUT_UART2, DMA_BYTE);
+//!   enable_interrupts(INT_DMA1);
 
    enable_interrupts(INT_DMA0);
-   enable_interrupts(INT_DMA1);
-   
-//!   setup_adc_ports(sAN0, VSS_VDD);
-//!   setup_adc(ADC_CLOCK_INTERNAL);
 
-   setup_adc(ADC_CLOCK_DIV_2 | ADC_TAD_MUL_4);
+// setup_adc(ADC_CLOCK_DIV_2 | ADC_TAD_MUL_4);
+   setup_adc(ADC_CLOCK_INTERNAL);
    setup_adc_ports(sAN0 | VSS_VDD);
    
    read_adc();
@@ -113,6 +110,7 @@ void main()
    TimerTicks = 53334;
    
    setup_timer1(TMR_INTERNAL , TimerTicks);
+   enable_interrupts(INT_RDA2);
    enable_interrupts(INT_TIMER1);
    enable_interrupts(INTR_GLOBAL);
    
@@ -137,27 +135,33 @@ void main()
          {
          
          }
-         
-         //dma_start(UART_TX_DMA_CHANNEL, DMA_ONE_SHOT | DMA_FORCE_NOW, &DMA_ADC_BUFFER[0], BUFFER_SIZE);    
-         //dma_start(UART_TX_DMA_CHANNEL, DMA_ONE_SHOT | DMA_FORCE_NOW, &DigitizedData[0], BUFFER_SIZE); 
-         //DMA THE ANALOG DATA ARRAY ALSO 
-         
-         for (IndexType i = 0; i < BUFFER_SIZE; i++) // send input array data
-         {
-             printf("%c", AnalogData[i]); // send every emelent of the array as a byte
-         }
-
-         for (i = 0; i < BUFFER_SIZE; i++) // send digitized data
-         {
-             printf("%c", DigitizedData[i]); // send every emelent of the array as a byte
-         }
             
+         //dma_start(UART_TX_DMA_CHANNEL, DMA_ONE_SHOT | DMA_FORCE_NOW, &DigitizedData[0], BUFFER_SIZE); 
+//!         Todo:: DMA THE ANALOG DATA ARRAY ALSO 
+         if (HandShakeFlag == 1)
+         {
+            for (IndexType i = 0; i < BUFFER_SIZE; i++) // send input array data
+            {
+                printf("%c", AnalogData[i]); // send every emelent of the array as a byte
+            }
+   
+            for (i = 0; i < BUFFER_SIZE; i++) // send digitized data
+            {
+                printf("%c", DigitizedData[i]); // send every emelent of the array as a byte
+            }
+         }
+         HandShakeFlag = 0;   
          CurrentIndex = 0;
          enable_interrupts(INT_DMA0);
          DMADoneFlag = 0;
          DMAFlag = 0;
          TriggerFlag = 0;
-      }      
+      }  
+      
+      if (UARTRXFlag)
+      {
+         CommHandler(UARTRX);
+      }  
    }
 }
 
@@ -195,7 +199,7 @@ void AccumulateAnalogData(IndexType NumberOfDigitizationRequired)
          CoefficentIndex++;
       }
       
-      AnalogData[DMAADCIndex++] = InputSamples[Index] >> 4;
+      AnalogData[DMAADCIndex++] =  InputSamples[Index] >> 4;
       
       if (NormalizeFlag == 1)
       {
@@ -307,4 +311,69 @@ unsigned int8 QuickDigitize(unsigned int16 ADCValue)
     unsigned int8 ConversionValue = (unsigned int8)StepThree;
       
     return ConversionValue;  
+}
+
+void CommHandler(char UARTRX)
+{
+   switch (UARTRX)
+   {
+      case '+':
+         HandShakeFlag = 1;
+         break;
+         
+      case '*':
+         disable_interrupts(INT_TIMER1);
+         break;
+         
+      case 'D':
+         enable_interrupts(INT_TIMER1);   
+         setup_timer1(TMR_INTERNAL , TimerTicks);
+         HandshakeFlag = 1;  
+         break;  
+         
+      case 'L':
+         disable_interrupts(INT_TIMER1);
+         disable_interrupts(INT_RDA2);
+         disable_interrupts(GLOBAL); 
+         
+         while (CSharpCoefficentRecieved != COEF_LENGTH)
+         {
+            if (kbhit(SHARP))
+            {
+               char CoefficentByte = fgetc(SHARP);
+               
+               if (CoefficentByte == 'L')
+               {
+                  ; // Do nothing
+               }              
+               else if (NumberCSharpByteRecieved == 0)
+               {
+                  CSharpCoefficent[0] = CoefficentByte; 
+                  NumberCSharpByteRecieved++;
+               }           
+               else
+               {
+                  CSharpCoefficent[1] = CoefficentByte;
+                  NumberCSharpByteRecieved = 0;
+                  ByteConversionResult = (CSharpCoefficent[1] << 8) | CSharpCoefficent[0];
+                  fir_coef[CSharpCoefficentRecieved] = ByteConversionResult;
+                  CSharpCoefficentRecieved++;
+               }
+            }
+         }
+         
+         CSharpCoefficentRecieved = 0;
+         HandshakeFlag = 1;
+         enable_interrupts(INT_RDA2);
+         enable_interrupts(INT_TIMER1);
+         enable_interrupts(GLOBAL);
+         break;
+         
+      default :
+         ; // Do nothing 
+      
+   }
+   
+   UARTRX = '\n';
+   UARTRXFlag = 0;
 }

@@ -15,7 +15,7 @@
 
 #pin_select U2TX=PIN_B6
 #pin_select U2RX=PIN_B7
-#USE RS232(UART2, BAUD = 115200, PARITY = N, BITS = 8, STOP = 1, TIMEOUT = 500,  stream = SHARP)) // RECEIVE_BUFFER=255, TRANSMIT_BUFFER=255, TXISR,
+#USE RS232(UART2, BAUD = 115200, PARITY = N, BITS = 8, STOP = 1, TIMEOUT = 500,  stream = SHARP) // RECEIVE_BUFFER=255, TRANSMIT_BUFFER=255, TXISR,
 
 #include <math.h>
 #include <stdio.h>
@@ -60,7 +60,7 @@ float OutputValue;          // holds the current output value
 float AverageDivider = 0; // use for normalization
 float AverageMultiplier = 0;    // use for normalization
 
-char UARTRX; // data in
+char UARTRX = '\0'; // data in
 
 IndexType CSharpCoefficentRecieved = 0;    // counter of coefficents recieved from c#
 IndexType CoefficentIndex = 0;            // used as the index for the filter coefficients array in the difference equation calculation
@@ -74,12 +74,13 @@ FlagType DMADoneFlag = 0;
 FlagType NormalizeFlag = 0;
 FlagType UARTRXFlag = 0;   // serial flag
 FlagType UARTTXFlag = 0;       // flag to send data out
-FlagType HandShakeFlag = 1;    // handshake
+FlagType HandShakeFlag = 0;    // handshake
 FlagType TriggerFlag = 0;
 FlagType DMAFlag = 0;
 
 void AccumulateAnalogData(IndexType);
 void NormalizeData();
+void CommHandler(char);
 unsigned int8 QuickDigitize(unsigned int16);
 signed int16 fir_coef[COEF_LENGTH] =
 {  
