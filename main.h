@@ -17,11 +17,11 @@
 #pin_select U2RX=PIN_B7
 #USE RS232(UART2, BAUD = 115200, PARITY = N, BITS = 8, STOP = 1, TIMEOUT = 500,  stream = SHARP) // RECEIVE_BUFFER=255, TRANSMIT_BUFFER=255, TXISR,
 
-#include <math.h>
+
 #include <stdio.h>
 #include <ctype.h>
 
-#define BUFFER_SIZE 256
+#define BUFFER_SIZE 255
 #define COEF_LENGTH 64
 #define LOADER_PAGES 50
 #define ADC_MAX_DATA_VALUE 255
@@ -82,8 +82,8 @@ void AccumulateAnalogData(IndexType);
 void NormalizeData();
 void CommHandler(char);
 unsigned int8 QuickDigitize(unsigned int16);
-signed int16 fir_coef[COEF_LENGTH] =
-{  
+volatile signed int16 fir_coef[COEF_LENGTH] =
+{
 210,   -167,   -150,   -155,   -171,   -192,   -213,   -231,   -243, // 10 HZ LPF FS 300HZ freq = 53334 Fin
 -246,   -239,   -218,   -183,   -133,    -65,     19,    120,    237,
 368,    511,    664,    823,    984,   1145,   1302,   1449,   1584,
@@ -93,7 +93,7 @@ signed int16 fir_coef[COEF_LENGTH] =
 -246,   -243,   -231,   -213,   -192,   -171,   -155,   -150,   -167,
 210
 };
-
+//!
 #endif // MAIN_H
 
 

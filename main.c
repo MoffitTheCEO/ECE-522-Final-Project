@@ -8,6 +8,7 @@ char DMA_UART_TX_BUFFER[BUFFER_SIZE];
 //Todo:: Two DMA Buffers for real time data sampling
 
 
+
 #INT_DMA0
 void  DMA_0_ISR(void) 
 {
@@ -86,6 +87,15 @@ void Timer_ISR()
 //!         TriggerFlag = 0;
 //!      }
 //!   }
+//!
+//! if (CurrentIndex == 0)
+//!   {
+//!     CurrentIndex = COEF_LENGTH - 1;
+//!   }
+//!   else
+//!   {
+//!     CurrentIndex--;
+//!   } 
 }
 
 void main()
@@ -122,7 +132,7 @@ void main()
       if((DMADoneFlag) || (NormalizeDataCounter == BUFFER_SIZE))
       {
          disable_interrupts(INT_DMA0);
-         for (IndexType Index = 0; Index < NumberOfDigitizationRequired; Index++)
+         for (IndexType Index = 0; Index < BUFFER_SIZE; Index++)
          {
             AccumulateAnalogData(Index);
          }
@@ -165,68 +175,55 @@ void main()
    }
 }
 
-void AccumulateAnalogData(IndexType NumberOfDigitizationRequired)
+void AccumulateAnalogData(IndexType DMAADCIndex)
 {
-   IndexType DMAADCIndex = (NumberOfDigitizationRequired * COEF_LENGTH);
-   IndexType Index;
-   memset(InputSamples, 0, COEF_LENGTH * 2);
+   InputSamples[CurrentIndex] = DMA_ADC_BUFFER[DMAADCIndex];
+   InputIndex = CurrentIndex; 
+   Accumulator = 0;
+   CoefficentIndex = 0;
    
-   for (Index = 0; Index < COEF_LENGTH; Index++) //Todo:: Replace with MemCpy() 
+   while (CoefficentIndex < COEF_LENGTH - 1)
    {
-      InputSamples[Index] = DMA_ADC_BUFFER[DMAADCIndex++]; // >> 4;
-   }
-   
-   DMAADCIndex = (NumberOfDigitizationRequired * COEF_LENGTH);  
-   
-   for (Index = 0; Index < COEF_LENGTH; Index++)
-   {
-      InputIndex = CurrentIndex; 
-      Accumulator = 0;
-      CoefficentIndex = 0;
-      
-      while (CoefficentIndex < COEF_LENGTH - 1)
+      Accumulator += (signed int32)InputSamples[InputIndex] * (signed int32)fir_coef[CoefficentIndex];
+        // condition for the circular buffer
+      if (InputIndex == COEF_LENGTH - 1)
       {
-         Accumulator += (signed int32)InputSamples[InputIndex] * (signed int32)fir_coef[CoefficentIndex];
-           // condition for the circular buffer
-         if (InputIndex == COEF_LENGTH - 1)
-         {
-            InputIndex = 0;
-         }
-         else
-         {
-            InputIndex++;
-         }
-         CoefficentIndex++;
-      }
-      
-      AnalogData[DMAADCIndex++] =  InputSamples[Index] >> 4;
-      
-      if (NormalizeFlag == 1)
-      {
-         DigitizedData[DMAADCIndex] = Accumulator;
+         InputIndex = 0;
       }
       else
       {
-         float StepOne = Accumulator - AverageAnalogValue;
-         float StepTwo = StepOne * AverageMultiplier;
-         float StepThree = StepTwo + (ADC_MAX_DATA_VALUE / 2);
-         //OutputValue = (Accumulator - AverageAnalogValue) * AverageMultiplier + (ADC_MAX_DATA_VALUE / 2);
-         //ConversionValue = (unsigned int8)OutputValue;
-         ConversionValue = (unsigned int8)StepThree;
-         DebugAccumulator[DMAADCIndex] = Accumulator;
-         DigitizedData[DMAADCIndex] = ConversionValue;
+         InputIndex++;
       }
       
-      if (CurrentIndex == 0)
-      {
-        CurrentIndex = COEF_LENGTH - 1;
-      }
-      else
-      {
-        CurrentIndex--;
-      }
+      CoefficentIndex++;
    }
-  
+   
+   AnalogData[DMAADCIndex] =  InputSamples[CurrentIndex] >> 4;
+   
+   if (NormalizeFlag == 1)
+   {
+      DigitizedData[DMAADCIndex] = Accumulator;
+   }
+   else
+   {
+      float StepOne = Accumulator - AverageAnalogValue;
+      float StepTwo = StepOne * AverageMultiplier;
+      float StepThree = StepTwo + (ADC_MAX_DATA_VALUE / 2);
+      //OutputValue = (Accumulator - AverageAnalogValue) * AverageMultiplier + (ADC_MAX_DATA_VALUE / 2);
+      //ConversionValue = (unsigned int8)OutputValue;
+      ConversionValue = (unsigned int8)StepThree;
+      DebugAccumulator[DMAADCIndex] = Accumulator;
+      DigitizedData[DMAADCIndex] = ConversionValue;
+   }
+   
+    if (CurrentIndex == 0)
+   {
+     CurrentIndex = COEF_LENGTH - 1;
+   }
+   else
+   {
+     CurrentIndex--;
+   } 
 }
 
 void NormalizeData(void)
@@ -258,7 +255,7 @@ void NormalizeData(void)
       }
       
       AverageDivider = MaxAnalogValue - MinAnalogValue;
-      AverageMultiplier = ((float)ADC_MAX_DATA_VALUE / AverageDivider);
+      AverageMultiplier = (255.0/ AverageDivider);
       AverageAnalogValue = AverageAnalogValue / (BUFFER_SIZE - COEF_LENGTH);
       
       TriggerValue = InitialTriggerValue;
@@ -349,17 +346,38 @@ void CommHandler(char UARTRX)
                else if (NumberCSharpByteRecieved == 0)
                {
                   CSharpCoefficent[0] = CoefficentByte; 
-                  NumberCSharpByteRecieved++;
+                  NumberCSharpByteRecieved = 1;
                }           
                else
                {
                   CSharpCoefficent[1] = CoefficentByte;
                   NumberCSharpByteRecieved = 0;
-                  ByteConversionResult = (CSharpCoefficent[1] << 8) | CSharpCoefficent[0];
-                  fir_coef[CSharpCoefficentRecieved] = ByteConversionResult;
+                  ByteConversionResult = (unsigned int16)(CSharpCoefficent[1] << 8) | CSharpCoefficent[0];
+                  fir_coef[CSharpCoefficentRecieved] =  ByteConversionResult;
                   CSharpCoefficentRecieved++;
                }
             }
+         }
+         
+         switch (fir_coef[0])
+         {
+         case 210:
+            TimerTicks = 53334;
+            break;
+         case 40:
+            TimerTicks = 53334;
+            break;
+//!                  case -12:
+//!                     TimerTicks = 8000;
+//!                     break;
+//!                  case -9:
+//!                     TimerTicks = 8000;
+//!                     break;
+         case 353:
+            TimerTicks = 8000;
+            break;
+         default: 
+            TimerTicks = 8000;
          }
          
          CSharpCoefficentRecieved = 0;
@@ -374,6 +392,6 @@ void CommHandler(char UARTRX)
       
    }
    
-   UARTRX = '\n';
+   UARTRX = '\0';
    UARTRXFlag = 0;
 }
