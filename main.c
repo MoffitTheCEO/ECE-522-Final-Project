@@ -30,7 +30,7 @@ void UART2_ISR()
 #INT_TIMER1
 void Timer_ISR()
 {
-   output_toggle(LED_PIN); 
+   output_toggle(LED_PIN);
    read_adc();
 //!   if(NormalizeFlag == 1)
 //!   {
@@ -58,7 +58,7 @@ void Timer_ISR()
 //!         DMA_ADC_BUFFER[0] = ADCValue;
 //!         TriggerFlag = 1;
 //!      }
-//!      else if(DMA_ADC_BUFFER[1] > ADCValue)
+//!      else if((DMA_ADC_BUFFER[1] > ADCValue) && (TriggerFlag == 1))
 //!      {
 //!         DMA_ADC_BUFFER[1] = ADCValue;
 //!         TriggerFlag = 2;
@@ -67,7 +67,7 @@ void Timer_ISR()
 //!      {
 //!         if(DMAFlag == 1)
 //!         {
-//!            //memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2);
+//!            setup_dma(ADC_DMA_CHANNEL, DMA_IN_ADC1, DMA_WORD);
 //!            dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
 //!            enable_interrupts(INT_DMA0);
 //!            DMAFlag = 2;
@@ -117,7 +117,7 @@ void main()
    
    read_adc();
    
-   TimerTicks = 53334;
+   //TimerTicks = 53334;
    
    setup_timer1(TMR_INTERNAL , TimerTicks);
    enable_interrupts(INT_RDA2);
@@ -141,10 +141,6 @@ void main()
          {
             NormalizeData();
          }
-         else
-         {
-         
-         }
             
          //dma_start(UART_TX_DMA_CHANNEL, DMA_ONE_SHOT | DMA_FORCE_NOW, &DigitizedData[0], BUFFER_SIZE); 
 //!         Todo:: DMA THE ANALOG DATA ARRAY ALSO 
@@ -160,6 +156,8 @@ void main()
                 printf("%c", DigitizedData[i]); // send every emelent of the array as a byte
             }
          }
+         
+         NormalizeFlag = 0;
          HandShakeFlag = 0;   
          CurrentIndex = 0;
          enable_interrupts(INT_DMA0);
@@ -284,9 +282,9 @@ void NormalizeData(void)
 
 unsigned int8 QuickDigitize(unsigned int16 ADCValue)
 {
-    IndexType InputIndex = CurrentIndex;
-    IndexType CoefficentIndex = 0;
-    unsigned int Accumulator = 0;
+    InputIndex = CurrentIndex;
+    CoefficentIndex = 0;
+    Accumulator = 0;
     while (CoefficentIndex < COEF_LENGTH - 1)
       {
          Accumulator += (signed int32)InputSamples[InputIndex] * (signed int32)fir_coef[CoefficentIndex];
@@ -332,7 +330,7 @@ void CommHandler(char UARTRX)
          disable_interrupts(INT_TIMER1);
          disable_interrupts(INT_RDA2);
          disable_interrupts(GLOBAL); 
-         
+         memset(fir_coef, 0, COEF_LENGTH*2); 
          while (CSharpCoefficentRecieved != COEF_LENGTH)
          {
             if (kbhit(SHARP))
@@ -352,7 +350,7 @@ void CommHandler(char UARTRX)
                {
                   CSharpCoefficent[1] = CoefficentByte;
                   NumberCSharpByteRecieved = 0;
-                  ByteConversionResult = (unsigned int16)(CSharpCoefficent[1] << 8) | CSharpCoefficent[0];
+                  ByteConversionResult = ((unsigned int16)CSharpCoefficent[1] << 8) | CSharpCoefficent[0];
                   fir_coef[CSharpCoefficentRecieved] =  ByteConversionResult;
                   CSharpCoefficentRecieved++;
                }

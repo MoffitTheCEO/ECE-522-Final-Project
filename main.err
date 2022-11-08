@@ -1,8 +1,6 @@
->>> Warning 216 "main.c" Line 397(1,2): Interrupts disabled during call to prevent re-entrancy:  (@GETCH_BIU_1)
->>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 34(21,40): Variable never used:   UART_TX_DMA_CHANNEL
->>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 35(17,45): Variable never used:   NumberOfDigitizationRequired
->>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 59(7,18): Variable never used:   OutputValue
->>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 76(10,20): Variable never used:   UARTTXFlag
+>>> Warning 216 "main.c" Line 395(1,2): Interrupts disabled during call to prevent re-entrancy:  (@GETCH_BIU_1)
+>>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 57(7,18): Variable never used:   OutputValue
+>>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 77(10,20): Variable never used:   OutputFlag
       Memory usage:   ROM=9%      RAM=22% - 22%
-      0 Errors,  5 Warnings.
+      0 Errors,  3 Warnings.
 Build Successful.
