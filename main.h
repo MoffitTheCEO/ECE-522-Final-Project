@@ -38,6 +38,7 @@ unsigned int8 ConversionValue; // normalized value
 unsigned int8 AnalogData[BUFFER_SIZE]; // input array
 
 unsigned int8 CSharpCoefficent[2];          // array to hold byte data of coefficents
+unsigned int8 InboundTriggerValue[4];
 
 unsigned int16 InitialTriggerValue = 0; // used for initail trigger value
 unsigned int16 TriggerValue = 0; // used for initail trigger value
@@ -53,6 +54,7 @@ signed int32 MinAnalogValue = 0; // use for normalization
 signed int64 AverageAnalogValue = 0; // use for normalization
 
 signed int16  InputSamples[COEF_LENGTH]; // array used as a circular buffer for the input samples
+signed int16  TempInputSamples[2];
 
 float OutputValue;          // holds the current output value
 float AverageDivider = 0; // use for normalization
@@ -75,6 +77,7 @@ FlagType HandShakeFlag = 0;    // handshake
 FlagType TriggerFlag = 0;
 FlagType DMAFlag = 0;
 FlagType OutputFlag = 0;
+FlagType DMATriggerFlag = 0;
 
 void AccumulateAnalogData(IndexType);
 void NormalizeData();

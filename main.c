@@ -1,13 +1,14 @@
 #include "main.h"
 
 #use delay(clock = 32MHZ, internal = 8MHZ)
+
+#define CharToInt(A) (int)(A - 0x30)
+
 #BANK_DMA
 unsigned int16 DMA_ADC_BUFFER[BUFFER_SIZE];
 #BANK_DMA
 char DMA_UART_TX_BUFFER[BUFFER_SIZE];
 //Todo:: Two DMA Buffers for real time data sampling
-
-
 
 #INT_DMA0
 void  DMA_0_ISR(void) 
@@ -31,71 +32,62 @@ void UART2_ISR()
 void Timer_ISR()
 {
    output_toggle(LED_PIN);
-   read_adc();
-//!   if(NormalizeFlag == 1)
-//!   {
-//!      read_adc();
-//!      NormalizeDataCounter++;
-//!   }
-//!   else
-//!   {
-//!      unsigned int16 ADCValue = 0;
-//!      
-//!      if (TriggerFlag != 2)
-//!      {
-//!          ADCValue = QuickDigitize(read_adc());
-//!      }
-//!      
-//!      if (DMAFlag == 0)
-//!      {
-//!         disable_interrupts(INT_DMA0);
-//!         memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2);
-//!         DMAFlag = 1;
-//!      }
-//!      
-//!      if((ADCValue == TriggerValue) && (TriggerFlag == 0))
-//!      {
-//!         DMA_ADC_BUFFER[0] = ADCValue;
-//!         TriggerFlag = 1;
-//!      }
-//!      else if((DMA_ADC_BUFFER[1] > ADCValue) && (TriggerFlag == 1))
-//!      {
-//!         DMA_ADC_BUFFER[1] = ADCValue;
-//!         TriggerFlag = 2;
-//!      }
-//!      else if(TriggerFlag == 2)
-//!      {
-//!         if(DMAFlag == 1)
-//!         {
-//!            setup_dma(ADC_DMA_CHANNEL, DMA_IN_ADC1, DMA_WORD);
-//!            dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
-//!            enable_interrupts(INT_DMA0);
-//!            DMAFlag = 2;
-//!         }
-//!         
-//!         read_adc();//Fill DMA_ADC_BUFFER FROM POSITION 2 -> END OF BUFFER
-//!      }  
-//!      else
-//!      {
+   //read_adc();
+   if(NormalizeFlag == 1)
+   {
+      read_adc();
+      NormalizeDataCounter++;
+   }
+   else
+   {
+      unsigned int16 ADCValue = 0;
+      
+      if (TriggerFlag != 2)
+      {
+          ADCValue = QuickDigitize(read_adc());
+      }
+      
+      if (DMAFlag == 0)
+      {
+         disable_interrupts(INT_DMA0);
+         memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2);
+         DMAFlag = 1;
+      }
+      
+      if((ADCValue == TriggerValue) && (TriggerFlag == 0))
+      {
+         TempInputSamples[0] = ADCValue;
+         TriggerFlag = 1;
+      }
+      else if((ADCValue > TempInputSamples[0]) && (TriggerFlag == 1))
+      {
+         TempInputSamples[1] = ADCValue;
+         TriggerFlag = 2;
+      }
+      else if(TriggerFlag == 2)
+      {
+         if(DMAFlag == 1)
+         {
+            memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2);
+            dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
+            enable_interrupts(INT_DMA0);
+            DMAFlag = 2;
+         }
+         
+         read_adc();//Fill DMA_ADC_BUFFER FROM POSITION 2 -> END OF BUFFER
+      }  
+      else
+      {
 //!         ErrorCounter++;
 //!         
 //!         if (ErrorCounter > 3000)
 //!         {
 //!            NormalizeFlag = 1;
 //!         }
-//!         
-//!         TriggerFlag = 0;
-//!      }
-//!   }
-//!
-//! if (CurrentIndex == 0)
-//!   {
-//!     CurrentIndex = COEF_LENGTH - 1;
-//!   }
-//!   else
-//!   {
-//!     CurrentIndex--;
-//!   } 
+         
+         TriggerFlag = 0;
+      }
+   }
 }
 
 void main()
@@ -162,8 +154,8 @@ void main()
          CurrentIndex = 0;
          enable_interrupts(INT_DMA0);
          DMADoneFlag = 0;
-         DMAFlag = 0;
          TriggerFlag = 0;
+         DMAFlag = 0;
       }  
       
       if (UARTRXFlag)
@@ -287,7 +279,7 @@ unsigned int8 QuickDigitize(unsigned int16 ADCValue)
     Accumulator = 0;
     while (CoefficentIndex < COEF_LENGTH - 1)
       {
-         Accumulator += (signed int32)InputSamples[InputIndex] * (signed int32)fir_coef[CoefficentIndex];
+         Accumulator += (signed int32)ADCValue * (signed int32)fir_coef[CoefficentIndex];
            // condition for the circular buffer
          if (InputIndex == COEF_LENGTH - 1)
          {
@@ -324,8 +316,8 @@ void CommHandler(char UARTRX)
          enable_interrupts(INT_TIMER1);   
          setup_timer1(TMR_INTERNAL , TimerTicks);
          HandshakeFlag = 1;  
-         break;  
-         
+         break; 
+                     
       case 'L':
          disable_interrupts(INT_TIMER1);
          disable_interrupts(INT_RDA2);
@@ -384,6 +376,21 @@ void CommHandler(char UARTRX)
          enable_interrupts(INT_TIMER1);
          enable_interrupts(GLOBAL);
          break;
+         
+//!      case '%':
+//!      disable_interrupts(INT_TIMER1);
+//!      disable_interrupts(INT_RDA2);
+//!      disable_interrupts(GLOBAL); 
+//!      
+//!      IndexType DataLength = CharToInt(fgetc(SHARP));
+//!      IndexType DataCounter = 0;
+//!      
+//!      while(DataCounter != DataLength)
+//!      {
+//!         InboundTriggerValue[DataCounter] = CharToInt(fgetc(SHARP));
+//!         DataCounter++;
+//!      }
+//!      break;
          
       default :
          ; // Do nothing 

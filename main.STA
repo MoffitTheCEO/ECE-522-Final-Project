@@ -1,66 +1,67 @@
 
-ROM used:   3834/22016 (9%)
-            3834/22016 (9%) including unused fragments
+ROM used:   4268/22016 (10%)
+            4268/22016 (10%) including unused fragments
 
-            1.8 Average locations per line
-            13.1 Average locations per statement
+            2.0 Average locations per line
+            13.2 Average locations per statement
 
-RAM used:   3532/16294 (22%) at main() level
-            3569/16294 (22%) worst case
+RAM used:   3541/16294 (22%) at main() level
+            3613/16294 (22%) worst case
 
-Stack used: 66 worst case (50 in main + 16 for interrupts)
+Stack used: 84 worst case (50 in main + 34 for interrupts)
 Stack size: 30
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  396   168  57  main.c
-  100     0   0  main.h
+  403   199  61  main.c
+  103     0   0  main.h
  1139     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Devices\33FJ64MC802.h
    37     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\stdio.h
-  423   125  43  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\string.h
+  423   125  39  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\string.h
    32     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\stddef.h
    28     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\ctype.h
 ----- -----
- 2155   293 Total
+ 2165   324 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
 0     34   0    3             @GETCH_BIU_1
 0     36   0    0    22  1.2  DMA_0_ISR
 0     32   0    0     5  1.0  DMA_1_ISR
-0     42   1    0    42  1.4  UART2_ISR
-0     44   1    0    27  0.9  Timer_ISR
-0    504   7    5  1434  7.3  MAIN
-0    460   6    9   977  9.3  AccumulateAnalogData
+0     42   0    0    42  1.4  UART2_ISR
+0    206   2    3  1042  7.3  Timer_ISR
+0    506   6    5  1434  7.3  MAIN
+0    516   6    9   977  9.3  AccumulateAnalogData
 0     66   1    8             @MULS3232
 0     98   1    0             @SI64TOF
-0    196   3    8             @MULFF
-0    426   6    8             @ADDFF
-0     44   1    4             @SFTOI
-0    548   7    0  1234  7.7  NormalizeData
+0    196   2    8             @MULFF
+0    426   5    8             @ADDFF
+0     44   1    4  1545  9.9  @SFTOI
+0    548   6    0  1234  7.7  NormalizeData
 0     78   1    4             @SDTOF
-0    202   3    8             @DIVFF
-0    248   3    0             @DIVS6464
+0    202   2    8             @DIVFF
+0    248   3    0  1545  9.9  @DIVS6464
+0    214   3    7   559  9.5  QuickDigitize
 0    264   3    4  1508  9.9  CommHandler
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               8
-    Statements              293
-    Comments                475
-    Volume (V)              7062
-    Difficulty (D)          38.7
-    Effort to implement (E) 273080
-    Time to implement (T)   4 hours, 13 minutes
-    Est Delivered Bugs (B)  1
-    Cyclomatic Complexity   29
-    Maintainability (MI)    47
+    Functions               11
+    Statements              324
+    Comments                433
+    Volume (V)              14526
+    Difficulty (D)          73.7
+    Effort to implement (E) 1070001
+    Time to implement (T)   16 hours, 31 minutes
+    Est Delivered Bugs (B)  3
+    Cyclomatic Complexity   63
+    Maintainability (MI)    63
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-001FE   508  0  
-00200-0ABFE  3322  40198  
+00200-0ABFE  3756  39764  
 
 
 
