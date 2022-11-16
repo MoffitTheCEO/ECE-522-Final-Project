@@ -90,7 +90,7 @@ t1=1
 2=main.h
 t2=1
 Count=2
-3=
+3=..\..\..\..\..\..\..\Program Files (x86)\PICC2\Devices\33FJ64MC802.h
 t3=208
 4=
 t4=1
@@ -132,7 +132,7 @@ Fixed=
 [debugperif]
 selected=Analog/Digital Conv
 [debugbreak]
-count=1
+count=0
 f1=C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.c
 l1=388
 a.1=3848
@@ -142,14 +142,14 @@ a.2=1770
 [debugwatch]
 e1=DMAFlag
 e2=ADCValue
-count=8
+count=9
 e3=TriggerValue
 e4=TriggerFlag
 e5=TempInputSamples
 e6=DMA_ADC_BUFFER
 e7=DMAFlag
 e8=TriggerValue
-e9=fir_coef
+e9=TimerTicks
 e10=maxAnalogValue
 e11=DMA_ADC_BUFFER
 e12=AnalogData

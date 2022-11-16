@@ -1,33 +1,33 @@
 W0      @SCRATCH
 W0L     _RETURN_
-W0      @delay_us2.P1
+W0 -W1  @MULS3232.P1
 W0 -W1  @READ_ROM_MEMORY.P2
-W0      @delay_us1.P3
-W0 -W1  @SDTOF.P4
-W0 -W1  @DIV3232B.P5
-W0      @delay_ms2.P6
-W0      @delay_ms1.P7
+W0 -W1  @SDTOF.P3
+W0      @delay_ms2.P4
+W0 -W3  @SI64TOF.P5
+W0 -W1  @DIV3232B.P6
+W0      @delay_us1.P7
 W0 -W1  @MULFF.P8
-W0 -W3  @DIVS6464.P9
-W0 -W1  @MULS3232.P10
-W0 -W3  @SI64TOF.P11
-W0 -W1  @ADDFF.P12
-W0 -W1  @DIVFF.P13
-W0 -W1  @SFTOI.P14
+W0      @delay_us2.P9
+W0 -W1  @DIVFF.P10
+W0 -W1  @ADDFF.P11
+W0 -W3  @DIVS6464.P12
+W0 -W1  @SFTOI.P13
+W0      @delay_ms1.P14
 W1      @SCRATCH
-W1      @WRITE_PACKED_MEMORY.P1
-W1      @READ_PACKED_MEMORY.P2
-W2 -W3  @MULS3232.P1
+W1      @READ_PACKED_MEMORY.P1
+W1      @WRITE_PACKED_MEMORY.P2
+W2 -W3  @ADDFF.P1
 W2      @READ_ROM_MEMORY.P2
-W2 -W3  @DIV3232B.P3
-W2 -W3  @DIVFF.P4
-W2      @READ_PACKED_MEMORY.P5
-W2 -W3  @MULFF.P6
-W2 -W3  @ADDFF.P7
+W2 -W3  @MULS3232.P3
+W2 -W3  @MULFF.P4
+W2 -W3  @DIV3232B.P5
+W2      @READ_PACKED_MEMORY.P6
+W2 -W3  @DIVFF.P7
 W2      @WRITE_PACKED_MEMORY.P8
-W3      @WRITE_PACKED_MEMORY.P1
-W3      @READ_PACKED_MEMORY.P2
-W3      @READ_ROM_MEMORY.P3
+W3      @READ_PACKED_MEMORY.P1
+W3      @READ_ROM_MEMORY.P2
+W3      @WRITE_PACKED_MEMORY.P3
 W4 -W7  @DIVS6464.P1
 85A-85B rs232_errors
 85C-85D strtok.save
@@ -75,16 +75,11 @@ D6E-1169 DebugAccumulator
 12B8-12BB AccumulateAnalogData.DMAADCIndex
 12B9    CommHandler.CoefficentByte
 12BA    CommHandler.DigitByte
+12BB    CommHandler.DigitByte
 12BC-12BF AccumulateAnalogData.StepOne
 12BC-12BF NormalizeData.i
 12C0-12C3 AccumulateAnalogData.StepTwo
 12C4-12C7 AccumulateAnalogData.StepThree
-12D6-12D7 Timer_ISR.ADCValue
-12DC-12DD QuickDigitize.ADCValue
-12DE-12E1 QuickDigitize.StepOne
-12E2-12E5 QuickDigitize.StepTwo
-12E6-12E9 QuickDigitize.StepThree
-12EA    QuickDigitize.ConversionValue
 3F80-3FFF Stack
 4000-41FD DMA_ADC_BUFFER
 41FE-42FC DMA_UART_TX_BUFFER
@@ -94,30 +89,29 @@ ROM Allocation:
 000224  DMA_1_ISR
 000244  @GETCH_BIU_1
 000266  UART2_ISR
-000290  @MULS3232
-0002D2  @SI64TOF
-000334  @MULFF
-0003F8  @ADDFF
-0005A2  @SFTOI
-0005CE  QuickDigitize
-0006A4  Timer_ISR
-000772  EnableInterrupts
-00077E  AccumulateAnalogData
-000982  @SDTOF
-0009D0  @DIVFF
-000A9A  @DIVS6464
-000B92  NormalizeData
-000DB6  DisableInterrupts
-000DC4  CommHandler
-000F14  MAIN
-000F14  @cinit1
-000FCA  @cinit2
+000290  Timer_ISR
+0002BC  EnableInterrupts
+0002C8  @MULS3232
+00030A  @SI64TOF
+00036C  @MULFF
+000430  @ADDFF
+0005DA  @SFTOI
+000606  AccumulateAnalogData
+0007D2  @SDTOF
+000820  @DIVFF
+0008EA  @DIVS6464
+0009E2  NormalizeData
+000C06  DisableInterrupts
+000C14  CommHandler
+000DCA  MAIN
+000DCA  @cinit1
+000E80  @cinit2
 
 Project Directory:
     C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\
 
 Project Files:
-    main.c                                                  [15-Nov-22 19:33  CRC=C48FCF96]
+    main.c                                                  [15-Nov-22 20:35  CRC=519CB94D]
     main.h                                                  [15-Nov-22 19:24  CRC=F4E8922D]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Devices\33FJ64MC802.h [03-Jul-13 13:30  CRC=B8981CCE]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\stdio.h [31-Jul-07 12:24  CRC=4E4534F4]
@@ -125,7 +119,7 @@ Project Files:
     ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\stddef.h [16-Jul-10 08:27  CRC=897CEC6C]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\ctype.h [03-Jan-08 12:55  CRC=2D1F019F]
 
-Source signature=C7FE8FBE
+Source signature=550B7975
 
 Units:
     main (main)
