@@ -1,12 +1,13 @@
->>> Warning 216 "main.c" Line 402(1,2): Interrupts disabled during call to prevent re-entrancy:  (@MULS3232)
->>> Warning 216 "main.c" Line 402(1,2): Interrupts disabled during call to prevent re-entrancy:  (@MULFF)
->>> Warning 216 "main.c" Line 402(1,2): Interrupts disabled during call to prevent re-entrancy:  (@ADDFF)
->>> Warning 216 "main.c" Line 402(1,2): Interrupts disabled during call to prevent re-entrancy:  (@SFTOI)
->>> Warning 216 "main.c" Line 402(1,2): Interrupts disabled during call to prevent re-entrancy:  (@GETCH_BIU_1)
->>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 41(15,34): Variable never used:   InboundTriggerValue
->>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 59(7,18): Variable never used:   OutputValue
->>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 79(10,20): Variable never used:   OutputFlag
->>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 80(10,24): Variable never used:   DMATriggerFlag
+>>> Warning 216 "main.c" Line 435(1,2): Interrupts disabled during call to prevent re-entrancy:  (@MULS3232)
+>>> Warning 216 "main.c" Line 435(1,2): Interrupts disabled during call to prevent re-entrancy:  (@MULFF)
+>>> Warning 216 "main.c" Line 435(1,2): Interrupts disabled during call to prevent re-entrancy:  (@ADDFF)
+>>> Warning 216 "main.c" Line 435(1,2): Interrupts disabled during call to prevent re-entrancy:  (@SFTOI)
+>>> Warning 216 "main.c" Line 435(1,2): Interrupts disabled during call to prevent re-entrancy:  (@GETCH_BIU_1)
+>>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 43(15,34): Variable never used:   InboundTriggerValue
+>>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 61(7,18): Variable never used:   OutputValue
+>>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 81(10,20): Variable never used:   OutputFlag
+>>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 82(10,24): Variable never used:   DMATriggerFlag
+>>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 83(10,30): Variable never used:   DigitTerminationFlag
       Memory usage:   ROM=10%      RAM=22% - 22%
-      0 Errors,  9 Warnings.
+      0 Errors,  10 Warnings.
 Build Successful.

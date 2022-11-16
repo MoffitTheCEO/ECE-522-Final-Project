@@ -25,7 +25,9 @@
 #define COEF_LENGTH 64
 #define LOADER_PAGES 50
 #define ADC_MAX_DATA_VALUE 255
-#define LED_PIN PIN_B14   
+#define LED_PIN PIN_B14  
+
+#define CharToInt(A) (int)(A - 0x30)
 
 typedef unsigned int32 IndexType;
 typedef unsigned int8 FlagType;
@@ -78,10 +80,13 @@ FlagType TriggerFlag = 0;
 FlagType DMAFlag = 0;
 FlagType OutputFlag = 0;
 FlagType DMATriggerFlag = 0;
+FlagType DigitTerminationFlag = 0;
 
 void AccumulateAnalogData(IndexType);
 void NormalizeData();
 void CommHandler(char);
+void DisableInterrupts(void);
+void EnableInterrupts(void);
 unsigned int8 QuickDigitize(unsigned int16);
 volatile signed int16 fir_coef[COEF_LENGTH]; // = 
 //!{

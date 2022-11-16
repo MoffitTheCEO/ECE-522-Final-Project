@@ -2,8 +2,6 @@
 
 #use delay(clock = 32MHZ, internal = 8MHZ)
 
-#define CharToInt(A) (int)(A - 0x30)
-
 #BANK_DMA
 unsigned int16 DMA_ADC_BUFFER[BUFFER_SIZE];
 #BANK_DMA
@@ -112,9 +110,7 @@ void main()
    //TimerTicks = 53334;
    
    setup_timer1(TMR_INTERNAL , TimerTicks);
-   enable_interrupts(INT_RDA2);
-   enable_interrupts(INT_TIMER1);
-   enable_interrupts(INTR_GLOBAL);
+   EnableInterrupts();
    
    NormalizeFlag = 1;
 
@@ -319,9 +315,7 @@ void CommHandler(char UARTRX)
          break; 
                      
       case 'L':
-         disable_interrupts(INT_TIMER1);
-         disable_interrupts(INT_RDA2);
-         disable_interrupts(GLOBAL); 
+         DisableInterrupts();
          memset(fir_coef, 0, COEF_LENGTH*2); 
          while (CSharpCoefficentRecieved != COEF_LENGTH)
          {
@@ -351,7 +345,7 @@ void CommHandler(char UARTRX)
          
          switch (fir_coef[0])
          {
-         case 210:
+         case 210: //Todo:: Fall Through 
             TimerTicks = 53334;
             break;
          case 40:
@@ -372,10 +366,36 @@ void CommHandler(char UARTRX)
          
          CSharpCoefficentRecieved = 0;
          HandshakeFlag = 1;
-         enable_interrupts(INT_RDA2);
-         enable_interrupts(INT_TIMER1);
-         enable_interrupts(GLOBAL);
+         EnableInterrupts();
          break;
+        
+      case '$':
+         DisableInterrupts();
+         TriggerValue = 0; // reset trigger value
+         
+         while (TRUE)
+         {
+             if (kbhit(SHARP))
+            {
+               char DigitByte = fgetc(SHARP);
+               
+               if (isdigit(DigitByte))
+               {
+                  TriggerValue = TriggerValue * 10 + CharToInt(DigitByte);
+               }
+               else if (DigitByte == ')')
+               {
+                  break;
+               }
+               else
+               {
+                  ; //Do nothing
+               }
+            }
+         }
+         
+         EnableInterrupts();
+         break; 
          
 //!      case '%':
 //!      disable_interrupts(INT_TIMER1);
@@ -399,4 +419,18 @@ void CommHandler(char UARTRX)
    
    UARTRX = '\0';
    UARTRXFlag = 0;
+}
+
+void DisableInterrupts(void)
+{
+   disable_interrupts(INT_TIMER1); // disable timer
+   disable_interrupts(INT_RDA2);
+   disable_interrupts(GLOBAL); 
+}
+
+void EnableInterrupts(void)
+{
+   enable_interrupts(INT_RDA2);
+   enable_interrupts(INT_TIMER1);
+   enable_interrupts(GLOBAL);
 }
