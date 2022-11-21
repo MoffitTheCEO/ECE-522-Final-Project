@@ -1,0 +1,756 @@
+using System;
+
+using System.Drawing;
+
+using System.Windows.Forms;
+using System.IO.Ports;
+using ZedGraph;
+using System.Linq;
+
+namespace ECE_323_LAB_10
+{
+
+
+
+
+    public partial class Form1 : Form
+    {
+        PointPairList list = new PointPairList();
+
+        // initalize variables
+        const int freq_length = 10000;
+        const int data_length = 200;
+        public byte[] inputarr = new byte[400];
+        double[] plot_array = new double[data_length];
+        double[] digi_array = new double[data_length];
+        double send_trigger_value = 0;
+        char[] send_trigger_freq_array = new char[2];
+        double incoming_rigger_value = 0;
+
+
+        char[] temp = new char[3];
+        int counter = 0;
+        string str;
+        double tempzed = 0;
+        int array_counter = 0;
+        int handshake = 1;
+
+        int updates = 0; 
+
+        int multiplier = 1;
+        string selectedItem;
+        string selectedItem2;
+
+        string samp_freg = "10000";
+        int samp_freq_int = 0;
+
+        double time = 0;
+
+        double array_max = 0;
+
+        double array_min = 0;
+
+        double in_avg = 0;
+        double out_avg = 0;
+
+        double[] dftreal = new double[freq_length];
+
+        double[] dftimg = new double[freq_length];
+
+        double x, y, z = 0;
+        int step = 0;
+
+        int data_check = 0;
+
+        private Bluetooth_Settings _setting = new Bluetooth_Settings();
+        public Form1() // load form one 
+        {
+            InitializeComponent();
+
+        }
+
+
+        bool ADC = true; 
+
+
+
+
+
+        private void COMPortToolStripMenuItem_Click(object sender, EventArgs e) // used for setting up COM Port
+        {
+            _setting.Show(); // Show window
+            _setting._serial.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+        }
+
+
+        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e) // handler for new data recieved
+        {
+            SerialPort sp = (SerialPort)sender;
+
+            if (sp.BytesToRead >= 400) // if bytes to read is equal to data length
+            {
+
+                    sp.Read(inputarr, 0, 400); // dump contents in buffer to input arr
+
+                    for (int i = 0; i < data_length; i++) // convert from byte array to double array 
+                    {
+                        plot_array[i] = Convert.ToDouble(inputarr[i]); // convert from byte array to double array
+
+                        plot_array[i] = plot_array[i] / 255 * 5; // convert from adc values to Voltages 
+                    }
+
+                    for (int i = data_length; i < 400; i++) // convert from byte array to double array 
+                    {
+                        digi_array[i - data_length] = Convert.ToDouble(inputarr[i]); // convert from byte array to double array
+
+                        digi_array[i - data_length] = digi_array[i - data_length] / 255 * 5; // convert from adc values to Voltages 
+                    }
+
+
+
+                    array_max = Math.Round(plot_array.Max(), 2); // get the max data point in array
+                    array_min = Math.Round(plot_array.Min(), 2); // get the min data point in array
+                    
+                    in_avg = Queryable.Average(plot_array.AsQueryable());
+                    out_avg = Queryable.Average(digi_array.AsQueryable());
+
+                incoming_rigger_value = plot_array[0]; // get trigger value from first element in the array                  
+
+                    this.Invoke(new EventHandler(plot_data)); // invoke new thread to handle data plottting
+
+                
+                    for (int i = 0; i < 200; i++)
+                    {
+                        plot_array[i] = plot_array[i] - in_avg;
+                        digi_array[i] = digi_array[i] - out_avg;
+                    }
+
+                   
+
+                this.Invoke(new EventHandler(show_input_freq)); // invoke new thread to handle DFT 
+
+                sp.DiscardInBuffer();
+
+            }
+
+        }
+
+
+
+
+
+
+
+
+        private void Form1_Load(object sender, EventArgs e) // Form 1 Load 
+        {
+            // Default text in text boxes
+            textBox3.Text = "Sampling Freq = 10000 Hz"; 
+            textBox4.Text = "Min = 0V";
+            textBox5.Text = "Max = 0V";
+            textBox6.Text = "P2P = 0V";
+           
+        }
+
+        private void button17_Click(object sender, EventArgs e) // start button
+        {
+            char[] Sampling = new char[1];
+
+            Sampling[0] = '+'; // send handshake signal to pic
+
+            _setting._serial.Write(Sampling, 0, 1);
+
+            handshake = 0;
+
+            Sampling[0] = 'D'; // start timer in pic
+
+            _setting._serial.Write(Sampling, 0, 1);
+
+            ADC = true;
+        }
+
+        private void button18_Click(object sender, EventArgs e) // stop button 
+        {
+            
+            char[] Sampling = new char[1];
+
+            Sampling[0] = '*'; // stop timer
+
+            _setting._serial.Write(Sampling, 0, 1);
+
+            ADC = false;
+        }
+
+
+        private void cleargraph() // clear graph funtion
+        {
+
+            chart1.Series["Light"].Points.Clear(); // clear graph
+            chart1.Series["Light2"].Points.Clear();
+
+            textBox1.Clear(); // clear textbox 
+
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            cleargraph(); // clear graph
+
+            char[] Sampling = new char[1];
+
+            Sampling[0] = '*'; // add B to one element array
+
+            _setting._serial.Write(Sampling, 0, 1);
+
+
+
+            ADC = false;
+        }
+        char[] send_samp_freq_array = new char[6];
+
+
+        string trigger_value_str;
+        double trigger_value_int;
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            trigger_value_str = textBox2.Text; // take on value of textbox 2 
+            trigger_value_int = double.Parse(trigger_value_str); // convert string to double
+
+            char[] Sampling = new char[1];
+
+
+            Sampling[0] = '*'; // stop timer 
+
+            _setting._serial.Write(Sampling, 0, 1);
+
+
+            Sampling[0] = '$'; // send trigger value flag
+
+            _setting._serial.Write(Sampling, 0, 1);
+
+            // do calcaulations to convert to correct tigger value 
+
+            if (trigger_value_int == 0) { }
+
+            else
+                send_trigger_value = (trigger_value_int / 5) * 255;
+
+
+            send_trigger_value = Convert.ToInt32(send_trigger_value); // convert to int
+
+
+            send_trigger_freq_array = send_trigger_value.ToString().ToCharArray(); // convert to array
+
+            int n = send_trigger_freq_array.Length; // get length of array
+
+
+
+            _setting._serial.Write(send_trigger_freq_array, 0, n); // send trigger value to pic
+
+
+            Sampling[0] = 'D'; // start timer
+
+            _setting._serial.Write(Sampling, 0, 1);
+
+            
+            textBox2.Clear(); // clear text box 2; 
+           
+            ADC = true;
+
+        }
+
+
+
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            selectedItem = comboBox1.Items[comboBox1.SelectedIndex].ToString(); // take value from combobox
+
+
+            switch (selectedItem) // case stament for the combo box
+            {
+                case "1x":
+                    multiplier = 1;
+                    break;
+
+                case "2x":
+                    multiplier = 2;
+                    break;
+
+                case "4x":
+                    multiplier = 4;
+                    break;
+
+                case "8x":
+                    multiplier = 8;
+                    break;
+
+                case "16x":
+                    multiplier = 16;
+                    break;
+
+                case "32x":
+                    multiplier = 32;
+                    break;
+
+                case "64x":
+                    multiplier = 64;
+                    break;
+
+                case "100x":
+                    multiplier = 100;
+                    break;
+
+                case "128x":
+                    multiplier = 128;
+                    break;
+
+                default:
+                    multiplier = 1;
+                    break;
+            }
+
+
+            if (multiplier == 1) // if multiplier equals one show defualt Y axis
+            {
+                chart1.ChartAreas["ChartArea1"].AxisY.Maximum = 5; // 5V 
+
+                chart1.ChartAreas["ChartArea1"].AxisY.Minimum = 0; // 0V
+
+                chart1.Series["Light"].Points.DataBindY(plot_array); // plot data to array
+                chart1.Series["Light2"].Points.DataBindY(digi_array);
+
+            }
+
+            else // if multipler is not one show custom Y axis bases on trigger value
+            {
+                chart1.ChartAreas["ChartArea1"].AxisY.Maximum = Math.Round(incoming_rigger_value + (incoming_rigger_value / multiplier), 2);
+
+                chart1.ChartAreas["ChartArea1"].AxisY.Minimum = Math.Round(incoming_rigger_value - (incoming_rigger_value / multiplier), 2);
+
+                chart1.Series["Light"].Points.DataBindY(plot_array); // plot data to array
+                chart1.Series["Light2"].Points.DataBindY(digi_array);
+            }
+
+        }
+
+        int send_samp_freq = 0;
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+            samp_freg = textBox1.Text; // take text from textbox1
+            samp_freq_int = Int32.Parse(samp_freg);// convert string to int
+
+            char[] Sampling = new char[1];
+
+
+            Sampling[0] = '*'; // stop timer
+
+            _setting._serial.Write(Sampling, 0, 1);
+
+
+
+            Sampling[0] = '%'; // samp freq trigger
+
+            _setting._serial.Write(Sampling, 0, 1);
+
+
+             //do math to convert to correct samp freq input
+            if (samp_freq_int == 0) { }
+
+            else
+                send_samp_freq = 16000000 / samp_freq_int;
+
+
+
+            send_samp_freq_array = send_samp_freq.ToString().ToCharArray(); // convert to array
+
+            int n = send_samp_freq_array.Length; // get length of array
+
+
+
+            _setting._serial.Write(send_samp_freq_array, 0, n); // send the samp freq to pic 24 
+
+
+
+            Sampling[0] = 'D'; // start timer 
+
+            _setting._serial.Write(Sampling, 0, 1);
+
+            int temp = Convert.ToInt32(samp_freg); // convert samp freq to int 
+
+
+            textBox1.Clear(); // clear text box 
+
+
+            var str = $"Sampling Freq = {samp_freg} Hz"; 
+            textBox3.Text = str; // add sampling freq to textbox3
+
+            ADC = true;
+        }
+
+        double o;
+        double p;
+        double oout;
+        double pout;
+        
+        private void button5_Click(object sender, EventArgs e)
+        {
+            char[] Sampling = new char[1];
+
+            Sampling[0] = 'L'; // send handshake signal to pic
+
+            _setting._serial.Write(Sampling, 0, 1);
+
+            Int16 [] Filter = new Int16 []
+
+                {
+                          -12,     -4,      5,     17,     31,     48,     65,     79,     86,
+                           83,     64,     26,    -31,   -106,   -194,   -284,   -366,   -424,
+                         -442,   -405,   -300,   -120,    139,    470,    862,   1295,   1744,
+                         2182,   2578,   2904,   3137,   3257,   3257,   3137,   2904,   2578,
+                         2182,   1744,   1295,    862,    470,    139,   -120,   -300,   -405,
+                         -442,   -424,   -366,   -284,   -194,   -106,    -31,     26,     64,
+                           83,     86,     79,     65,     48,     31,     17,      5,     -4,
+                          -12
+                 };
+
+           
+                 
+            for (int i = 0; i < 64; i++)
+            {
+                
+                byte[] result = BitConverter.GetBytes(Filter[i]);
+
+                _setting._serial.Write(result, 0, 2);
+            }
+
+
+            Sampling[0] = 'D'; // send handshake signal to pic
+
+            _setting._serial.Write(Sampling, 0, 1);
+
+            // 50HZ AND 100HZ LPF FS 2000HZ  freq = 8000
+
+
+
+
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            selectedItem2 = comboBox2.Items[comboBox2.SelectedIndex].ToString(); // take value from combobox
+
+            this.Invoke(new EventHandler(button18_Click)); // invoke new thread to handle DFT 
+
+            char[] Sampling = new char[1];
+
+            Sampling[0] = 'L'; // send handshake signal to pic
+
+            _setting._serial.Write(Sampling, 0, 1);
+            _setting._serial.Write(Sampling, 0, 1);
+
+            switch (selectedItem2) // case stament for the combo box
+            {
+                case "100 Hz LPF":
+
+                  
+
+                    Int16[] LPF100 = new Int16[]
+                    {
+                          -12,     -4,      5,     17,     31,     48,     65,     79,     86,
+                           83,     64,     26,    -31,   -106,   -194,   -284,   -366,   -424,
+                         -442,   -405,   -300,   -120,    139,    470,    862,   1295,   1744,
+                         2182,   2578,   2904,   3137,   3257,   3257,   3137,   2904,   2578,
+                         2182,   1744,   1295,    862,    470,    139,   -120,   -300,   -405,
+                         -442,   -424,   -366,   -284,   -194,   -106,    -31,     26,     64,
+                           83,     86,     79,     65,     48,     31,     17,      5,     -4,
+                          -12
+                    };
+
+
+                    for (int i = 0; i < 64; i++)
+                    {
+                        byte[] result = BitConverter.GetBytes(LPF100[i]);
+
+                        _setting._serial.Write(result, 0, 2);
+                    }
+
+                    textBox1.Text = "2000";
+                    
+                    break;
+
+                case "50 Hz LPF":
+
+
+                   
+
+                    Int16[] LPF50 = new Int16[]
+                    {
+                          -12,     -4,      5,     17,     31,     48,     65,     79,     86,
+                           83,     64,     26,    -31,   -106,   -194,   -284,   -366,   -424,
+                         -442,   -405,   -300,   -120,    139,    470,    862,   1295,   1744,
+                         2182,   2578,   2904,   3137,   3257,   3257,   3137,   2904,   2578,
+                         2182,   1744,   1295,    862,    470,    139,   -120,   -300,   -405,
+                         -442,   -424,   -366,   -284,   -194,   -106,    -31,     26,     64,
+                           83,     86,     79,     65,     48,     31,     17,      5,     -4,
+                          -12
+                    };
+
+                    for (int i = 0; i < 64; i++)
+                    {
+                        byte[] result = BitConverter.GetBytes(LPF50[i]);
+
+                        _setting._serial.Write(result, 0, 2);
+                    }
+
+                    textBox1.Text = "2000";
+                    break;
+
+                case "10 Hz LPF":
+
+                     
+
+                    Int16[] LPF10 = new Int16[]
+                    {
+                          210,   -167,   -150,   -155,   -171,   -192,   -213,   -231,   -243, 
+                         -246,   -239,   -218,   -183,   -133,    -65,     19,    120,    237,
+                          368,    511,    664,    823,    984,   1145,   1302,   1449,   1584,
+                         1703,   1802,   1879,   1931,   1958,   1958,   1931,   1879,   1802,
+                        1703,   1584,   1449,   1302,   1145,    984,    823,    664,    511,
+                          368,    237,    120,     19,    -65,   -133,   -183,   -218,   -239,
+                        -246,   -243,   -231,   -213,   -192,   -171,   -155,   -150,   -167,
+                         210
+                    };
+
+                        for (int i = 0; i < 64; i++)
+                    {
+                        byte[] result = BitConverter.GetBytes(LPF10[i]);
+
+                        _setting._serial.Write(result, 0, 2);
+                    }
+
+                    textBox1.Text = "300";
+
+                    break;
+
+                case "300 Hz BPF":
+
+
+                    Int16[] BPF300 = new Int16[]
+                    {
+                               -9,     16,    -15,     -6,     55,    115,     71,    -81,   -192, 
+                             -129,     19,     39,    -74,    -39,    301,    604,    354,   -397,
+                             -894,   -580,     91,    196,   -272,   -154,   1241,   2589,   1599,
+                            -1984,  -5096,  -4105,    977,   5788,   5788,    977,  -4105,  -5096,
+                            -1984,   1599,   2589,   1241,   -154,   -272,    196,     91,   -580,
+                             -894,   -397,    354,    604,    301,    -39,    -74,     39,     19,
+                             -129,   -192,    -81,     71,    115,     55,     -6,    -15,     16,
+                               -9
+                    };
+
+                    for (int i = 0; i < 64; i++)
+                    {
+                        byte[] result = BitConverter.GetBytes(BPF300[i]);
+                        _setting._serial.Write(result, 0, 2);
+                    }
+
+                    textBox1.Text = "2000";
+                    break;
+
+                case "150 Hz BPF":
+                    
+
+                    Int16[] BPF150 = new Int16[]
+                    {
+                                 353,   -165,   -103,    -35,     36,     97,    125,     96,     -6, 
+                                -176,   -380,   -562,   -652,   -590,   -347,     56,    543,    996,
+                                 1283,   1296,    985,    380,   -403,  -1185,  -1770,  -1992,  -1766,
+                                -1117,   -176,    843,   1699,   2187,   2187,   1699,    843,   -176,
+                                -1117,  -1766,  -1992,  -1770,  -1185,   -403,    380,    985,   1296,
+                                 1283,    996,    543,     56,   -347,   -590,   -652,   -562,   -380,
+                                -176,     -6,     96,    125,     97,     36,    -35,   -103,   -165,
+                                 353
+                    };
+
+                    for (int i = 0; i < 64; i++)
+                    {
+                        byte[] result = BitConverter.GetBytes(BPF150[i]);
+                        _setting._serial.Write(result, 0, 2);
+                    }
+
+                    textBox1.Text = "2000";
+                    break;
+
+                case "30 Hz BPF":
+
+                 
+
+                    Int16[] BPF30 = new Int16[]
+                    {
+                                40,   -361,   -179,   -104,      0,     98,    140,    110,     42,  // 30 HZ BPF  19 28 32 41 FS 300HZ freq = 53334 Fin = 10HZ
+                                0,     37,    146,    247,    224,      0,   -392,   -788,   -951,
+                                -693,      1,    912,   1653,   1827,   1232,     -1,  -1421,  -2429,
+                                -2542,  -1629,      0,   1703,   2780,   2780,   1703,      0,  -1629,
+                                -2542,  -2429,  -1421,     -1,   1232,   1827,   1653,    912,      1,
+                                -693,   -951,   -788,   -392,      0,    224,    247,    146,     37,
+                                 0,     42,    110,    140,     98,      0,   -104,   -179,   -361,
+                                40
+                    };
+
+                    for (int i = 0; i < 64; i++)
+                    {
+                        byte[] result = BitConverter.GetBytes(BPF30[i]);
+                        _setting._serial.Write(result, 0, 2);
+                    }
+
+                    textBox1.Text = "300";
+                    break;
+              
+
+                default:
+                    multiplier = 1;
+                    break;
+            }
+
+            this.Invoke(new EventHandler(button3_Click));
+            this.Invoke(new EventHandler(button17_Click)); 
+        }
+
+        private void show_input_freq(object sender, EventArgs e) // DFT Algorithm 
+        {
+
+            int n = plot_array.Length;
+            int m = n;// I use m = n / 2d;
+            double[] real = new double[n];
+            double[] imag = new double[n];
+            double[] result = new double[m / 2];
+            double[] realout = new double[n];
+            double[] imagout = new double[n];
+            double[] resultout = new double[m / 2];
+            double pi_div = 2.0 * Math.PI / n;
+            for (int w = 0; w < (m + 1) / 2; w++)
+            {
+                double a = w * pi_div;
+                for (int t = 0; t < (n + 1) / 2; t++)
+                {
+                    real[w] += plot_array[t] * Math.Cos(a * t);
+                    imag[w] += plot_array[t] * Math.Sin(a * t);
+                    realout[w] += digi_array[t] * Math.Cos(a * t);
+                    imagout[w] += digi_array[t] * Math.Sin(a * t);
+                }
+                result[w] = Math.Sqrt(real[w] * real[w] + imag[w] * imag[w]) / n;
+                resultout[w] = Math.Sqrt(realout[w] * realout[w] + imagout[w] * imagout[w]) / n;
+            }
+
+
+
+            chart2.Series["Light"].Points.DataBindY(result); // plot the results of DFT to chart 2 
+            chart2.Series["Light2"].Points.DataBindY(resultout);
+
+            o = result.Max(); // hold the max value in the result array
+            p = Array.IndexOf(result, o); // get the index of the array that holds the max value
+            
+            oout = resultout.Max();
+            pout = Array.IndexOf(resultout, oout);
+
+            textBox7.Text = "Input Freq = " + Math.Round(Convert.ToInt32(samp_freg) / data_length * p, 2) + "Hz"; // display input freq in toxbox 7
+
+            textBox9.Text = "Output Freq = " + Math.Round(Convert.ToInt32(samp_freg) / data_length * pout, 2) + "Hz";
+
+        }
+
+
+
+
+
+
+        private void plot_data(object sender, EventArgs e) // plots data on mschart
+        {
+            updates += 1;
+            textBox8.Text = updates.ToString();
+            if (ADC == true) // if chart is not cleared 
+            {
+                // Add lables to X and Y axis
+                chart1.ChartAreas["ChartArea1"].AxisY.Title = "Volts (V)"; 
+                chart1.ChartAreas["ChartArea1"].AxisX.Title = "Time (s)";
+
+                if (multiplier == 1) // if multiplier is 1 
+                {
+
+                    //Show default  Y axis 
+                    chart1.ChartAreas["ChartArea1"].AxisY.Maximum = 5; //incoming_rigger_value + (incoming_rigger_value / multiplier);
+
+                    chart1.ChartAreas["ChartArea1"].AxisY.Minimum = 0; //incoming_rigger_value - (incoming_rigger_value / multiplier);
+
+                    chart1.Series["Light"].Points.DataBindY(plot_array); // plot data on chart
+                    chart1.Series["Light2"].Points.DataBindY(digi_array);
+
+                }
+
+                else // if multiplier is not 1 
+                {
+                    // show custom Y axis values 
+                    chart1.ChartAreas["ChartArea1"].AxisY.Maximum = Math.Round(incoming_rigger_value + (incoming_rigger_value / multiplier), 2);
+
+                    chart1.ChartAreas["ChartArea1"].AxisY.Minimum = Math.Round(incoming_rigger_value - (incoming_rigger_value / multiplier), 2);
+
+                    chart1.Series["Light"].Points.DataBindY(plot_array); // plot data on chart
+                    chart1.Series["Light2"].Points.DataBindY(digi_array);
+                }
+
+
+
+                chart1.ChartAreas["ChartArea1"].AxisX.Interval = 50; // have x axis interval of 50 
+
+                time = 1 / Convert.ToDouble(samp_freg); // convert from freq to time
+
+                string first, second, third, fourth;
+
+                // calcaulting time values for the 4 x axis segments in charts
+                first = (50 * time).ToString();
+                second = (100 * time).ToString();
+                third = (150 * time).ToString();
+                fourth = (200 * time).ToString();
+
+                chart1.Series["Light"].IsVisibleInLegend = false;// remoove the default x axis labels
+                chart1.Series["Light2"].IsVisibleInLegend = false;// remoove the default x axis labels
+                chart1.ChartAreas["ChartArea1"].AxisX.CustomLabels.Clear(); // clear the previous labels 
+
+                // add the x axis time labels 
+                chart1.ChartAreas["ChartArea1"].AxisX.CustomLabels.Add(25, 75, first + "s");
+                chart1.ChartAreas["ChartArea1"].AxisX.CustomLabels.Add(75, 125, second + "s");
+                chart1.ChartAreas["ChartArea1"].AxisX.CustomLabels.Add(125, 175, third + "s");
+                chart1.ChartAreas["ChartArea1"].AxisX.CustomLabels.Add(175, 225, fourth + "s");
+
+
+                textBox4.Text = "Min = " + array_min + "V"; // show min voltage on textbox 4
+
+                textBox5.Text = "Max = " + array_max + "V"; // show max voltage on textbox 5 
+
+                textBox6.Text = "P2P = " + (array_min + array_max) + "V"; // Show P2P on textbox6
+
+
+                char[] Sampling = new char[1];
+
+                Sampling[0] = '+'; // send handshake to pic
+
+                _setting._serial.Write(Sampling, 0, 1);
+
+                handshake = 0;
+
+            }
+
+
+
+
+        }
+
+    }
+}
+

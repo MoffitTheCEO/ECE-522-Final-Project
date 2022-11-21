@@ -1,0 +1,227 @@
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe.config
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csprojAssemblyReference.cache
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Properties.Resources.resources
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.GenerateResource.cache
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CoreCompileInputs.cache
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.exe
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\ZedGraph.dll
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\ZedGraph.Web.dll
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\ZedGraph.xml
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\ZedGraph.Web.xml
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CopyComplete
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Bluetooth_Settings.resources
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.T_settings.resources
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.ResolveComReference.cache
+C:\Users\Moffat\Desktop\Fall 2020\ECE 323\LAB 10\Studio\ECE_323_LAB_10\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Form1.resources
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe.config
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\ZedGraph.xml
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\ZedGraph.Web.xml
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csprojAssemblyReference.cache
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.ResolveComReference.cache
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Form1.resources
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Bluetooth_Settings.resources
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Properties.Resources.resources
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.GenerateResource.cache
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CoreCompileInputs.cache
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CopyComplete
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\LAB7\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe.config
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\ZedGraph.xml
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\ZedGraph.Web.xml
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csprojAssemblyReference.cache
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.ResolveComReference.cache
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Form1.resources
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Bluetooth_Settings.resources
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Properties.Resources.resources
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.GenerateResource.cache
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CoreCompileInputs.cache
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CopyComplete
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Spring 2021\ECE421\LABS\Final Project\gui\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe.config
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\ZedGraph.xml
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\ZedGraph.Web.xml
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csprojAssemblyReference.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.ResolveComReference.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Form1.resources
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Bluetooth_Settings.resources
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Properties.Resources.resources
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.GenerateResource.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CoreCompileInputs.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CopyComplete
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\4\GUI\ECE_422_LAB_4_GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe.config
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\ZedGraph.xml
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\ZedGraph.Web.xml
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csprojAssemblyReference.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.ResolveComReference.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Form1.resources
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Bluetooth_Settings.resources
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Properties.Resources.resources
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.GenerateResource.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CoreCompileInputs.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CopyComplete
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\10\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe.config
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\ZedGraph.xml
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\ZedGraph.Web.xml
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csprojAssemblyReference.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.ResolveComReference.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Form1.resources
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Bluetooth_Settings.resources
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Properties.Resources.resources
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.GenerateResource.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CoreCompileInputs.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CopyComplete
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe.config
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\ZedGraph.xml
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\ZedGraph.Web.xml
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csprojAssemblyReference.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.ResolveComReference.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Form1.resources
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Bluetooth_Settings.resources
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Properties.Resources.resources
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.GenerateResource.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CoreCompileInputs.cache
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CopyComplete
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe.config
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\ZedGraph.xml
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\ZedGraph.Web.xml
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csprojAssemblyReference.cache
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.ResolveComReference.cache
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Form1.resources
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Bluetooth_Settings.resources
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Properties.Resources.resources
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.GenerateResource.cache
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CoreCompileInputs.cache
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CopyComplete
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.pdb

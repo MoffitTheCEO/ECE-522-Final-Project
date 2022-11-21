@@ -37,10 +37,10 @@ const unsigned int8 ADC_DMA_CHANNEL = 0;
 unsigned int16 TimerTicks = 0;
 
 unsigned int8 ConversionValue; // normalized value
+unsigned int8 PercentError;
 unsigned int8 AnalogData[BUFFER_SIZE]; // input array
 
 unsigned int8 CSharpCoefficent[2];          // array to hold byte data of coefficents
-unsigned int8 InboundTriggerValue[4];
 
 unsigned int16 InitialTriggerValue = 0; // used for initail trigger value
 unsigned int16 TriggerValue = 0; // used for initail trigger value
@@ -56,7 +56,7 @@ signed int32 MinAnalogValue = 0; // use for normalization
 signed int64 AverageAnalogValue = 0; // use for normalization
 
 signed int16  InputSamples[COEF_LENGTH]; // array used as a circular buffer for the input samples
-signed int16  TempInputSamples[2];
+unsigned int16 TempInputSamples[2];
 
 float OutputValue;          // holds the current output value
 float AverageDivider = 0; // use for normalization
@@ -78,9 +78,7 @@ FlagType UARTRXFlag = 0;   // serial flag
 FlagType HandShakeFlag = 0;    // handshake
 FlagType TriggerFlag = 0;
 FlagType DMAFlag = 0;
-FlagType OutputFlag = 0;
-FlagType DMATriggerFlag = 0;
-FlagType DigitTerminationFlag = 0;
+FlagType TriggerValueFlag = 0;
 
 void AccumulateAnalogData(IndexType);
 void NormalizeData();
@@ -90,17 +88,15 @@ void EnableInterrupts(void);
 unsigned int8 QuickDigitize(unsigned int16);
 volatile signed int16 fir_coef[COEF_LENGTH]; // = 
 //!{
-//!210,   -167,   -150,   -155,   -171,   -192,   -213,   -231,   -243, // 10 HZ LPF FS 300HZ freq = 53334 Fin
-//!-246,   -239,   -218,   -183,   -133,    -65,     19,    120,    237,
-//!368,    511,    664,    823,    984,   1145,   1302,   1449,   1584,
-//!1703,   1802,   1879,   1931,   1958,   1958,   1931,   1879,   1802,
-//!1703,   1584,   1449,   1302,   1145,    984,    823,    664,    511,
-//!368,    237,    120,     19,    -65,   -133,   -183,   -218,   -239,
-//!-246,   -243,   -231,   -213,   -192,   -171,   -155,   -150,   -167,
-//!210
-//!
+//!     -129,     19,     39,    -74,    -39,    301,    604,    354,   -397,
+//!     -894,   -580,     91,    196,   -272,   -154,   1241,   2589,   1599,
+//!    -1984,  -5096,  -4105,    977,   5788,   5788,    977,  -4105,  -5096,
+//!    -1984,   1599,   2589,   1241,   -154,   -272,    196,     91,   -580,
+//!     -894,   -397,    354,    604,    301,    -39,    -74,     39,     19,
+//!     -129,   -192,    -81,     71,    115,     55,     -6,    -15,     16,
+//!       -9
 //!};
-//!
+
 #endif // MAIN_H
 
 
