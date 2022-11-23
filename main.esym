@@ -1,7 +1,7 @@
-D G "__PCD__" 0 482 ""5.008""
-D G "__DEVICE__" 0 482 "8206"
-D G "__DATE__" 0 482 ""20-Nov-22""
-D G "__TIME__" 0 482 ""19:53:48""
+D G "__PCD__" 0 467 ""5.008""
+D G "__DEVICE__" 0 467 "8206"
+D G "__DATE__" 0 467 ""22-Nov-22""
+D G "__TIME__" 0 467 ""21:24:26""
 D G "MAIN_H" 1 2 ""
 c L "set_tris_a" 2 1 21 "FUNCTION"
 v L "value" 2 39 "int16" `53 
@@ -1508,53 +1508,51 @@ F G "Timer_ISR" 0 34 "void()" `979
 C L "Timer_ISR" 0 36 1 "FUNCTION"
 V L "ADCValue" 0 44 "int16" `980 
 C L "Timer_ISR" 0 36 1 "FUNCTION"
-C L "Timer_ISR" 0 36 9 "FUNCTION"
-F G "MAIN" 0 95 "void()" `981 
+C L "Timer_ISR" 0 36 1 "FUNCTION"
+F G "MAIN" 0 89 "void()" `981 
 C L "MAIN" 0 36 2 "FUNCTION"
 C L "MAIN" 0 36 1 "FUNCTION"
-C L "MAIN" 0 36 1 "FUNCTION"
-V L "Index" 0 126 "IndexType" `984 
+V L "Index" 0 119 "IndexType" `984 
 C L "MAIN" 0 36 2 "FUNCTION"
-V L "i" 0 146 "IndexType" `985 
+V L "i" 0 133 "IndexType" `985 
 C L "MAIN" 0 36 1 "FUNCTION"
 C L "MAIN" 0 36 1 "FUNCTION"
 C L "MAIN" 0 36 1 "FUNCTION"
 C L "MAIN" 0 36 1 "FUNCTION"
-V L "DMAADCIndex" 0 173 "IndexType" `989 
-F G "AccumulateAnalogData" 0 174 "void(IndexType DMAADCIndex)" `960 
+V L "DMAADCIndex" 0 161 "IndexType" `989 
+F G "AccumulateAnalogData" 0 162 "void(IndexType DMAADCIndex)" `960 
 C L "AccumulateAnalogData" 0 36 1 "FUNCTION"
-V L "StepOne" 0 204 "float" `991 
-V L "StepTwo" 0 205 "float" `994 
-V L "StepThree" 0 206 "float" `998 
-C L "AccumulateAnalogData" 0 36 2 "FUNCTION"
-F G "NormalizeData" 0 225 "void()" `962 
+V L "StepOne" 0 192 "float" `991 
+V L "StepTwo" 0 193 "float" `994 
+V L "StepThree" 0 194 "float" `998 
+F G "NormalizeData" 0 210 "void()" `962 
 C L "NormalizeData" 0 36 1 "FUNCTION"
 C L "NormalizeData" 0 36 1 "FUNCTION"
-V L "Index" 0 232 "IndexType" `1004 
-V L "i" 0 263 "IndexType" `1013 
-V L "ADCValue" 0 280 "int16" `1015 
-F G "QuickDigitize" 0 281 "int8(int16 ADCValue)" `967 
+V L "Index" 0 217 "IndexType" `1004 
+V L "i" 0 248 "IndexType" `1013 
+V L "ADCValue" 0 265 "int16" `1015 
+F G "QuickDigitize" 0 266 "int8(int16 ADCValue)" `967 
 C L "QuickDigitize" 0 36 1 "FUNCTION"
-V L "StepOne" 0 301 "float" `1014 
-V L "StepTwo" 0 302 "float" `1015 
-V L "StepThree" 0 303 "float" `1016 
-V L "ConversionValue" 0 304 "int8" `1017 
-V L "UARTRX" 0 318 "sint8" `1019 
-F G "CommHandler" 0 319 "void(sint8 UARTRX)" `963 
-V L "CoefficentByte" 0 343 "sint8" `1018 
+V L "StepOne" 0 286 "float" `1014 
+V L "StepTwo" 0 287 "float" `1015 
+V L "StepThree" 0 288 "float" `1016 
+V L "ConversionValue" 0 289 "int8" `1017 
+V L "UARTRX" 0 303 "sint8" `1019 
+F G "CommHandler" 0 304 "void(sint8 UARTRX)" `963 
+V L "CoefficentByte" 0 328 "sint8" `1018 
 C L "CommHandler" 0 36 1 "FUNCTION"
 C L "CommHandler" 0 36 1 "FUNCTION"
 C L "CommHandler" 0 36 6 "FUNCTION"
 C L "CommHandler" 0 36 1 "FUNCTION"
-V L "DigitByte" 0 400 "sint8" `1019 
+V L "DigitByte" 0 385 "sint8" `1019 
 C L "CommHandler" 0 36 1 "FUNCTION"
 C L "CommHandler" 0 36 1 "FUNCTION"
-V L "DigitByte" 0 429 "sint8" `1021 
+V L "DigitByte" 0 415 "sint8" `1021 
 C L "CommHandler" 0 36 1 "FUNCTION"
 C L "CommHandler" 0 36 1 "FUNCTION"
-F G "DisableInterrupts" 0 470 "void()" `965 
+F G "DisableInterrupts" 0 454 "void()" `965 
 C L "DisableInterrupts" 0 36 1 "FUNCTION"
-F G "EnableInterrupts" 0 477 "void()" `966 
+F G "EnableInterrupts" 0 461 "void()" `966 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1

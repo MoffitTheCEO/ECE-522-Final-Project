@@ -225,3 +225,31 @@ C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_3
 C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CopyComplete
 C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.exe
 C:\Users\Moff - it\Desktop\Education\Fall 2021\ECE 422\Lab\Test\SUBMIT\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe.config
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\ECE_323_LAB_10.pdb
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\ZedGraph.xml
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\ZedGraph.Web.xml
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csprojAssemblyReference.cache
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.ResolveComReference.cache
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Form1.resources
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Bluetooth_Settings.resources
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.Properties.Resources.resources
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.GenerateResource.cache
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CoreCompileInputs.cache
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.csproj.CopyComplete
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.exe
+C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\GUI\ECE_323_LAB_10\obj\Debug\ECE_323_LAB_10.pdb

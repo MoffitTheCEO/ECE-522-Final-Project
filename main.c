@@ -45,19 +45,28 @@ void Timer_ISR()
       
       if (DMAFlag == 0)
       {
-         disable_interrupts(INT_DMA0);
+         //disable_interrupts(INT_DMA0);
          memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2);
+         TriggerFlag = 0;
          DMAFlag = 1;
       }
       
       if (TriggerFlag != 2)
       {
-          ADCValue = QuickDigitize(read_adc());
+           
+           if(DMAFlag != 2)
+           {
+              dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
+              enable_interrupts(INT_DMA0);
+           }
+           //ADCValue = QuickDigitize(read_adc()); // Trigger on Output Wave
+           ADCValue = read_adc() >> 4;
       }
       
       if((ADCValue == TriggerValue) && (TriggerFlag == 0))
       {
          TempInputSamples[0] = ADCValue;
+         DMAFlag = 2;
          TriggerFlag = 1;
       }
       else if((ADCValue > TempInputSamples[0]) && (TriggerFlag == 1))
@@ -66,28 +75,13 @@ void Timer_ISR()
          TriggerFlag = 2;
       }
       else if(TriggerFlag == 2)
-      {
-         if(DMAFlag == 1)
-         {
-            memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2);
-            dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
-            enable_interrupts(INT_DMA0);
-            DMAFlag = 2;
-         }
-         
-         read_adc();//Fill DMA_ADC_BUFFER FROM POSITION 2 -> END OF BUFFER
+      {    
+         read_adc();
       }  
-//!      else
-//!      {
-//!         ErrorCounter++;
-//!         
-//!         if (ErrorCounter > 3000)
-//!         {
-//!            NormalizeFlag = 1;
-//!         }
-//!         
-//!         TriggerFlag = 0;
-//!      }
+      else
+      {
+         DMAFlag = 0;          
+      }
    }
 }
 
@@ -109,9 +103,7 @@ void main()
    setup_adc_ports(sAN0 | VSS_VDD);
    
    read_adc();
-   
-   //TimerTicks = 53334;
-   
+     
    setup_timer1(TMR_INTERNAL , TimerTicks);
    EnableInterrupts();
    
@@ -123,6 +115,7 @@ void main()
       if((DMADoneFlag) || (NormalizeDataCounter == BUFFER_SIZE))
       {
          disable_interrupts(INT_DMA0);
+
          for (IndexType Index = 0; Index < BUFFER_SIZE; Index++)
          {
             AccumulateAnalogData(Index);
@@ -136,13 +129,7 @@ void main()
          //dma_start(UART_TX_DMA_CHANNEL, DMA_ONE_SHOT | DMA_FORCE_NOW, &DigitizedData[0], BUFFER_SIZE); 
 //!         Todo:: DMA THE ANALOG DATA ARRAY ALSO 
          if (HandShakeFlag == 1)
-         {
-            if (TriggerValueFlag == 1)
-            {
-                DigitizedData[0] = TempInputSamples[0];
-                DigitizedData[1] = TempInputSamples[1];
-            }
-           
+         {          
             for (IndexType i = 0; i < BUFFER_SIZE; i++) // send input array data
             {
                 printf("%c", AnalogData[i]); // send every emelent of the array as a byte
@@ -155,6 +142,7 @@ void main()
          }
          
          NormalizeFlag = 0;
+         NormalizeDataCounter = 0;
          HandShakeFlag = 0;   
          CurrentIndex = 0;
          enable_interrupts(INT_DMA0);
@@ -204,10 +192,7 @@ void AccumulateAnalogData(IndexType DMAADCIndex)
       float StepOne = Accumulator - AverageAnalogValue;
       float StepTwo = StepOne * AverageMultiplier;
       float StepThree = StepTwo + (ADC_MAX_DATA_VALUE / 2);
-      //OutputValue = (Accumulator - AverageAnalogValue) * AverageMultiplier + (ADC_MAX_DATA_VALUE / 2);
-      //ConversionValue = (unsigned int8)OutputValue;
       ConversionValue = (unsigned int8)StepThree;
-    
       DigitizedData[DMAADCIndex] = ConversionValue;
    }
    
@@ -413,6 +398,7 @@ void CommHandler(char UARTRX)
                }
             }
          }
+         
          TriggerValueFlag = 1;
          setup_timer1(TMR_INTERNAL , TimerTicks);
          EnableInterrupts();
@@ -454,9 +440,7 @@ void CommHandler(char UARTRX)
          TriggerValueFlag = 0;
          HandshakeFlag = 1;
          break;
-         
-         
-         
+  
       default :
          ; // Do nothing 
       

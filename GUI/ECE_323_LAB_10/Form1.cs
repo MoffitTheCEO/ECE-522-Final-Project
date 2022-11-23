@@ -92,7 +92,7 @@ namespace ECE_323_LAB_10
 
                 sp.Read(inputarr, 0, 510); // dump contents in buffer to input arr
 
-               /* for (int i = 55; i < 255; i++) // convert from byte array to double array
+                /*for (int i = 55; i < 255; i++) // convert from byte array to double array
                 {
                     plot_array[i - 55] = Convert.ToDouble(inputarr[i]); // convert from byte array to double array
 

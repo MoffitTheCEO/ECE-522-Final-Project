@@ -79,11 +79,6 @@ D6A-1165 DebugAccumulator
 12BC-12BF AccumulateAnalogData.StepTwo
 12C0-12C3 AccumulateAnalogData.StepThree
 12D4-12D5 Timer_ISR.ADCValue
-12DA-12DB QuickDigitize.ADCValue
-12DC-12DF QuickDigitize.StepOne
-12E0-12E3 QuickDigitize.StepTwo
-12E4-12E7 QuickDigitize.StepThree
-12E8    QuickDigitize.ConversionValue
 3F80-3FFF Stack
 4000-41FD DMA_ADC_BUFFER
 41FE-42FC DMA_UART_TX_BUFFER
@@ -93,38 +88,37 @@ ROM Allocation:
 00022E  DMA_1_ISR
 00024E  @GETCH_BIU_1
 000270  UART2_ISR
-00029A  @MULS3232
-0002DC  @SI64TOF
-00033E  @MULFF
-000402  @ADDFF
-0005AC  @SFTOI
-0005D8  QuickDigitize
-000700  Timer_ISR
-0007CC  EnableInterrupts
-0007D8  AccumulateAnalogData
-0009C0  @SDTOF
-000A0E  @DIVFF
-000AD8  @DIVS6464
-000BD0  NormalizeData
-000DF4  DisableInterrupts
-000E02  CommHandler
-000FF0  MAIN
-000FF0  @cinit1
-0010A2  @cinit2
+00029A  Timer_ISR
+00035C  EnableInterrupts
+000368  @MULS3232
+0003AA  @SI64TOF
+00040C  @MULFF
+0004D0  @ADDFF
+00067A  @SFTOI
+0006A6  AccumulateAnalogData
+000856  @SDTOF
+0008A4  @DIVFF
+00096E  @DIVS6464
+000A66  NormalizeData
+000C8A  DisableInterrupts
+000C98  CommHandler
+000E86  MAIN
+000E86  @cinit1
+000F38  @cinit2
 
 Project Directory:
     C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\
 
 Project Files:
-    main.c                                                  [20-Nov-22 19:53  CRC=ED5A7E0D]
-    main.h                                                  [20-Nov-22 19:11  CRC=67D91E57]
+    main.c                                                  [22-Nov-22 21:24  CRC=1C088576]
+    main.h                                                  [20-Nov-22 20:05  CRC=67D91E57]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Devices\33FJ64MC802.h [03-Jul-13 13:30  CRC=B8981CCE]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\stdio.h [31-Jul-07 12:24  CRC=4E4534F4]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\string.h [14-Jul-11 09:13  CRC=23EDEC8F]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\stddef.h [16-Jul-10 08:27  CRC=897CEC6C]
     ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\ctype.h [03-Jan-08 12:55  CRC=2D1F019F]
 
-Source signature=63B9CA5F
+Source signature=9267D1C8
 
 Units:
     main (main)
