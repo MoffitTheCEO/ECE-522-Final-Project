@@ -1,27 +1,27 @@
 
-ROM used:   4224/22016 (10%)
-            4224/22016 (10%) including unused fragments
+ROM used:   4428/22016 (10%)
+            4428/22016 (10%) including unused fragments
 
             1.9 Average locations per line
-            11.3 Average locations per statement
+            10.9 Average locations per statement
 
 RAM used:   3537/16294 (22%) at main() level
-            3576/16294 (22%) worst case
+            3579/16294 (22%) worst case
 
-Stack used: 68 worst case (52 in main + 16 for interrupts)
+Stack used: 76 worst case (60 in main + 16 for interrupts)
 Stack size: 30
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  466   249  67  main.c
+  511   280  69  main.c
   104     0   0  main.h
  1139     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Devices\33FJ64MC802.h
    37     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\stdio.h
-  423   125  33  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\string.h
+  423   125  31  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\string.h
    32     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\stddef.h
    28     0   0  ..\..\..\..\..\..\..\Program Files (x86)\PICC2\Drivers\ctype.h
 ----- -----
- 2229   374 Total
+ 2274   405 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -36,33 +36,33 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     98   1    0             @SI64TOF
 0    196   2    8             @MULFF
 0    426   5    8             @ADDFF
-0     44   1    4    54  1.2  @SFTOI
+0     44   0    4             @SFTOI
 0    548   6    0  1234  7.7  NormalizeData
 0     78   1    4             @SDTOF
 0    202   2    8             @DIVFF
-0    248   3    0    54  1.2  @DIVS6464
-0    494   6    4  3008 12.2  CommHandler
+0    248   3    0             @DIVS6464
+0    698   8    4  4370 13.7  CommHandler
 0     14   0    0    54  1.2  DisableInterrupts
 0     12   0    0    54  1.2  EnableInterrupts
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               12
-    Statements              374
-    Comments                414
-    Volume (V)              11114
-    Difficulty (D)          54.9
-    Effort to implement (E) 609920
-    Time to implement (T)   9 hours, 25 minutes
-    Est Delivered Bugs (B)  2
-    Cyclomatic Complexity   46
-    Maintainability (MI)    95
+    Functions               10
+    Statements              405
+    Comments                416
+    Volume (V)              12347
+    Difficulty (D)          54.0
+    Effort to implement (E) 667245
+    Time to implement (T)   10 hours, 18 minutes
+    Est Delivered Bugs (B)  3
+    Cyclomatic Complexity   52
+    Maintainability (MI)    46
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-001FE   508  0  
-00200-0ABFE  3712  39808  
+00200-0ABFE  3916  39604  
 
 
 

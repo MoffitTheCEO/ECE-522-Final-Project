@@ -1,16 +1,16 @@
-CCS PCD C Compiler, Version 5.008, 5967               22-Nov-22 21:24
+CCS PCD C Compiler, Version 5.008, 5967               01-Dec-22 20:23
 
                Filename:   C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.lst
 
-               ROM used:   4224 bytes (10%)
-                           Largest free fragment is 39808
+               ROM used:   4428 bytes (10%)
+                           Largest free fragment is 39604
                RAM used:   3537 (22%) at main() level
-                           3576 (22%) worst case
-               Stack used: 68 locations (52 in main + 16 for interrupts)
+                           3579 (22%) worst case
+               Stack used: 76 locations (60 in main + 16 for interrupts)
                Stack size: 30
 
 *
-0000:  GOTO    E86
+0000:  GOTO    F52
 *
 001A:  DATA    9A,02,00
 001C:  DATA    00,02,00
@@ -1502,7 +1502,7 @@ CCS PCD C Compiler, Version 5.008, 5967               22-Nov-22 21:24
 ....................    else 
 ....................    { 
 ....................       unsigned int16 ADCValue = 0; 
-02C8:  CLR     12D4
+02C8:  CLR     12D8
 ....................        
 ....................       if (DMAFlag == 0) 
 02CA:  CP0.B   1227
@@ -1552,18 +1552,18 @@ CCS PCD C Compiler, Version 5.008, 5967               22-Nov-22 21:24
 0300:  BRA     2FE
 0302:  MOV     300,W5
 0304:  LSR     W5,#4,W0
-0306:  MOV     W0,12D4
+0306:  MOV     W0,12D8
 ....................       } 
 ....................        
 ....................       if((ADCValue == TriggerValue) && (TriggerFlag == 0)) 
-0308:  MOV     12D4,W0
+0308:  MOV     12D8,W0
 030A:  CP      966
 030C:  BRA     NZ,320
 030E:  CP0.B   1226
 0310:  BRA     NZ,320
 ....................       { 
 ....................          TempInputSamples[0] = ADCValue; 
-0312:  PUSH    12D4
+0312:  PUSH    12D8
 0314:  POP     11F6
 ....................          DMAFlag = 2; 
 0316:  MOV.B   #2,W0L
@@ -1575,7 +1575,7 @@ CCS PCD C Compiler, Version 5.008, 5967               22-Nov-22 21:24
 031E:  BRA     34A
 ....................       else if((ADCValue > TempInputSamples[0]) && (TriggerFlag == 1)) 
 0320:  MOV     11F6,W0
-0322:  MOV     12D4,W4
+0322:  MOV     12D8,W4
 0324:  CP      W4,W0
 0326:  BRA     LEU,338
 0328:  MOV     1226,W4
@@ -1583,7 +1583,7 @@ CCS PCD C Compiler, Version 5.008, 5967               22-Nov-22 21:24
 032C:  BRA     NZ,338
 ....................       { 
 ....................          TempInputSamples[1] = ADCValue; 
-032E:  PUSH    12D4
+032E:  PUSH    12D8
 0330:  POP     11F8
 ....................          TriggerFlag = 2; 
 0332:  MOV.B   #2,W0L
@@ -1621,327 +1621,327 @@ CCS PCD C Compiler, Version 5.008, 5967               22-Nov-22 21:24
 ....................  
 .................... void main() 
 *
-0E86:  MOV     #4444,W0
-0E88:  MOV     W0,A4
-0E8A:  BSET.B  81.7
-0E8C:  MOV     #46,W0
-0E8E:  MOV.B   W0L,742
-0E90:  MOV     #57,W0
-0E92:  MOV.B   W0L,742
-0E94:  BCLR.B  742.6
-0E96:  MOV     #3F07,W0
-0E98:  MOV     W0,6A6
-0E9A:  MOV     #5,W0
-0E9C:  MOV     W0,6C6
-0E9E:  MOV     #46,W0
-0EA0:  MOV.B   W0L,742
-0EA2:  MOV     #57,W0
-0EA4:  MOV.B   W0L,742
-0EA6:  BSET.B  742.6
-0EA8:  MOV     #41,W4
-0EAA:  MOV     W4,744
-0EAC:  MOV     #32,W4
-0EAE:  MOV     W4,746
-0EB0:  CLR     85A
-0EB2:  MOV     #8000,W4
-0EB4:  MOV     W4,230
-0EB6:  MOV     #400,W4
-0EB8:  MOV     W4,232
-0EBA:  BSET.B  230.3
-0EBC:  MOV     #22,W4
-0EBE:  MOV     W4,238
-0EC0:  CLR     85E
-0EC2:  CLR     964
-0EC4:  CLR     966
-0EC6:  CLR     968
-0EC8:  CLR     96A
-0ECA:  CLR     96C
-0ECC:  CLR     1166
-0ECE:  CLR     1168
-0ED0:  CLR     116A
-0ED2:  CLR     116C
-0ED4:  CLR     116E
-0ED6:  CLR     1170
-0ED8:  CLR     1172
-0EDA:  CLR     1174
-0EDC:  CLR     11FE
-0EDE:  CLR     1200
-0EE0:  CLR     1202
-0EE2:  CLR     1204
-0EE4:  CLR.B   961
-0EE6:  CLR     1206
-0EE8:  CLR     1208
-0EEA:  CLR     120A
-0EEC:  CLR     120C
-0EEE:  CLR     120E
-0EF0:  CLR     1210
-0EF2:  CLR     1212
-0EF4:  CLR     1214
-0EF6:  CLR     1216
-0EF8:  CLR     1218
-0EFA:  CLR     121A
-0EFC:  CLR     121C
-0EFE:  CLR     121E
-0F00:  CLR     1220
-0F02:  CLR.B   1222
-0F04:  CLR.B   1223
-0F06:  CLR.B   1224
-0F08:  CLR.B   1225
-0F0A:  CLR.B   1226
-0F0C:  CLR.B   1227
-0F0E:  CLR.B   1228
-0F10:  MOV     #41,W4
-0F12:  MOV     W4,744
-0F14:  MOV     #32,W4
-0F16:  MOV     W4,746
-0F18:  DISI    #E
-0F1A:  MOV     #101,W0
-0F1C:  MOV     #743,W1
-0F1E:  MOV     #78,W2
-0F20:  MOV     #9A,W3
-0F22:  MOV.B   W2L,[W1]
-0F24:  MOV.B   W3L,[W1]
-0F26:  MOV.B   W0L,743
-0F28:  LSR     W0,#8,W0
-0F2A:  MOV     #742,W1
-0F2C:  MOV     #46,W2
-0F2E:  MOV     #57,W3
-0F30:  MOV.B   W2L,[W1]
-0F32:  MOV.B   W3L,[W1]
-0F34:  MOV.B   W0L,[W1]
-0F36:  SETM    32C
-0F38:  MOV     #3F80,W15
-0F3A:  MOV     #3FFF,W0
-0F3C:  MOV     W0,20
-0F3E:  NOP     
-0F40:  CLR     85C
-0F42:  MOV     #3F80,W15
-0F44:  MOV     #3FFF,W0
-0F46:  MOV     W0,20
-0F48:  NOP     
+0F52:  MOV     #4444,W0
+0F54:  MOV     W0,A4
+0F56:  BSET.B  81.7
+0F58:  MOV     #46,W0
+0F5A:  MOV.B   W0L,742
+0F5C:  MOV     #57,W0
+0F5E:  MOV.B   W0L,742
+0F60:  BCLR.B  742.6
+0F62:  MOV     #3F07,W0
+0F64:  MOV     W0,6A6
+0F66:  MOV     #5,W0
+0F68:  MOV     W0,6C6
+0F6A:  MOV     #46,W0
+0F6C:  MOV.B   W0L,742
+0F6E:  MOV     #57,W0
+0F70:  MOV.B   W0L,742
+0F72:  BSET.B  742.6
+0F74:  MOV     #41,W4
+0F76:  MOV     W4,744
+0F78:  MOV     #32,W4
+0F7A:  MOV     W4,746
+0F7C:  CLR     85A
+0F7E:  MOV     #8000,W4
+0F80:  MOV     W4,230
+0F82:  MOV     #400,W4
+0F84:  MOV     W4,232
+0F86:  BSET.B  230.3
+0F88:  MOV     #22,W4
+0F8A:  MOV     W4,238
+0F8C:  CLR     85E
+0F8E:  CLR     964
+0F90:  CLR     966
+0F92:  CLR     968
+0F94:  CLR     96A
+0F96:  CLR     96C
+0F98:  CLR     1166
+0F9A:  CLR     1168
+0F9C:  CLR     116A
+0F9E:  CLR     116C
+0FA0:  CLR     116E
+0FA2:  CLR     1170
+0FA4:  CLR     1172
+0FA6:  CLR     1174
+0FA8:  CLR     11FE
+0FAA:  CLR     1200
+0FAC:  CLR     1202
+0FAE:  CLR     1204
+0FB0:  CLR.B   961
+0FB2:  CLR     1206
+0FB4:  CLR     1208
+0FB6:  CLR     120A
+0FB8:  CLR     120C
+0FBA:  CLR     120E
+0FBC:  CLR     1210
+0FBE:  CLR     1212
+0FC0:  CLR     1214
+0FC2:  CLR     1216
+0FC4:  CLR     1218
+0FC6:  CLR     121A
+0FC8:  CLR     121C
+0FCA:  CLR     121E
+0FCC:  CLR     1220
+0FCE:  CLR.B   1222
+0FD0:  CLR.B   1223
+0FD2:  CLR.B   1224
+0FD4:  CLR.B   1225
+0FD6:  CLR.B   1226
+0FD8:  CLR.B   1227
+0FDA:  CLR.B   1228
+0FDC:  MOV     #41,W4
+0FDE:  MOV     W4,744
+0FE0:  MOV     #32,W4
+0FE2:  MOV     W4,746
+0FE4:  DISI    #E
+0FE6:  MOV     #101,W0
+0FE8:  MOV     #743,W1
+0FEA:  MOV     #78,W2
+0FEC:  MOV     #9A,W3
+0FEE:  MOV.B   W2L,[W1]
+0FF0:  MOV.B   W3L,[W1]
+0FF2:  MOV.B   W0L,743
+0FF4:  LSR     W0,#8,W0
+0FF6:  MOV     #742,W1
+0FF8:  MOV     #46,W2
+0FFA:  MOV     #57,W3
+0FFC:  MOV.B   W2L,[W1]
+0FFE:  MOV.B   W3L,[W1]
+1000:  MOV.B   W0L,[W1]
+1002:  SETM    32C
+1004:  MOV     #3F80,W15
+1006:  MOV     #3FFF,W0
+1008:  MOV     W0,20
+100A:  NOP     
+100C:  CLR     85C
+100E:  MOV     #3F80,W15
+1010:  MOV     #3FFF,W0
+1012:  MOV     W0,20
+1014:  NOP     
 .................... {    
 ....................    memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE); 
-0F4A:  MOV     #4000,W1
-0F4C:  MOV     #0,W2
-0F4E:  REPEAT  #FE
-0F50:  CLR.B   [W1++]
+1016:  MOV     #4000,W1
+1018:  MOV     #0,W2
+101A:  REPEAT  #FE
+101C:  CLR.B   [W1++]
 ....................    memset(DMA_UART_TX_BUFFER, 'a', BUFFER_SIZE); 
-0F52:  MOV     #41FE,W1
-0F54:  MOV     #61,W2
-0F56:  MOV.B   #61,W2L
-0F58:  REPEAT  #FE
-0F5A:  MOV.B   W2L,[W1++]
+101E:  MOV     #41FE,W1
+1020:  MOV     #61,W2
+1022:  MOV.B   #61,W2L
+1024:  REPEAT  #FE
+1026:  MOV.B   W2L,[W1++]
 ....................     
 ....................    setup_dma(ADC_DMA_CHANNEL, DMA_IN_ADC1, DMA_WORD); 
-0F5C:  CLR.B   381
-0F5E:  MOV.B   #D,W0L
-0F60:  MOV.B   W0L,382
-0F62:  MOV     #300,W4
-0F64:  MOV     W4,388
+1028:  CLR.B   381
+102A:  MOV.B   #D,W0L
+102C:  MOV.B   W0L,382
+102E:  MOV     #300,W4
+1030:  MOV     W4,388
 ....................    dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE); 
-0F66:  BCLR.B  381.7
-0F68:  CLR.B   380
-0F6A:  MOV     #4000,W4
-0F6C:  MOV     W4,384
-0F6E:  MOV     #FF,W4
-0F70:  MOV     W4,38A
-0F72:  BSET.B  381.7
+1032:  BCLR.B  381.7
+1034:  CLR.B   380
+1036:  MOV     #4000,W4
+1038:  MOV     W4,384
+103A:  MOV     #FF,W4
+103C:  MOV     W4,38A
+103E:  BSET.B  381.7
 ....................     
 .................... //!   setup_dma(UART_TX_DMA_CHANNEL, DMA_OUT_UART2, DMA_BYTE); 
 .................... //!   enable_interrupts(INT_DMA1); 
 ....................  
 ....................    enable_interrupts(INT_DMA0); 
-0F74:  BSET.B  94.4
+1040:  BSET.B  94.4
 ....................  
 .................... // setup_adc(ADC_CLOCK_DIV_2 | ADC_TAD_MUL_4); 
 ....................    setup_adc(ADC_CLOCK_INTERNAL); 
-0F76:  MOV     #9F00,W4
-0F78:  MOV     W4,324
-0F7A:  MOV     #84E0,W4
-0F7C:  MOV     W4,320
+1042:  MOV     #9F00,W4
+1044:  MOV     W4,324
+1046:  MOV     #84E0,W4
+1048:  MOV     W4,320
 ....................    setup_adc_ports(sAN0 | VSS_VDD); 
-0F7E:  MOV     #FFFE,W4
-0F80:  MOV     W4,32C
-0F82:  CLR     322
+104A:  MOV     #FFFE,W4
+104C:  MOV     W4,32C
+104E:  CLR     322
 ....................     
 ....................    read_adc(); 
-0F84:  BCLR.B  320.0
-0F86:  BSET.B  320.1
-0F88:  BTSS.B  320.0
-0F8A:  BRA     F88
+1050:  BCLR.B  320.0
+1052:  BSET.B  320.1
+1054:  BTSS.B  320.0
+1056:  BRA     1054
 ....................       
 ....................    setup_timer1(TMR_INTERNAL , TimerTicks); 
-0F8C:  CLR     104
-0F8E:  PUSH    85E
-0F90:  POP     102
-0F92:  MOV     #8000,W4
-0F94:  MOV     W4,104
+1058:  CLR     104
+105A:  PUSH    85E
+105C:  POP     102
+105E:  MOV     #8000,W4
+1060:  MOV     W4,104
 ....................    EnableInterrupts(); 
-0F96:  CALL    35C
+1062:  CALL    35C
 ....................     
 ....................    NormalizeFlag = 1; 
-0F9A:  MOV.B   #1,W0L
-0F9C:  MOV.B   W0L,1223
+1066:  MOV.B   #1,W0L
+1068:  MOV.B   W0L,1223
 ....................  
 ....................    while(TRUE) 
 ....................    { 
 ....................        
 ....................       if((DMADoneFlag) || (NormalizeDataCounter == BUFFER_SIZE)) 
-0F9E:  CP0.B   1222
-0FA0:  BRA     NZ,FAC
-0FA2:  MOV     121E,W4
-0FA4:  XOR     #FF,W4
-0FA6:  BRA     NZ,1070
-0FA8:  CP0     1220
-0FAA:  BRA     NZ,1070
+106A:  CP0.B   1222
+106C:  BRA     NZ,1078
+106E:  MOV     121E,W4
+1070:  XOR     #FF,W4
+1072:  BRA     NZ,113C
+1074:  CP0     1220
+1076:  BRA     NZ,113C
 ....................       { 
 ....................          disable_interrupts(INT_DMA0); 
-0FAC:  BCLR.B  94.4
+1078:  BCLR.B  94.4
 ....................  
 ....................          for (IndexType Index = 0; Index < BUFFER_SIZE; Index++) 
-0FAE:  CLR     12AA
-0FB0:  CLR     12AC
-0FB2:  MOV     12AC,W4
-0FB4:  CP      W4,#0
-0FB6:  BRA     GTU,FD6
-0FB8:  BRA     NC,FC2
-0FBA:  MOV     12AA,W4
-0FBC:  MOV     #FF,W3
-0FBE:  CP      W3,W4
-0FC0:  BRA     LEU,FD6
+107A:  CLR     12AA
+107C:  CLR     12AC
+107E:  MOV     12AC,W4
+1080:  CP      W4,#0
+1082:  BRA     GTU,10A2
+1084:  BRA     NC,108E
+1086:  MOV     12AA,W4
+1088:  MOV     #FF,W3
+108A:  CP      W3,W4
+108C:  BRA     LEU,10A2
 ....................          { 
 ....................             AccumulateAnalogData(Index); 
-0FC2:  PUSH    12AA
-0FC4:  POP     12B4
-0FC6:  PUSH    12AC
-0FC8:  POP     12B6
-0FCA:  CALL    6A6
-0FCE:  INC     12AA
-0FD0:  BTSC.B  42.1
-0FD2:  INC     12AC
-0FD4:  BRA     FB2
+108E:  PUSH    12AA
+1090:  POP     12B4
+1092:  PUSH    12AC
+1094:  POP     12B6
+1096:  CALL    6A6
+109A:  INC     12AA
+109C:  BTSC.B  42.1
+109E:  INC     12AC
+10A0:  BRA     107E
 ....................          } 
 ....................           
 ....................          if (NormalizeFlag == 1) 
-0FD6:  MOV     1222,W4
-0FD8:  LSR     W4,#8,W4
-0FDA:  CP.B    W4L,#1
-0FDC:  BRA     NZ,FE2
+10A2:  MOV     1222,W4
+10A4:  LSR     W4,#8,W4
+10A6:  CP.B    W4L,#1
+10A8:  BRA     NZ,10AE
 ....................          { 
 ....................             NormalizeData(); 
-0FDE:  CALL    A66
+10AA:  CALL    A66
 ....................          } 
 ....................              
 ....................          //dma_start(UART_TX_DMA_CHANNEL, DMA_ONE_SHOT | DMA_FORCE_NOW, &DigitizedData[0], BUFFER_SIZE);  
 .................... //!         Todo:: DMA THE ANALOG DATA ARRAY ALSO  
 ....................          if (HandShakeFlag == 1) 
-0FE2:  MOV     1224,W4
-0FE4:  LSR     W4,#8,W4
-0FE6:  CP.B    W4L,#1
-0FE8:  BRA     NZ,105C
+10AE:  MOV     1224,W4
+10B0:  LSR     W4,#8,W4
+10B2:  CP.B    W4L,#1
+10B4:  BRA     NZ,1128
 ....................          {           
 ....................             for (IndexType i = 0; i < BUFFER_SIZE; i++) // send input array data 
-0FEA:  CLR     12AE
-0FEC:  CLR     12B0
-0FEE:  MOV     12B0,W4
-0FF0:  CP      W4,#0
-0FF2:  BRA     GTU,1018
-0FF4:  BRA     NC,FFE
-0FF6:  MOV     12AE,W4
-0FF8:  MOV     #FF,W3
-0FFA:  CP      W3,W4
-0FFC:  BRA     LEU,1018
+10B6:  CLR     12AE
+10B8:  CLR     12B0
+10BA:  MOV     12B0,W4
+10BC:  CP      W4,#0
+10BE:  BRA     GTU,10E4
+10C0:  BRA     NC,10CA
+10C2:  MOV     12AE,W4
+10C4:  MOV     #FF,W3
+10C6:  CP      W3,W4
+10C8:  BRA     LEU,10E4
 ....................             { 
 ....................                 printf("%c", AnalogData[i]); // send every emelent of the array as a byte 
-0FFE:  MOV     #862,W4
-1000:  MOV     12AE,W3
-1002:  ADD     W3,W4,W0
-1004:  MOV.B   [W0],W5L
-1006:  BTSC.B  233.1
-1008:  BRA     1006
-100A:  PUSH    234
-100C:  MOV.B   W5L,[W15-#2]
-100E:  POP     234
-1010:  INC     12AE
-1012:  BTSC.B  42.1
-1014:  INC     12B0
-1016:  BRA     FEE
+10CA:  MOV     #862,W4
+10CC:  MOV     12AE,W3
+10CE:  ADD     W3,W4,W0
+10D0:  MOV.B   [W0],W5L
+10D2:  BTSC.B  233.1
+10D4:  BRA     10D2
+10D6:  PUSH    234
+10D8:  MOV.B   W5L,[W15-#2]
+10DA:  POP     234
+10DC:  INC     12AE
+10DE:  BTSC.B  42.1
+10E0:  INC     12B0
+10E2:  BRA     10BA
 ....................             } 
 ....................     
 ....................             for (i = 0; i < BUFFER_SIZE; i++) // send digitized data 
-1018:  CLR     12AE
-101A:  CLR     12B0
-101C:  MOV     12B0,W4
-101E:  CP      W4,#0
-1020:  BRA     GTU,105C
-1022:  BRA     NC,102C
-1024:  MOV     12AE,W4
-1026:  MOV     #FF,W3
-1028:  CP      W3,W4
-102A:  BRA     LEU,105C
+10E4:  CLR     12AE
+10E6:  CLR     12B0
+10E8:  MOV     12B0,W4
+10EA:  CP      W4,#0
+10EC:  BRA     GTU,1128
+10EE:  BRA     NC,10F8
+10F0:  MOV     12AE,W4
+10F2:  MOV     #FF,W3
+10F4:  CP      W3,W4
+10F6:  BRA     LEU,1128
 ....................             { 
 ....................                 printf("%c", DigitizedData[i]); // send every emelent of the array as a byte 
-102C:  MOV     #2,W4
-102E:  CLR.B   9
-1030:  MOV     12AE,W0
-1032:  MOV     12B0,W1
-1034:  INC     W4,W4
-1036:  DEC     W4,W4
-1038:  BRA     Z,1040
-103A:  SL      W0,W0
-103C:  RLC     W1,W1
-103E:  BRA     1036
-1040:  MOV     #96E,W4
-1042:  ADD     W0,W4,W0
-1044:  MOV     #A,W4
-1046:  MOV     [W0++],[W4++]
-1048:  MOV     [W0++],[W4++]
-104A:  BTSC.B  233.1
-104C:  BRA     104A
-104E:  PUSH    234
-1050:  MOV.B   W5L,[W15-#2]
-1052:  POP     234
-1054:  INC     12AE
-1056:  BTSC.B  42.1
-1058:  INC     12B0
-105A:  BRA     101C
+10F8:  MOV     #2,W4
+10FA:  CLR.B   9
+10FC:  MOV     12AE,W0
+10FE:  MOV     12B0,W1
+1100:  INC     W4,W4
+1102:  DEC     W4,W4
+1104:  BRA     Z,110C
+1106:  SL      W0,W0
+1108:  RLC     W1,W1
+110A:  BRA     1102
+110C:  MOV     #96E,W4
+110E:  ADD     W0,W4,W0
+1110:  MOV     #A,W4
+1112:  MOV     [W0++],[W4++]
+1114:  MOV     [W0++],[W4++]
+1116:  BTSC.B  233.1
+1118:  BRA     1116
+111A:  PUSH    234
+111C:  MOV.B   W5L,[W15-#2]
+111E:  POP     234
+1120:  INC     12AE
+1122:  BTSC.B  42.1
+1124:  INC     12B0
+1126:  BRA     10E8
 ....................             } 
 ....................          } 
 ....................           
 ....................          NormalizeFlag = 0; 
-105C:  CLR.B   1223
+1128:  CLR.B   1223
 ....................          NormalizeDataCounter = 0; 
-105E:  CLR     121E
-1060:  CLR     1220
+112A:  CLR     121E
+112C:  CLR     1220
 ....................          HandShakeFlag = 0;    
-1062:  CLR.B   1225
+112E:  CLR.B   1225
 ....................          CurrentIndex = 0; 
-1064:  CLR     1212
-1066:  CLR     1214
+1130:  CLR     1212
+1132:  CLR     1214
 ....................          enable_interrupts(INT_DMA0); 
-1068:  BSET.B  94.4
+1134:  BSET.B  94.4
 ....................          DMADoneFlag = 0; 
-106A:  CLR.B   1222
+1136:  CLR.B   1222
 ....................          TriggerFlag = 0; 
-106C:  CLR.B   1226
+1138:  CLR.B   1226
 ....................          DMAFlag = 0; 
-106E:  CLR.B   1227
+113A:  CLR.B   1227
 ....................       }   
 ....................        
 ....................       if (UARTRXFlag) 
-1070:  CP0.B   1224
-1072:  BRA     Z,107C
+113C:  CP0.B   1224
+113E:  BRA     Z,1148
 ....................       { 
 ....................          CommHandler(UARTRX); 
-1074:  MOV.B   961,W0L
-1076:  MOV.B   W0L,12B4
-1078:  CALL    C98
+1140:  MOV.B   961,W0L
+1142:  MOV.B   W0L,12B4
+1144:  CALL    C98
 ....................       }   
-107C:  BRA     F9E
+1148:  BRA     106A
 ....................    } 
 .................... } 
 ....................  
-107E:  BRA     107E
+114A:  BRA     114A
 .................... void AccumulateAnalogData(IndexType DMAADCIndex) 
 *
 06A6:  MOV     W5,[W15++]
@@ -2576,171 +2576,173 @@ CCS PCD C Compiler, Version 5.008, 5967               22-Nov-22 21:24
 0C9A:  MOV.B   12B4,W0L
 0C9C:  CLR.B   1
 0C9E:  XOR     #2B,W0
-0CA0:  BRA     Z,CBC
+0CA0:  BRA     Z,CC0
 0CA2:  XOR     #1,W0
-0CA4:  BRA     Z,CC2
+0CA4:  BRA     Z,CC6
 0CA6:  XOR     #6E,W0
-0CA8:  BRA     Z,CC6
+0CA8:  BRA     Z,CCA
 0CAA:  XOR     #8,W0
-0CAC:  BRA     Z,CD8
+0CAC:  BRA     Z,CDC
 0CAE:  XOR     #68,W0
-0CB0:  BRA     Z,DA2
+0CB0:  BRA     Z,DA6
 0CB2:  XOR     #1,W0
-0CB4:  BRA     Z,E02
+0CB4:  BRA     Z,E06
 0CB6:  XOR     #6,W0
-0CB8:  BRA     Z,E5A
-0CBA:  BRA     E7E
+0CB8:  BRA     Z,E62
+0CBA:  XOR     #63,W0
+0CBC:  BRA     Z,E86
+0CBE:  BRA     F4A
 ....................    { 
 ....................       case '+': 
 ....................          HandShakeFlag = 1; 
-0CBC:  MOV.B   #1,W0L
-0CBE:  MOV.B   W0L,1225
+0CC0:  MOV.B   #1,W0L
+0CC2:  MOV.B   W0L,1225
 ....................          break; 
-0CC0:  BRA     E7E
+0CC4:  BRA     F4A
 ....................           
 ....................       case '*': 
 ....................          disable_interrupts(INT_TIMER1); 
-0CC2:  BCLR.B  94.3
+0CC6:  BCLR.B  94.3
 ....................          break; 
-0CC4:  BRA     E7E
+0CC8:  BRA     F4A
 ....................           
 ....................       case 'D': 
 ....................          enable_interrupts(INT_TIMER1);    
-0CC6:  BSET.B  94.3
+0CCA:  BSET.B  94.3
 ....................          setup_timer1(TMR_INTERNAL , TimerTicks); 
-0CC8:  CLR     104
-0CCA:  PUSH    85E
-0CCC:  POP     102
-0CCE:  MOV     #8000,W4
-0CD0:  MOV     W4,104
+0CCC:  CLR     104
+0CCE:  PUSH    85E
+0CD0:  POP     102
+0CD2:  MOV     #8000,W4
+0CD4:  MOV     W4,104
 ....................          HandshakeFlag = 1;   
-0CD2:  MOV.B   #1,W0L
-0CD4:  MOV.B   W0L,1225
+0CD6:  MOV.B   #1,W0L
+0CD8:  MOV.B   W0L,1225
 ....................          break;  
-0CD6:  BRA     E7E
+0CDA:  BRA     F4A
 ....................                       
 ....................       case 'L': 
 ....................          DisableInterrupts(); 
-0CD8:  CALL    C8A
+0CDC:  CALL    C8A
 ....................          memset(fir_coef, 0, COEF_LENGTH*2);  
-0CDC:  MOV     #122A,W1
-0CDE:  MOV     #0,W2
-0CE0:  REPEAT  #7F
-0CE2:  CLR.B   [W1++]
+0CE0:  MOV     #122A,W1
+0CE2:  MOV     #0,W2
+0CE4:  REPEAT  #7F
+0CE6:  CLR.B   [W1++]
 ....................          while (CSharpCoefficentRecieved != COEF_LENGTH) 
-0CE4:  MOV     1206,W4
-0CE6:  XOR     #40,W4
-0CE8:  BRA     NZ,CEE
-0CEA:  CP0     1208
-0CEC:  BRA     Z,D6A
+0CE8:  MOV     1206,W4
+0CEA:  XOR     #40,W4
+0CEC:  BRA     NZ,CF2
+0CEE:  CP0     1208
+0CF0:  BRA     Z,D6E
 ....................          { 
 ....................             if (kbhit(SHARP)) 
-0CEE:  BTSS.B  232.0
-0CF0:  BRA     D68
-0CF2:  PUSH    42
-0CF4:  BCLR.B  81.7
-0CF6:  SETM.B  42
-0CF8:  BSET.B  81.7
+0CF2:  BTSS.B  232.0
+0CF4:  BRA     D6C
+0CF6:  PUSH    42
+0CF8:  BCLR.B  81.7
+0CFA:  SETM.B  42
+0CFC:  BSET.B  81.7
 ....................             { 
 ....................                char CoefficentByte = fgetc(SHARP); 
-0CFA:  CALL    24E
-0CFE:  BCLR.B  81.7
-0D00:  POP     42
-0D02:  BSET.B  81.7
-0D04:  MOV.B   W0L,12B5
+0CFE:  CALL    24E
+0D02:  BCLR.B  81.7
+0D04:  POP     42
+0D06:  BSET.B  81.7
+0D08:  MOV.B   W0L,12B5
 ....................                 
 ....................                if ((CoefficentByte == 'L') && (CSharpCoefficentRecieved == 0)) 
-0D06:  MOV     12B4,W4
-0D08:  LSR     W4,#8,W4
-0D0A:  XOR.B   #4C,W4L
-0D0C:  BRA     NZ,D18
-0D0E:  CP0     1206
-0D10:  BRA     NZ,D18
-0D12:  CP0     1208
-0D14:  BRA     NZ,D18
+0D0A:  MOV     12B4,W4
+0D0C:  LSR     W4,#8,W4
+0D0E:  XOR.B   #4C,W4L
+0D10:  BRA     NZ,D1C
+0D12:  CP0     1206
+0D14:  BRA     NZ,D1C
+0D16:  CP0     1208
+0D18:  BRA     NZ,D1C
 ....................                { 
 ....................                   ; // Do nothing 
 ....................                }               
-0D16:  BRA     D68
+0D1A:  BRA     D6C
 ....................                else if (NumberCSharpByteRecieved == 0) 
-0D18:  CP0     1216
-0D1A:  BRA     NZ,D2C
-0D1C:  CP0     1218
-0D1E:  BRA     NZ,D2C
+0D1C:  CP0     1216
+0D1E:  BRA     NZ,D30
+0D20:  CP0     1218
+0D22:  BRA     NZ,D30
 ....................                { 
 ....................                   CSharpCoefficent[0] = CoefficentByte;  
-0D20:  MOV.B   12B5,W0L
-0D22:  MOV.B   W0L,962
+0D24:  MOV.B   12B5,W0L
+0D26:  MOV.B   W0L,962
 ....................                   NumberCSharpByteRecieved = 1; 
-0D24:  MOV     #1,W4
-0D26:  MOV     W4,1216
-0D28:  CLR     1218
+0D28:  MOV     #1,W4
+0D2A:  MOV     W4,1216
+0D2C:  CLR     1218
 ....................                }            
-0D2A:  BRA     D68
+0D2E:  BRA     D6C
 ....................                else 
 ....................                { 
 ....................                   CSharpCoefficent[1] = CoefficentByte; 
-0D2C:  MOV.B   12B5,W0L
-0D2E:  MOV.B   W0L,963
+0D30:  MOV.B   12B5,W0L
+0D32:  MOV.B   W0L,963
 ....................                   NumberCSharpByteRecieved = 0; 
-0D30:  CLR     1216
-0D32:  CLR     1218
+0D34:  CLR     1216
+0D36:  CLR     1218
 ....................                   ByteConversionResult = ((unsigned int16)CSharpCoefficent[1] << 8) | CSharpCoefficent[0]; 
-0D34:  MOV.B   963,W0L
-0D36:  MOV.B   W0L,W5L
-0D38:  CLR.B   B
-0D3A:  MOV.B   W5L,W0L
-0D3C:  MOV.B   W0L,B
-0D3E:  CLR.B   W5
-0D40:  MOV     W5,W0
-0D42:  IOR     962,W0
-0D44:  MOV     W0,968
+0D38:  MOV.B   963,W0L
+0D3A:  MOV.B   W0L,W5L
+0D3C:  CLR.B   B
+0D3E:  MOV.B   W5L,W0L
+0D40:  MOV.B   W0L,B
+0D42:  CLR.B   W5
+0D44:  MOV     W5,W0
+0D46:  IOR     962,W0
+0D48:  MOV     W0,968
 ....................                   fir_coef[CSharpCoefficentRecieved] = ByteConversionResult; 
-0D46:  MOV     #1,W4
-0D48:  CLR.B   9
-0D4A:  MOV     1206,W0
-0D4C:  MOV     1208,W1
-0D4E:  INC     W4,W4
-0D50:  DEC     W4,W4
-0D52:  BRA     Z,D5A
-0D54:  SL      W0,W0
-0D56:  RLC     W1,W1
-0D58:  BRA     D50
-0D5A:  MOV     #122A,W4
-0D5C:  ADD     W0,W4,W5
-0D5E:  MOV     968,W4
-0D60:  MOV     W4,[W5+#0]
+0D4A:  MOV     #1,W4
+0D4C:  CLR.B   9
+0D4E:  MOV     1206,W0
+0D50:  MOV     1208,W1
+0D52:  INC     W4,W4
+0D54:  DEC     W4,W4
+0D56:  BRA     Z,D5E
+0D58:  SL      W0,W0
+0D5A:  RLC     W1,W1
+0D5C:  BRA     D54
+0D5E:  MOV     #122A,W4
+0D60:  ADD     W0,W4,W5
+0D62:  MOV     968,W4
+0D64:  MOV     W4,[W5+#0]
 ....................                   CSharpCoefficentRecieved++; 
-0D62:  INC     1206
-0D64:  BTSC.B  42.1
-0D66:  INC     1208
+0D66:  INC     1206
+0D68:  BTSC.B  42.1
+0D6A:  INC     1208
 ....................                } 
 ....................             } 
-0D68:  BRA     CE4
+0D6C:  BRA     CE8
 ....................          } 
 ....................           
 ....................          switch (fir_coef[0]) 
-0D6A:  MOV     122A,W0
-0D6C:  XOR     #D2,W0
-0D6E:  BRA     Z,D7A
-0D70:  XOR     #FA,W0
-0D72:  BRA     Z,D80
-0D74:  XOR     #149,W0
-0D76:  BRA     Z,D86
-0D78:  BRA     D8C
+0D6E:  MOV     122A,W0
+0D70:  XOR     #D2,W0
+0D72:  BRA     Z,D7E
+0D74:  XOR     #FA,W0
+0D76:  BRA     Z,D84
+0D78:  XOR     #149,W0
+0D7A:  BRA     Z,D8A
+0D7C:  BRA     D90
 ....................          { 
 ....................          case 210: //Todo:: Fall Through  
 ....................             TimerTicks = 53334; 
-0D7A:  MOV     #D056,W4
-0D7C:  MOV     W4,85E
+0D7E:  MOV     #D056,W4
+0D80:  MOV     W4,85E
 ....................             break; 
-0D7E:  BRA     D90
+0D82:  BRA     D94
 ....................          case 40: 
 ....................             TimerTicks = 53334; 
-0D80:  MOV     #D056,W4
-0D82:  MOV     W4,85E
+0D84:  MOV     #D056,W4
+0D86:  MOV     W4,85E
 ....................             break; 
-0D84:  BRA     D90
+0D88:  BRA     D94
 .................... //!                  case -12: 
 .................... //!                     TimerTicks = 8000; 
 .................... //!                     break; 
@@ -2749,200 +2751,342 @@ CCS PCD C Compiler, Version 5.008, 5967               22-Nov-22 21:24
 .................... //!                     break; 
 ....................          case 353: 
 ....................             TimerTicks = 8000; 
-0D86:  MOV     #1F40,W4
-0D88:  MOV     W4,85E
+0D8A:  MOV     #1F40,W4
+0D8C:  MOV     W4,85E
 ....................             break; 
-0D8A:  BRA     D90
+0D8E:  BRA     D94
 ....................          default:  
 ....................             TimerTicks = 8000; 
-0D8C:  MOV     #1F40,W4
-0D8E:  MOV     W4,85E
+0D90:  MOV     #1F40,W4
+0D92:  MOV     W4,85E
 ....................          } 
 ....................           
 ....................          CSharpCoefficentRecieved = 0; 
-0D90:  CLR     1206
-0D92:  CLR     1208
+0D94:  CLR     1206
+0D96:  CLR     1208
 ....................          NormalizeFlag = 1; 
-0D94:  MOV.B   #1,W0L
-0D96:  MOV.B   W0L,1223
-....................          HandshakeFlag = 1; 
 0D98:  MOV.B   #1,W0L
-0D9A:  MOV.B   W0L,1225
+0D9A:  MOV.B   W0L,1223
+....................          HandshakeFlag = 1; 
+0D9C:  MOV.B   #1,W0L
+0D9E:  MOV.B   W0L,1225
 ....................          EnableInterrupts(); 
-0D9C:  CALL    35C
+0DA0:  CALL    35C
 ....................          break; 
-0DA0:  BRA     E7E
+0DA4:  BRA     F4A
 ....................          
 ....................       case '$': 
 ....................          DisableInterrupts(); 
-0DA2:  CALL    C8A
+0DA6:  CALL    C8A
 ....................          TriggerValue = 0; // reset trigger value 
-0DA6:  CLR     966
+0DAA:  CLR     966
 ....................           
 ....................          while (TRUE) 
 ....................          { 
 ....................              if (kbhit(SHARP)) 
-0DA8:  BTSS.B  232.0
-0DAA:  BRA     DEC
-0DAC:  PUSH    42
-0DAE:  BCLR.B  81.7
-0DB0:  SETM.B  42
-0DB2:  BSET.B  81.7
+0DAC:  BTSS.B  232.0
+0DAE:  BRA     DF0
+0DB0:  PUSH    42
+0DB2:  BCLR.B  81.7
+0DB4:  SETM.B  42
+0DB6:  BSET.B  81.7
 ....................             { 
 ....................                char DigitByte = fgetc(SHARP); 
-0DB4:  CALL    24E
-0DB8:  BCLR.B  81.7
-0DBA:  POP     42
-0DBC:  BSET.B  81.7
-0DBE:  MOV.B   W0L,12B6
+0DB8:  CALL    24E
+0DBC:  BCLR.B  81.7
+0DBE:  POP     42
+0DC0:  BSET.B  81.7
+0DC2:  MOV.B   W0L,12B6
 ....................                 
 ....................                if (isdigit(DigitByte)) 
-0DC0:  MOV     12B6,W4
-0DC2:  MOV     #30,W3
-0DC4:  CP.B    W3L,W4L
-0DC6:  BRA     GTU,DE2
-0DC8:  MOV     12B6,W4
-0DCA:  MOV     #39,W3
-0DCC:  CP.B    W3L,W4L
-0DCE:  BRA     NC,DE2
+0DC4:  MOV     12B6,W4
+0DC6:  MOV     #30,W3
+0DC8:  CP.B    W3L,W4L
+0DCA:  BRA     GTU,DE6
+0DCC:  MOV     12B6,W4
+0DCE:  MOV     #39,W3
+0DD0:  CP.B    W3L,W4L
+0DD2:  BRA     NC,DE6
 ....................                { 
 ....................                   TriggerValue = TriggerValue * 10 + CharToInt(DigitByte); 
-0DD0:  MOV     966,W4
-0DD2:  MUL.UU  W4,#A,W0
-0DD4:  MOV     W0,W5
-0DD6:  MOV.B   12B6,W0L
-0DD8:  SE      W0,W0
-0DDA:  SUB     #30,W0
-0DDC:  ADD     W0,W5,W0
-0DDE:  MOV     W0,966
+0DD4:  MOV     966,W4
+0DD6:  MUL.UU  W4,#A,W0
+0DD8:  MOV     W0,W5
+0DDA:  MOV.B   12B6,W0L
+0DDC:  SE      W0,W0
+0DDE:  SUB     #30,W0
+0DE0:  ADD     W0,W5,W0
+0DE2:  MOV     W0,966
 ....................                } 
-0DE0:  BRA     DEC
+0DE4:  BRA     DF0
 ....................                else if (DigitByte == ')') 
-0DE2:  MOV     12B6,W4
-0DE4:  XOR.B   #29,W4L
-0DE6:  BRA     NZ,DEC
+0DE6:  MOV     12B6,W4
+0DE8:  XOR.B   #29,W4L
+0DEA:  BRA     NZ,DF0
 ....................                { 
 ....................                   break; 
-0DE8:  BRA     DEE
+0DEC:  BRA     DF2
 ....................                } 
-0DEA:  BRA     DEC
+0DEE:  BRA     DF0
 ....................                else 
 ....................                { 
 ....................                   ; //Do nothing 
 ....................                } 
 ....................             } 
-0DEC:  BRA     DA8
+0DF0:  BRA     DAC
 ....................          } 
 ....................           
 ....................          TriggerValueFlag = 1; 
-0DEE:  MOV.B   #1,W0L
-0DF0:  MOV.B   W0L,1228
+0DF2:  MOV.B   #1,W0L
+0DF4:  MOV.B   W0L,1228
 ....................          setup_timer1(TMR_INTERNAL , TimerTicks); 
-0DF2:  CLR     104
-0DF4:  PUSH    85E
-0DF6:  POP     102
-0DF8:  MOV     #8000,W4
-0DFA:  MOV     W4,104
+0DF6:  CLR     104
+0DF8:  PUSH    85E
+0DFA:  POP     102
+0DFC:  MOV     #8000,W4
+0DFE:  MOV     W4,104
 ....................          EnableInterrupts(); 
-0DFC:  CALL    35C
+0E00:  CALL    35C
 ....................          break;  
-0E00:  BRA     E7E
+0E04:  BRA     F4A
 ....................           
 ....................       case '%': 
 ....................          DisableInterrupts();   
-0E02:  CALL    C8A
+0E06:  CALL    C8A
 ....................          TimerTicks = 0; // reset trigger value 
-0E06:  CLR     85E
+0E0A:  CLR     85E
 ....................              
 ....................          while (TRUE) 
 ....................          { 
 ....................              if (kbhit(SHARP)) 
-0E08:  BTSS.B  232.0
-0E0A:  BRA     E52
-0E0C:  PUSH    42
-0E0E:  BCLR.B  81.7
-0E10:  SETM.B  42
-0E12:  BSET.B  81.7
+0E0C:  BTSS.B  232.0
+0E0E:  BRA     E56
+0E10:  PUSH    42
+0E12:  BCLR.B  81.7
+0E14:  SETM.B  42
+0E16:  BSET.B  81.7
 ....................             { 
 ....................                char DigitByte = fgetc(SHARP); 
-0E14:  CALL    24E
-0E18:  BCLR.B  81.7
-0E1A:  POP     42
-0E1C:  BSET.B  81.7
-0E1E:  MOV.B   W0L,12B7
+0E18:  CALL    24E
+0E1C:  BCLR.B  81.7
+0E1E:  POP     42
+0E20:  BSET.B  81.7
+0E22:  MOV.B   W0L,12B7
 ....................                 
 ....................                if (isdigit(DigitByte)) 
-0E20:  MOV     12B6,W4
-0E22:  LSR     W4,#8,W4
-0E24:  MOV     #30,W3
-0E26:  CP.B    W3L,W4L
-0E28:  BRA     GTU,E46
-0E2A:  MOV     12B6,W4
-0E2C:  LSR     W4,#8,W4
-0E2E:  MOV     #39,W3
-0E30:  CP.B    W3L,W4L
-0E32:  BRA     NC,E46
+0E24:  MOV     12B6,W4
+0E26:  LSR     W4,#8,W4
+0E28:  MOV     #30,W3
+0E2A:  CP.B    W3L,W4L
+0E2C:  BRA     GTU,E4A
+0E2E:  MOV     12B6,W4
+0E30:  LSR     W4,#8,W4
+0E32:  MOV     #39,W3
+0E34:  CP.B    W3L,W4L
+0E36:  BRA     NC,E4A
 ....................                { 
 ....................                   TimerTicks = TimerTicks * 10 + CharToInt(DigitByte); 
-0E34:  MOV     85E,W4
-0E36:  MUL.UU  W4,#A,W0
-0E38:  MOV     W0,W5
-0E3A:  MOV.B   12B7,W0L
-0E3C:  SE      W0,W0
-0E3E:  SUB     #30,W0
-0E40:  ADD     W0,W5,W0
-0E42:  MOV     W0,85E
+0E38:  MOV     85E,W4
+0E3A:  MUL.UU  W4,#A,W0
+0E3C:  MOV     W0,W5
+0E3E:  MOV.B   12B7,W0L
+0E40:  SE      W0,W0
+0E42:  SUB     #30,W0
+0E44:  ADD     W0,W5,W0
+0E46:  MOV     W0,85E
 ....................                } 
-0E44:  BRA     E52
+0E48:  BRA     E56
 ....................                else if (DigitByte == ')') 
-0E46:  MOV     12B6,W4
-0E48:  LSR     W4,#8,W4
-0E4A:  XOR.B   #29,W4L
-0E4C:  BRA     NZ,E52
+0E4A:  MOV     12B6,W4
+0E4C:  LSR     W4,#8,W4
+0E4E:  XOR.B   #29,W4L
+0E50:  BRA     NZ,E56
 ....................                { 
 ....................                   break; 
-0E4E:  BRA     E54
+0E52:  BRA     E58
 ....................                } 
-0E50:  BRA     E52
+0E54:  BRA     E56
 ....................                else 
 ....................                { 
 ....................                   ; //Do nothing 
 ....................                } 
 ....................             } 
-0E52:  BRA     E08
+0E56:  BRA     E0C
 ....................          } 
+....................           
+....................          HandshakeFlag = 1; 
+0E58:  MOV.B   #1,W0L
+0E5A:  MOV.B   W0L,1225
 ....................          EnableInterrupts(); 
-0E54:  CALL    35C
+0E5C:  CALL    35C
 ....................          break; 
-0E58:  BRA     E7E
+0E60:  BRA     F4A
 ....................             
 ....................       case '#': 
 ....................          memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2); 
-0E5A:  MOV     #4000,W1
-0E5C:  MOV     #0,W2
-0E5E:  REPEAT  #1FD
-0E60:  CLR.B   [W1++]
+0E62:  MOV     #4000,W1
+0E64:  MOV     #0,W2
+0E66:  REPEAT  #1FD
+0E68:  CLR.B   [W1++]
 ....................          dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE); 
-0E62:  BCLR.B  381.7
-0E64:  CLR.B   380
-0E66:  MOV     #4000,W4
-0E68:  MOV     W4,384
-0E6A:  MOV     #FF,W4
-0E6C:  MOV     W4,38A
-0E6E:  BSET.B  381.7
+0E6A:  BCLR.B  381.7
+0E6C:  CLR.B   380
+0E6E:  MOV     #4000,W4
+0E70:  MOV     W4,384
+0E72:  MOV     #FF,W4
+0E74:  MOV     W4,38A
+0E76:  BSET.B  381.7
 ....................          enable_interrupts(INT_DMA0); 
-0E70:  BSET.B  94.4
+0E78:  BSET.B  94.4
 ....................          DMAFlag = 0; 
-0E72:  CLR.B   1227
+0E7A:  CLR.B   1227
 ....................          TriggerFlag = 0; 
-0E74:  CLR.B   1226
+0E7C:  CLR.B   1226
 ....................          TriggerValueFlag = 0; 
-0E76:  CLR.B   1228
+0E7E:  CLR.B   1228
 ....................          HandshakeFlag = 1; 
-0E78:  MOV.B   #1,W0L
-0E7A:  MOV.B   W0L,1225
+0E80:  MOV.B   #1,W0L
+0E82:  MOV.B   W0L,1225
 ....................          break; 
-0E7C:  BRA     E7E
+0E84:  BRA     F4A
+....................           
+....................       case '@': 
+....................          DisableInterrupts(); 
+0E86:  CALL    C8A
+....................          memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2); 
+0E8A:  MOV     #4000,W1
+0E8C:  MOV     #0,W2
+0E8E:  REPEAT  #1FD
+0E90:  CLR.B   [W1++]
+....................          dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE); 
+0E92:  BCLR.B  381.7
+0E94:  CLR.B   380
+0E96:  MOV     #4000,W4
+0E98:  MOV     W4,384
+0E9A:  MOV     #FF,W4
+0E9C:  MOV     W4,38A
+0E9E:  BSET.B  381.7
+....................          enable_interrupts(INT_DMA0); 
+0EA0:  BSET.B  94.4
+....................          enable_interrupts(GLOBAL); 
+0EA2:  BCLR.B  81.7
+0EA4:  CLR     42
+0EA6:  BSET.B  81.7
+....................          HandshakeFlag = 1; 
+0EA8:  MOV.B   #1,W0L
+0EAA:  MOV.B   W0L,1225
+....................          unsigned int8 TXData; 
+....................          while(TRUE) 
+....................          { 
+....................             output_toggle(LED_PIN); 
+0EAC:  BCLR.B  2C9.6
+0EAE:  BTG.B   2CD.6
+....................             read_adc(); 
+0EB0:  BCLR.B  320.0
+0EB2:  BSET.B  320.1
+0EB4:  BTSS.B  320.0
+0EB6:  BRA     EB4
+....................              
+....................             if((DMADoneFlag == 1) && (HandshakeFlag == 1)) 
+0EB8:  MOV     1222,W4
+0EBA:  CP.B    W4L,#1
+0EBC:  BRA     NZ,F0E
+0EBE:  MOV     1224,W4
+0EC0:  LSR     W4,#8,W4
+0EC2:  CP.B    W4L,#1
+0EC4:  BRA     NZ,F0E
+....................             { 
+....................                for (IndexType i = 0; i < BUFFER_SIZE; i++) // send input array data 
+0EC6:  CLR     12BA
+0EC8:  CLR     12BC
+0ECA:  MOV     12BC,W4
+0ECC:  CP      W4,#0
+0ECE:  BRA     GTU,F0A
+0ED0:  BRA     NC,EDA
+0ED2:  MOV     12BA,W4
+0ED4:  MOV     #FF,W3
+0ED6:  CP      W3,W4
+0ED8:  BRA     LEU,F0A
+....................                { 
+....................                    TXData = DMA_ADC_BUFFER[i] >> 4; 
+0EDA:  MOV     #1,W4
+0EDC:  CLR.B   9
+0EDE:  MOV     12BA,W0
+0EE0:  MOV     12BC,W1
+0EE2:  INC     W4,W4
+0EE4:  DEC     W4,W4
+0EE6:  BRA     Z,EEE
+0EE8:  SL      W0,W0
+0EEA:  RLC     W1,W1
+0EEC:  BRA     EE4
+0EEE:  MOV     #4000,W4
+0EF0:  ADD     W0,W4,W0
+0EF2:  MOV     [W0],W5
+0EF4:  LSR     W5,#4,W0
+0EF6:  MOV.B   W0L,12B8
+0EF8:  MOV.B   W0L,12B8
+....................                    printf("%c", TXData); // send every emelent of the array as a byte 
+0EFA:  BTSC.B  233.1
+0EFC:  BRA     EFA
+0EFE:  MOV.B   12B8,W0L
+0F00:  MOV.B   W0L,234
+0F02:  INC     12BA
+0F04:  BTSC.B  42.1
+0F06:  INC     12BC
+0F08:  BRA     ECA
+....................                } 
+....................                DMADoneFlag = 0; 
+0F0A:  CLR.B   1222
+....................                HandshakeFlag = 0; 
+0F0C:  CLR.B   1225
+....................             } 
+....................              
+....................             if (kbhit(SHARP)) 
+0F0E:  BTSS.B  232.0
+0F10:  BRA     F46
+0F12:  PUSH    42
+0F14:  BCLR.B  81.7
+0F16:  SETM.B  42
+0F18:  BSET.B  81.7
+....................             { 
+....................                char RXData = fgetc(SHARP); 
+0F1A:  CALL    24E
+0F1E:  BCLR.B  81.7
+0F20:  POP     42
+0F22:  BSET.B  81.7
+0F24:  MOV.B   W0L,12B9
+....................                 
+....................                if (RXData == '+') 
+0F26:  MOV     12B8,W4
+0F28:  LSR     W4,#8,W4
+0F2A:  XOR.B   #2B,W4L
+0F2C:  BRA     NZ,F34
+....................                { 
+....................                   HandshakeFlag = 1; 
+0F2E:  MOV.B   #1,W0L
+0F30:  MOV.B   W0L,1225
+....................                } 
+0F32:  BRA     F42
+....................                else if (RXData = '*') 
+0F34:  MOV.B   #2A,W0L
+0F36:  MOV.B   W0L,12B9
+0F38:  CP0.B   12B9
+0F3A:  BRA     Z,F42
+....................                { 
+....................                   EnableInterrupts(); 
+0F3C:  CALL    35C
+....................                   break; 
+0F40:  BRA     F48
+....................                } 
+....................                 
+....................                RXData = '\n';  
+0F42:  MOV.B   #A,W0L
+0F44:  MOV.B   W0L,12B9
+....................             } 
+0F46:  BRA     EAC
+....................          } 
+....................          break; 
+0F48:  BRA     F4A
 ....................    
 ....................       default : 
 ....................          ; // Do nothing  
@@ -2950,11 +3094,11 @@ CCS PCD C Compiler, Version 5.008, 5967               22-Nov-22 21:24
 ....................    } 
 ....................     
 ....................    UARTRX = '\0'; 
-0E7E:  CLR.B   12B4
+0F4A:  CLR.B   12B4
 ....................    UARTRXFlag = 0; 
-0E80:  CLR.B   1224
-0E82:  MOV     [--W15],W5
-0E84:  RETURN  
+0F4C:  CLR.B   1224
+0F4E:  MOV     [--W15],W5
+0F50:  RETURN  
 .................... } 
 ....................  
 .................... void DisableInterrupts(void) 

@@ -428,6 +428,8 @@ void CommHandler(char UARTRX)
                }
             }
          }
+         
+         HandshakeFlag = 1;
          EnableInterrupts();
          break;
            
@@ -439,6 +441,49 @@ void CommHandler(char UARTRX)
          TriggerFlag = 0;
          TriggerValueFlag = 0;
          HandshakeFlag = 1;
+         break;
+         
+      case '@':
+         DisableInterrupts();
+         memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2);
+         dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
+         enable_interrupts(INT_DMA0);
+         enable_interrupts(GLOBAL);
+         HandshakeFlag = 1;
+         unsigned int8 TXData;
+         while(TRUE)
+         {
+            output_toggle(LED_PIN);
+            read_adc();
+            
+            if((DMADoneFlag == 1) && (HandshakeFlag == 1))
+            {
+               for (IndexType i = 0; i < BUFFER_SIZE; i++) // send input array data
+               {
+                   TXData = DMA_ADC_BUFFER[i] >> 4;
+                   printf("%c", TXData); // send every emelent of the array as a byte
+               }
+               DMADoneFlag = 0;
+               HandshakeFlag = 0;
+            }
+            
+            if (kbhit(SHARP))
+            {
+               char RXData = fgetc(SHARP);
+               
+               if (RXData == '+')
+               {
+                  HandshakeFlag = 1;
+               }
+               else if (RXData = '*')
+               {
+                  EnableInterrupts();
+                  break;
+               }
+               
+               RXData = '\n'; 
+            }
+         }
          break;
   
       default :

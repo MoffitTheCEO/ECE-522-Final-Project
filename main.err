@@ -1,7 +1,8 @@
->>> Warning 216 "main.c" Line 465(1,2): Interrupts disabled during call to prevent re-entrancy:  (@GETCH_BIU_1)
+>>> Warning 201 "main.c" Line 478(1,1): Assignment inside relational expression
+>>> Warning 216 "main.c" Line 510(1,2): Interrupts disabled during call to prevent re-entrancy:  (@GETCH_BIU_1)
 >>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 40(15,27): Variable never used:   PercentError
 >>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 52(14,30): Variable never used:   DebugAccumulator
 >>> Warning 202 "C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.h" Line 61(7,18): Variable never used:   OutputValue
       Memory usage:   ROM=10%      RAM=22% - 22%
-      0 Errors,  4 Warnings.
+      0 Errors,  5 Warnings.
 Build Successful.

@@ -62,6 +62,9 @@ namespace ECE_323_LAB_10
 
         int data_check = 0;
 
+        bool MaxSamplingFlag = false;
+        int DatabufferSize = 510;
+
         private Bluetooth_Settings _setting = new Bluetooth_Settings();
         public Form1() // load form one 
         {
@@ -87,10 +90,10 @@ namespace ECE_323_LAB_10
         {
             SerialPort sp = (SerialPort)sender;
 
-            if (sp.BytesToRead >= 510) // if bytes to read is equal to data length
+            if (sp.BytesToRead >= DatabufferSize) // if bytes to read is equal to data length
             {
-
-                sp.Read(inputarr, 0, 510); // dump contents in buffer to input arr
+                
+                sp.Read(inputarr, 0, DatabufferSize); // dump contents in buffer to input arr
 
                 /*for (int i = 55; i < 255; i++) // convert from byte array to double array
                 {
@@ -113,11 +116,14 @@ namespace ECE_323_LAB_10
                     plot_array[i] = plot_array[i] / 255 * 5; // convert from adc values to Voltages
                 }
 
-                for (int i = 255; i < 455; i++) // convert from byte array to double array
+                if (MaxSamplingFlag == false)
                 {
-                    digi_array[i-255] = Convert.ToDouble(inputarr[i]); // convert from byte array to double array
+                    for (int i = 255; i < 455; i++) // convert from byte array to double array
+                    {
+                        digi_array[i - 255] = Convert.ToDouble(inputarr[i]); // convert from byte array to double array
 
-                    digi_array[i-255] = digi_array[i-255] / 255 * 5; // convert from adc values to Voltages
+                        digi_array[i - 255] = digi_array[i - 255] / 255 * 5; // convert from adc values to Voltages
+                    }
                 }
 
                 array_max = Math.Round(plot_array.Max(), 2); // get the max data point in array
@@ -475,6 +481,9 @@ namespace ECE_323_LAB_10
 
         private void button6_Click(object sender, EventArgs e)
         {
+            DatabufferSize = 510;
+            MaxSamplingFlag = false;
+
             selectedItem2 = comboBox2.Items[comboBox2.SelectedIndex].ToString(); // take value from combobox
 
             this.Invoke(new EventHandler(button18_Click)); // invoke new thread to handle DFT 
@@ -649,7 +658,7 @@ namespace ECE_323_LAB_10
                     break;
             }
 
-            this.Invoke(new EventHandler(button3_Click));
+            //this.Invoke(new EventHandler(button3_Click));
             this.Invoke(new EventHandler(button17_Click)); 
         }
 
@@ -658,6 +667,20 @@ namespace ECE_323_LAB_10
             char[] Sampling = new char[1];
             Sampling[0] = '#'; // send trigger value flag
             _setting._serial.Write(Sampling, 0, 1);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            char[] Sampling = new char[1];
+            int index = 0;
+            while (index < data_length)
+            {
+                digi_array[index++] = 0;
+            }
+            Sampling[0] = '@'; // send trigger value flag
+            _setting._serial.Write(Sampling, 0, 1);
+            DatabufferSize = 255;
+            MaxSamplingFlag = true;
         }
 
         private void show_input_freq(object sender, EventArgs e) // DFT Algorithm 

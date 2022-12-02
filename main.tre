@@ -12,7 +12,10 @@
    ³  ³  ÃÄ@SDTOF  0/78  Ram=4
    ³  ³  ÃÄ@DIVFF  0/202  Ram=8
    ³  ³  ÀÄ@DIVS6464  0/248  Ram=0
-   ³  ÀÄCommHandler  0/494  Ram=4
+   ³  ÀÄCommHandler  0/698  Ram=4
+   ³     ÃÄDisableInterrupts  0/14  Ram=0
+   ³     ÃÄ@GETCH_BIU_1  0/34  Ram=3
+   ³     ÃÄEnableInterrupts  0/12  Ram=0
    ³     ÃÄDisableInterrupts  0/14  Ram=0
    ³     ÃÄ@GETCH_BIU_1  0/34  Ram=3
    ³     ÃÄEnableInterrupts  0/12  Ram=0

@@ -67,6 +67,7 @@ namespace ECE_323_LAB_10
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -150,7 +151,7 @@ namespace ECE_323_LAB_10
             // 
             // button18
             // 
-            this.button18.Location = new System.Drawing.Point(105, 560);
+            this.button18.Location = new System.Drawing.Point(102, 560);
             this.button18.Name = "button18";
             this.button18.Size = new System.Drawing.Size(80, 67);
             this.button18.TabIndex = 39;
@@ -231,14 +232,14 @@ namespace ECE_323_LAB_10
             "64x",
             "100x",
             "128x"});
-            this.comboBox1.Location = new System.Drawing.Point(700, 560);
+            this.comboBox1.Location = new System.Drawing.Point(769, 556);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(132, 24);
             this.comboBox1.TabIndex = 49;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(869, 545);
+            this.button4.Location = new System.Drawing.Point(923, 548);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(107, 41);
             this.button4.TabIndex = 50;
@@ -367,19 +368,30 @@ namespace ECE_323_LAB_10
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(565, 548);
+            this.button5.Location = new System.Drawing.Point(552, 556);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(116, 79);
+            this.button5.Size = new System.Drawing.Size(99, 71);
             this.button5.TabIndex = 63;
             this.button5.Text = "No Trigger Value ";
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(666, 548);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 48);
+            this.button7.TabIndex = 64;
+            this.button7.Text = "Max Sampling";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1535, 662);
+            this.Controls.Add(this.button7);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.comboBox2);
@@ -450,6 +462,7 @@ namespace ECE_323_LAB_10
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button7;
     }
 }
 
