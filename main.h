@@ -4,40 +4,35 @@
 #include <33FJ64MC802.h>
 #device ADC=12
 #device ICSP=1
-#use delay(internal=32MHz)
-//#use delay(internal=40MHz)
-
+#use delay(internal=32MHz) // slow down clock to 32 MHz
 
 #FUSES NOWDT                    //No Watch Dog Timer
 #FUSES CKSFSM                   //Clock Switching is enabled, fail Safe clock monitor is enabled
 #FUSES NOJTAG                   //JTAG disabled
 #FUSES FRC_PLL
 
-#pin_select U2TX=PIN_B6
-#pin_select U2RX=PIN_B7
-#USE RS232(UART2, BAUD = 115200, PARITY = N, BITS = 8, STOP = 1, TIMEOUT = 500,  stream = SHARP) // RECEIVE_BUFFER=255, TRANSMIT_BUFFER=255, TXISR,
+#pin_select U2TX=PIN_B6 // UART TX Pin
+#pin_select U2RX=PIN_B7 // UART RX Pin
+#USE RS232(UART2, BAUD = 115200, PARITY = N, BITS = 8, STOP = 1, TIMEOUT = 500,  stream = SHARP)
 
+#include <stdio.h> // include files 
+#include <ctype.h> // include files 
 
-#include <stdio.h>
-#include <ctype.h>
-
-#define BUFFER_SIZE 255
-#define COEF_LENGTH 64
-#define LOADER_PAGES 50
-#define ADC_MAX_DATA_VALUE 255
-#define LED_PIN PIN_B14  
+#define BUFFER_SIZE 255 // buffer length is 255
+#define COEF_LENGTH 64 // number of coefficents
+#define ADC_MAX_DATA_VALUE 255 // max value of unsinged 8bit data 
+#define LED_PIN PIN_B14  // LED pin for toggling in timer handler
 
 #define CharToInt(A) (int)(A - 0x30)
 
 typedef unsigned int32 IndexType;
 typedef unsigned int8 FlagType;
 
-const unsigned int8 ADC_DMA_CHANNEL = 0;
+const unsigned int8 ADC_DMA_CHANNEL = 0; // ADC DMA Channel is Channel 0 
 
-unsigned int16 TimerTicks = 0;
+unsigned int16 TimerTicks = 0; // timer ticks of timer 
 
 unsigned int8 ConversionValue; // normalized value
-unsigned int8 PercentError;
 unsigned int8 AnalogData[BUFFER_SIZE]; // input array
 
 unsigned int8 CSharpCoefficent[2];          // array to hold byte data of coefficents
@@ -49,16 +44,14 @@ signed int16 ByteConversionResult = 0;     // result of byte convertion
 
 signed int32 Accumulator = 0; // accumulator of the output value in the difference equation calculation
 signed int32 DigitizedData[BUFFER_SIZE];   // output array
-signed int32 DebugAccumulator[BUFFER_SIZE];   // output array
 signed int32 MaxAnalogValue = 0; // use for normalization
 signed int32 MinAnalogValue = 0; // use for normalization
 
 signed int64 AverageAnalogValue = 0; // use for normalization
 
 signed int16  InputSamples[COEF_LENGTH]; // array used as a circular buffer for the input samples
-unsigned int16 TempInputSamples[2];
+unsigned int16 TempInputSamples[2]; // used for trigger value 
 
-float OutputValue;          // holds the current output value
 float AverageDivider = 0; // use for normalization
 float AverageMultiplier = 0;    // use for normalization
 
@@ -72,30 +65,21 @@ IndexType NumberCSharpByteRecieved = 0; // counter to track which byte is being 
 IndexType ErrorCounter = 0; // error detection
 IndexType NormalizeDataCounter = 0;
 
-FlagType DMADoneFlag = 0;
-FlagType NormalizeFlag = 0;
+FlagType DMADoneFlag = 0; // dma done flag
+FlagType NormalizeFlag = 0; // normalize flag 
 FlagType UARTRXFlag = 0;   // serial flag
 FlagType HandShakeFlag = 0;    // handshake
-FlagType TriggerFlag = 0;
-FlagType DMAFlag = 0;
-FlagType TriggerValueFlag = 0;
+FlagType TriggerFlag = 0; // trigger flag 
+FlagType DMAFlag = 0; // dma flag
+FlagType TriggerValueFlag = 0; // trigger value flag
 
-void AccumulateAnalogData(IndexType);
-void NormalizeData();
-void CommHandler(char);
-void DisableInterrupts(void);
-void EnableInterrupts(void);
-unsigned int8 QuickDigitize(unsigned int16);
-volatile signed int16 fir_coef[COEF_LENGTH]; // = 
-//!{
-//!     -129,     19,     39,    -74,    -39,    301,    604,    354,   -397,
-//!     -894,   -580,     91,    196,   -272,   -154,   1241,   2589,   1599,
-//!    -1984,  -5096,  -4105,    977,   5788,   5788,    977,  -4105,  -5096,
-//!    -1984,   1599,   2589,   1241,   -154,   -272,    196,     91,   -580,
-//!     -894,   -397,    354,    604,    301,    -39,    -74,     39,     19,
-//!     -129,   -192,    -81,     71,    115,     55,     -6,    -15,     16,
-//!       -9
-//!};
+void AccumulateAnalogData(IndexType); // filter data and store into array 
+void NormalizeData(); // normalize the input data
+void CommHandler(char); // handle UART commuication
+void DisableInterrupts(void); // disable interrupt 
+void EnableInterrupts(void); // enable interrupts 
+
+volatile signed int16 fir_coef[COEF_LENGTH]; //array to hold filter coeffiecents
 
 #endif // MAIN_H
 

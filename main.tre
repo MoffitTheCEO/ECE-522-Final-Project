@@ -1,8 +1,8 @@
 ÀÄmain
-   ÃÄMAIN  0/506  Ram=5
+   ÃÄMAIN  0/492  Ram=5
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÃÄEnableInterrupts  0/12  Ram=0
-   ³  ÃÄAccumulateAnalogData  0/432  Ram=9
+   ³  ÃÄAccumulateAnalogData  0/430  Ram=9
    ³  ³  ÃÄ@MULS3232  0/66  Ram=8
    ³  ³  ÃÄ@SI64TOF  0/98  Ram=0
    ³  ³  ÃÄ@MULFF  0/196  Ram=8
@@ -25,8 +25,7 @@
    ³     ÃÄDisableInterrupts  0/14  Ram=0
    ³     ÃÄ@GETCH_BIU_1  0/34  Ram=3
    ³     ÀÄEnableInterrupts  0/12  Ram=0
-   ÃÄDMA_0_ISR  0/46  Ram=0
-   ÃÄDMA_1_ISR  0/32  Ram=0
+   ÃÄDMA_0_ISR  0/48  Ram=0
    ÃÄUART2_ISR  0/42  Ram=0
    ³  ÀÄ@GETCH_BIU_1  0/34  Ram=3
-   ÀÄTimer_ISR  0/194  Ram=3
+   ÀÄTimer_ISR  0/196  Ram=3

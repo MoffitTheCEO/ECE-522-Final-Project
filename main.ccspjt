@@ -138,7 +138,7 @@ Fixed=
 [debugperif]
 selected=Analog/Digital Conv
 [debugbreak]
-count=1
+count=0
 f1=C:\Users\Moff - it\Desktop\Education\Fall 2022\ECE 522\Final Project\main.c
 l1=459
 a.1=3768

@@ -1,134 +1,117 @@
-#include "main.h"
+#include "main.h" // include header file
 
-#use delay(clock = 32MHZ, internal = 8MHZ)
+#use delay(clock = 32MHZ, internal = 8MHZ) // Slow down clock
 
 #BANK_DMA
-unsigned int16 DMA_ADC_BUFFER[BUFFER_SIZE];
-#BANK_DMA
-char DMA_UART_TX_BUFFER[BUFFER_SIZE];
-//Todo:: Two DMA Buffers for real time data sampling
+unsigned int16 DMA_ADC_BUFFER[BUFFER_SIZE]; // Banked DMA buffer stored in memory
 
 #INT_DMA0
-void  DMA_0_ISR(void) 
+void  DMA_0_ISR(void)  // DMA Handler
 {
-   if ((TriggerFlag == 2) || (TriggerValueFlag == 0))
+   if ((TriggerFlag == 2) || (TriggerValueFlag == 0)) // when trigger value found of normlization flag is high 
    {
-      DMADoneFlag = 1;
+      DMADoneFlag = 1; // set DMA Done Flag 
    }
 }
 
-#INT_DMA1
-void DMA_1_ISR(void)
-{
-}
 
 #INT_RDA2
-void UART2_ISR()
+void UART2_ISR() // UART Handler 
 {
-   UARTRX = fgetc(SHARP);
-   UARTRXFlag = 1;
+   UARTRX = fgetc(SHARP); // read char from UART RX buffer
+   UARTRXFlag = 1; // set UART RX Flag
 }
 
 #INT_TIMER1
-void Timer_ISR()
+void Timer_ISR() // Timer Handler 
 {
-   output_toggle(LED_PIN);
-   //read_adc();
-   if((NormalizeFlag == 1) || (TriggerValueFlag == 0))
+   output_toggle(LED_PIN); // Toggle LED
+ 
+   if((NormalizeFlag == 1) || (TriggerValueFlag == 0)) // If nomalize flag high or inital trigger value find
    {
-      read_adc();
-      NormalizeDataCounter++;
+      read_adc(); // read ADC 
+      NormalizeDataCounter++; // increment data aquired counter 
    }
    else
    {
       unsigned int16 ADCValue = 0;
       
-      if (DMAFlag == 0)
+      if (DMAFlag == 0) // If dma flag is reset 
       {
-         //disable_interrupts(INT_DMA0);
-         memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2);
-         TriggerFlag = 0;
-         DMAFlag = 1;
+         memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2); // clear DMA buffer
+         TriggerFlag = 0; // reset trigger flag
+         DMAFlag = 1; // ser dma flag 
       }
       
-      if (TriggerFlag != 2)
+      if (TriggerFlag != 2) // if trigger value has not been found 
       {
            
-           if(DMAFlag != 2)
+           if(DMAFlag != 2) // is dma has not been stated 
            {
-              dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
-              enable_interrupts(INT_DMA0);
+              dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE); // start dma 
+              enable_interrupts(INT_DMA0); // enable DMA interrupts
            }
-           //ADCValue = QuickDigitize(read_adc()); // Trigger on Output Wave
-           ADCValue = read_adc() >> 4;
+  
+           ADCValue = read_adc() >> 4; // read ADC and shift data to be 8 bits 
       }
       
-      if((ADCValue == TriggerValue) && (TriggerFlag == 0))
+      if((ADCValue == TriggerValue) && (TriggerFlag == 0)) // If trigger value is found 
       {
-         TempInputSamples[0] = ADCValue;
-         DMAFlag = 2;
-         TriggerFlag = 1;
+         TempInputSamples[0] = ADCValue; // store ADC Value into temp array
+         DMAFlag = 2; // signal syste m that DMA IS started
+         TriggerFlag = 1; // move onto next step of trigger value detections
       }
-      else if((ADCValue > TempInputSamples[0]) && (TriggerFlag == 1))
+      else if((ADCValue > TempInputSamples[0]) && (TriggerFlag == 1)) // if ADC Value is greater then trigger value
       {
-         TempInputSamples[1] = ADCValue;
-         TriggerFlag = 2;
+         TempInputSamples[1] = ADCValue; // store ADC Value into temp array
+         TriggerFlag = 2; // signal system that trigger value has been found 
       }
-      else if(TriggerFlag == 2)
+      else if(TriggerFlag == 2) // if trigger value has been found 
       {    
-         read_adc();
+         read_adc(); // run ADC DMA conversion until DMA buffer is full
       }  
       else
       {
-         DMAFlag = 0;          
+         DMAFlag = 0; // If no trigger value found reset and start over      
       }
    }
 }
 
 void main()
 {   
-   memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE);
-   memset(DMA_UART_TX_BUFFER, 'a', BUFFER_SIZE);
+   memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE); // clear DMA buffer 
    
-   setup_dma(ADC_DMA_CHANNEL, DMA_IN_ADC1, DMA_WORD);
-   dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
+   setup_dma(ADC_DMA_CHANNEL, DMA_IN_ADC1, DMA_WORD); // set up DMA 
+   dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE); // Start DMA 
    
-//!   setup_dma(UART_TX_DMA_CHANNEL, DMA_OUT_UART2, DMA_BYTE);
-//!   enable_interrupts(INT_DMA1);
+   enable_interrupts(INT_DMA0); // Enable DMA interrupt
+   
+   setup_adc(ADC_CLOCK_INTERNAL); // set adc clock internal 
+   setup_adc_ports(sAN0 | VSS_VDD); // set adc port and refernce voltage
+   read_adc(); // read ADC to kickstart DMA tranfer
+   
+   setup_timer1(TMR_INTERNAL , TimerTicks); // set up timer clock and timer ticks
+   EnableInterrupts(); // enable interrupts 
+   
+   NormalizeFlag = 1; // System needs to normalize data 
 
-   enable_interrupts(INT_DMA0);
-
-// setup_adc(ADC_CLOCK_DIV_2 | ADC_TAD_MUL_4);
-   setup_adc(ADC_CLOCK_INTERNAL);
-   setup_adc_ports(sAN0 | VSS_VDD);
-   
-   read_adc();
-     
-   setup_timer1(TMR_INTERNAL , TimerTicks);
-   EnableInterrupts();
-   
-   NormalizeFlag = 1;
-
-   while(TRUE)
+   while(TRUE) // loop runs forever 
    {
-      
-      if((DMADoneFlag) || (NormalizeDataCounter == BUFFER_SIZE))
+      if((DMADoneFlag) || (NormalizeDataCounter == BUFFER_SIZE)) // if DMA buffer full or Normlization data is acquired
       {
-         disable_interrupts(INT_DMA0);
+         disable_interrupts(INT_DMA0); // disable DMA interrupt
 
          for (IndexType Index = 0; Index < BUFFER_SIZE; Index++)
          {
-            AccumulateAnalogData(Index);
+            AccumulateAnalogData(Index); // Filter data and store into array 
          }
          
-         if (NormalizeFlag == 1)
+         if (NormalizeFlag == 1) // if normalizaon data is present
          {
-            NormalizeData();
+            NormalizeData(); // normalize data
          }
             
-         //dma_start(UART_TX_DMA_CHANNEL, DMA_ONE_SHOT | DMA_FORCE_NOW, &DigitizedData[0], BUFFER_SIZE); 
-//!         Todo:: DMA THE ANALOG DATA ARRAY ALSO 
-         if (HandShakeFlag == 1)
+         if (HandShakeFlag == 1) // if C# GUI is ready for more data 
          {          
             for (IndexType i = 0; i < BUFFER_SIZE; i++) // send input array data
             {
@@ -140,7 +123,7 @@ void main()
                 printf("%c", DigitizedData[i]); // send every emelent of the array as a byte
             }
          }
-         
+         //reset flags and enable DMA interrupt
          NormalizeFlag = 0;
          NormalizeDataCounter = 0;
          HandShakeFlag = 0;   
@@ -151,16 +134,17 @@ void main()
          DMAFlag = 0;
       }  
       
-      if (UARTRXFlag)
+      if (UARTRXFlag) // if UART data is recieved
       {
-         CommHandler(UARTRX);
+         CommHandler(UARTRX); // Comm Handler will deal with UART RX data 
       }  
    }
 }
 
 void AccumulateAnalogData(IndexType DMAADCIndex)
 {
-   InputSamples[CurrentIndex] = DMA_ADC_BUFFER[DMAADCIndex];
+   InputSamples[CurrentIndex] = DMA_ADC_BUFFER[DMAADCIndex]; // fill input samples array with current DMA buffer data 
+   //Filter provided by Dr. Zheng 
    InputIndex = CurrentIndex; 
    Accumulator = 0;
    CoefficentIndex = 0;
@@ -180,22 +164,24 @@ void AccumulateAnalogData(IndexType DMAADCIndex)
       
       CoefficentIndex++;
    }
+   //Filter provided by Dr. Zheng  
    
-   AnalogData[DMAADCIndex] =  InputSamples[CurrentIndex] >> 4;
+   AnalogData[DMAADCIndex] =  InputSamples[CurrentIndex] >> 4; // store 12 bit input data into 8 bit array by shifting by 4 
    
-   if (NormalizeFlag == 1)
+   if (NormalizeFlag == 1) // if normalizing data 
    {
-      DigitizedData[DMAADCIndex] = Accumulator;
+      DigitizedData[DMAADCIndex] = Accumulator; // store accumulator data into output array
    }
    else
    {
+      // Math to go get 8bit digitzed output data 
       float StepOne = Accumulator - AverageAnalogValue;
       float StepTwo = StepOne * AverageMultiplier;
       float StepThree = StepTwo + (ADC_MAX_DATA_VALUE / 2);
       ConversionValue = (unsigned int8)StepThree;
-      DigitizedData[DMAADCIndex] = ConversionValue;
+      DigitizedData[DMAADCIndex] = ConversionValue; // store output data into output array
    }
-   
+   //Filter provided by Dr. Zheng 
    if (CurrentIndex == 0)
    {
      CurrentIndex = COEF_LENGTH - 1;
@@ -204,193 +190,136 @@ void AccumulateAnalogData(IndexType DMAADCIndex)
    {
      CurrentIndex--;
    } 
+   //Filter provided by Dr. Zheng 
 }
 
 void NormalizeData(void)
 {
-   if (ErrorCounter < 3000)
+   // initial data points for normlization algorithm
+   MaxAnalogValue = DigitizedData[COEF_LENGTH]; 
+   MinAnalogValue = DigitizedData[COEF_LENGTH]; 
+   InitialTriggerValue = DMA_ADC_BUFFER[COEF_LENGTH];
+      
+   for (IndexType Index = COEF_LENGTH + 1 ; Index < BUFFER_SIZE; Index++) // loop through digitized output array start at index COEF_LENGTH + 1 
    {
-      MaxAnalogValue = DigitizedData[COEF_LENGTH]; //Todo::Remove Gloab Vairables Where Possbile 
-      MinAnalogValue = DigitizedData[COEF_LENGTH]; //Todo::Remove Gloab Vairables Where Possbile 
-      InitialTriggerValue = DMA_ADC_BUFFER[COEF_LENGTH];
-      
-      for (IndexType Index = COEF_LENGTH + 1 ; Index < BUFFER_SIZE; Index++)
+      // Finding the Min Value 
+      if (MinAnalogValue > DigitizedData[Index])
       {
-         if (MinAnalogValue > DigitizedData[Index])
-         {
-            MinAnalogValue = DigitizedData[Index];
-         }
-         
-         if (MaxAnalogValue < DigitizedData[Index])
-         {
-            MaxAnalogValue = DigitizedData[Index];
-         }
-         
-         if (InitialTriggerValue > DMA_ADC_BUFFER[Index])
-         {
-            InitialTriggerValue = DMA_ADC_BUFFER[Index];
-         }
-         
-         AverageAnalogValue = AverageAnalogValue + DigitizedData[Index];
+         MinAnalogValue = DigitizedData[Index];
       }
-      
-      AverageDivider = MaxAnalogValue - MinAnalogValue;
-      AverageMultiplier = (255.0/ AverageDivider);
-      AverageAnalogValue = AverageAnalogValue / (BUFFER_SIZE - COEF_LENGTH);
-      
-      TriggerValue = InitialTriggerValue;
-               
-      memset(DigitizedData, 0, BUFFER_SIZE * 2);          
-   }  
-   else 
-   {
-      InitialTriggerValue = DMA_ADC_BUFFER[64];
-      for (IndexType i = 65; i < BUFFER_SIZE; i++)
+      // Finding the Max Value
+      if (MaxAnalogValue < DigitizedData[Index])
       {
-        if (InitialTriggerValue > DMA_ADC_BUFFER[i])
-        {
-            InitialTriggerValue = DMA_ADC_BUFFER[i];
-        }             
+         MaxAnalogValue = DigitizedData[Index];
       }
-      
-      TriggerValue = InitialTriggerValue;
-      ErrorCounter = 0; 
+      // Finding inital trigger value
+      if (InitialTriggerValue > DMA_ADC_BUFFER[Index])
+      {
+         InitialTriggerValue = DMA_ADC_BUFFER[Index];
+      }
+      // sum up all the data in the digitzed output array that has been looped through
+      AverageAnalogValue = AverageAnalogValue + DigitizedData[Index];
    }
-   
+   // Math to find Average data value
+   AverageDivider = MaxAnalogValue - MinAnalogValue;
+   AverageMultiplier = (255.0/ AverageDivider);
+   AverageAnalogValue = AverageAnalogValue / (BUFFER_SIZE - COEF_LENGTH);
+   // Trigger value will equal inital trigger value at program start
+   TriggerValue = InitialTriggerValue;
+            
+   memset(DigitizedData, 0, BUFFER_SIZE * 2); // clear DMA buffer         
+   // reset flags
    NormalizeDataCounter = 0;
    NormalizeFlag = 0;
    CurrentIndex = 0;
-}
-
-unsigned int8 QuickDigitize(unsigned int16 ADCValue)
-{
-    InputSamples[CurrentIndex] = ADCValue;
-    InputIndex = CurrentIndex;
-    CoefficentIndex = 0;
-    Accumulator = 0;
-    while (CoefficentIndex < COEF_LENGTH - 1)
-      {
-         Accumulator += (signed int32)InputSamples[InputIndex] * (signed int32)fir_coef[CoefficentIndex];
-           // condition for the circular buffer
-         if (InputIndex == COEF_LENGTH - 1)
-         {
-            InputIndex = 0;
-         }
-         else
-         {
-            InputIndex++;
-         }
-         CoefficentIndex++;
-      }
-      
-    float StepOne = Accumulator - AverageAnalogValue;
-    float StepTwo = StepOne * AverageMultiplier;
-    float StepThree = StepTwo + (ADC_MAX_DATA_VALUE / 2);
-    unsigned int8 ConversionValue = (unsigned int8)StepThree;
-    
-    if (CurrentIndex == 0)
-    {
-      CurrentIndex = COEF_LENGTH - 1;
-    }
-    else
-    {
-      CurrentIndex--;
-    } 
-      
-    return ConversionValue;  
 }
 
 void CommHandler(char UARTRX)
 {
    switch (UARTRX)
    {
-      case '+':
-         HandShakeFlag = 1;
+      case '+': // Handshake 
+         HandShakeFlag = 1; // turn handshake flag high
          break;
          
-      case '*':
-         disable_interrupts(INT_TIMER1);
+      case '*': // stop timer 
+         disable_interrupts(INT_TIMER1); // disable timer interrupt
          break;
          
-      case 'D':
-         enable_interrupts(INT_TIMER1);   
-         setup_timer1(TMR_INTERNAL , TimerTicks);
-         HandshakeFlag = 1;  
+      case 'D': // start sampling 
+         enable_interrupts(INT_TIMER1); // enable timer interrut   
+         setup_timer1(TMR_INTERNAL , TimerTicks); // set up timer 
+         HandshakeFlag = 1; // set handshake flag
          break; 
                      
-      case 'L':
-         DisableInterrupts();
-         memset(fir_coef, 0, COEF_LENGTH*2); 
-         while (CSharpCoefficentRecieved != COEF_LENGTH)
+      case 'L': // new coefficents incoming 
+         DisableInterrupts(); // disable interrupts  
+         memset(fir_coef, 0, COEF_LENGTH*2); // clear coefficent buffer 
+         while (CSharpCoefficentRecieved != COEF_LENGTH) // while 64 coefficent have not been revied
          {
-            if (kbhit(SHARP))
+            if (kbhit(SHARP)) // if new data incoming 
             {
-               char CoefficentByte = fgetc(SHARP);
+               char CoefficentByte = fgetc(SHARP); // read new data 
                
-               if ((CoefficentByte == 'L') && (CSharpCoefficentRecieved == 0))
+               if ((CoefficentByte == 'L') && (CSharpCoefficentRecieved == 0)) // error detection
                {
                   ; // Do nothing
                }              
-               else if (NumberCSharpByteRecieved == 0)
+               else if (NumberCSharpByteRecieved == 0) // take first coefficent data byte
                {
-                  CSharpCoefficent[0] = CoefficentByte; 
-                  NumberCSharpByteRecieved = 1;
+                  CSharpCoefficent[0] = CoefficentByte; // store in array 
+                  NumberCSharpByteRecieved = 1; // tell system to get ready for second coefficent data
                }           
-               else
+               else // take second coefffincet data byte
                {
-                  CSharpCoefficent[1] = CoefficentByte;
-                  NumberCSharpByteRecieved = 0;
-                  ByteConversionResult = ((unsigned int16)CSharpCoefficent[1] << 8) | CSharpCoefficent[0];
-                  fir_coef[CSharpCoefficentRecieved] = ByteConversionResult;
-                  CSharpCoefficentRecieved++;
+                  CSharpCoefficent[1] = CoefficentByte; // store in array 
+                  NumberCSharpByteRecieved = 0; // reset coefficent byte number
+                  ByteConversionResult = ((unsigned int16)CSharpCoefficent[1] << 8) | CSharpCoefficent[0]; // manipulate data to form one 16bit data 
+                  fir_coef[CSharpCoefficentRecieved] = ByteConversionResult; // store coefficent into coefficent buffer
+                  CSharpCoefficentRecieved++; // increment number of coefficent recieved
                }
             }
          }
          
-         switch (fir_coef[0])
+         switch (fir_coef[0]) // find out timer frequnecy by looking for unique first element in coefficnent buffer 
          {
-         case 210: //Todo:: Fall Through 
+         // Timer ticks will take on differnet value depending on coefficent data
+         case 210: 
             TimerTicks = 53334;
             break;
          case 40:
             TimerTicks = 53334;
             break;
-//!                  case -12:
-//!                     TimerTicks = 8000;
-//!                     break;
-//!                  case -9:
-//!                     TimerTicks = 8000;
-//!                     break;
          case 353:
             TimerTicks = 8000;
             break;
          default: 
             TimerTicks = 8000;
          }
-         
+         //reset/set flags
          CSharpCoefficentRecieved = 0;
          NormalizeFlag = 1;
          HandshakeFlag = 1;
-         EnableInterrupts();
+         EnableInterrupts(); // enable interrupts
          break;
         
-      case '$':
-         DisableInterrupts();
+      case '$': // trigger value incoming
+         DisableInterrupts(); // disable interrupts 
          TriggerValue = 0; // reset trigger value
          
-         while (TRUE)
+         while (TRUE) // infite loop
          {
-             if (kbhit(SHARP))
+             if (kbhit(SHARP)) // if new data 
             {
-               char DigitByte = fgetc(SHARP);
+               char DigitByte = fgetc(SHARP); // get new data
                
-               if (isdigit(DigitByte))
+               if (isdigit(DigitByte)) // check to see if data is digit
                {
-                  TriggerValue = TriggerValue * 10 + CharToInt(DigitByte);
+                  TriggerValue = TriggerValue * 10 + CharToInt(DigitByte); // manipulte incoing data into a trigger value
                }
-               else if (DigitByte == ')')
+               else if (DigitByte == ')') // if escape data recived 
                {
-                  break;
+                  break; // break out of loop
                }
                else
                {
@@ -398,29 +327,29 @@ void CommHandler(char UARTRX)
                }
             }
          }
-         
+         // reset/set flags 
          TriggerValueFlag = 1;
-         setup_timer1(TMR_INTERNAL , TimerTicks);
-         EnableInterrupts();
+         setup_timer1(TMR_INTERNAL , TimerTicks); // start timer 
+         EnableInterrupts(); // enable interupts
          break; 
          
-      case '%':
-         DisableInterrupts();  
+      case '%': // Timer Ticks incoming
+         DisableInterrupts();  // disable interrupts 
          TimerTicks = 0; // reset trigger value
             
-         while (TRUE)
+         while (TRUE) // infinite loop
          {
-             if (kbhit(SHARP))
+             if (kbhit(SHARP))  // if new data 
             {
-               char DigitByte = fgetc(SHARP);
+               char DigitByte = fgetc(SHARP);  // get new data
                
-               if (isdigit(DigitByte))
+               if (isdigit(DigitByte)) // check to see if data is digit
                {
-                  TimerTicks = TimerTicks * 10 + CharToInt(DigitByte);
+                  TimerTicks = TimerTicks * 10 + CharToInt(DigitByte); // manipulte incoing data into a timer ticks
                }
-               else if (DigitByte == ')')
+               else if (DigitByte == ')') // if escape data recived 
                {
-                  break;
+                  break; // break out of loop
                }
                else
                {
@@ -428,60 +357,62 @@ void CommHandler(char UARTRX)
                }
             }
          }
-         
+         // reset/set flags
          HandshakeFlag = 1;
-         EnableInterrupts();
+         EnableInterrupts(); // enable interupts
          break;
            
-      case '#':
-         memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2);
-         dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
-         enable_interrupts(INT_DMA0);
+      case '#': // No trigger value needed
+         memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2); // clear DMA buffer
+         dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE); // start DMA 
+         enable_interrupts(INT_DMA0); // enable DMA intterupt
+         //set/reset flags
          DMAFlag = 0;
          TriggerFlag = 0;
          TriggerValueFlag = 0;
          HandshakeFlag = 1;
          break;
          
-      case '@':
-         DisableInterrupts();
-         memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2);
-         dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE);
-         enable_interrupts(INT_DMA0);
-         enable_interrupts(GLOBAL);
-         HandshakeFlag = 1;
+      case '@':// Max Sampling Frequency 
+         DisableInterrupts();// disable interrupts 
+         memset(DMA_ADC_BUFFER, 0, BUFFER_SIZE * 2); // clear DMA buffer
+         dma_start(ADC_DMA_CHANNEL, DMA_CONTINOUS, &DMA_ADC_BUFFER[0], BUFFER_SIZE); // start DMA 
+         enable_interrupts(INT_DMA0); // enable DMA intterupt
+         enable_interrupts(GLOBAL); // enable intterupt
+         HandshakeFlag = 1; // set handshake flag to allow for first data tranfer
          unsigned int8 TXData;
-         while(TRUE)
+         while(TRUE) // infinite loop
          {
-            output_toggle(LED_PIN);
-            read_adc();
+            output_toggle(LED_PIN); // toggle adc 
+            read_adc(); // trigger ADC DMA Conversion
             
-            if((DMADoneFlag == 1) && (HandshakeFlag == 1))
+            if((DMADoneFlag == 1) && (HandshakeFlag == 1)) // if DMA Buffer full and C# GUI ready for more data 
             {
-               for (IndexType i = 0; i < BUFFER_SIZE; i++) // send input array data
+               for (IndexType i = 0; i < BUFFER_SIZE; i++) // loop through DMA buffer
                {
-                   TXData = DMA_ADC_BUFFER[i] >> 4;
+                   TXData = DMA_ADC_BUFFER[i] >> 4; // shift 12bit data to fit into 8bit char 
                    printf("%c", TXData); // send every emelent of the array as a byte
                }
+               //reset flags
                DMADoneFlag = 0;
                HandshakeFlag = 0;
             }
             
-            if (kbhit(SHARP))
+            if (kbhit(SHARP)) // if UART RX data 
             {
-               char RXData = fgetc(SHARP);
+               char RXData = fgetc(SHARP); // get data 
                
-               if (RXData == '+')
+               if (RXData == '+') // if handshake sent from GUI
                {
-                  HandshakeFlag = 1;
+                  HandshakeFlag = 1; // set handshake flag 
                }
-               else if (RXData = '*')
+               else if (RXData = '*') // start sent from GUI 
                {
-                  EnableInterrupts();
+                  EnableInterrupts(); // enable interrupts
                   break;
                }
                
-               RXData = '\n'; 
+               RXData = '\n'; // reset RXData
             }
          }
          break;
@@ -490,7 +421,7 @@ void CommHandler(char UARTRX)
          ; // Do nothing 
       
    }
-   
+   //Reset flags and UARTRX
    UARTRX = '\0';
    UARTRXFlag = 0;
 }
@@ -498,13 +429,13 @@ void CommHandler(char UARTRX)
 void DisableInterrupts(void)
 {
    disable_interrupts(INT_TIMER1); // disable timer
-   disable_interrupts(INT_RDA2);
-   disable_interrupts(GLOBAL); 
+   disable_interrupts(INT_RDA2); // disable UART interrupts
+   disable_interrupts(GLOBAL);  // disable global interrupts
 }
 
 void EnableInterrupts(void)
 {
-   enable_interrupts(INT_RDA2);
-   enable_interrupts(INT_TIMER1);
-   enable_interrupts(GLOBAL);
+   enable_interrupts(INT_RDA2); // enable UART interrupts
+   enable_interrupts(INT_TIMER1); // enable timer interrupts
+   enable_interrupts(GLOBAL); // enable global interrupts
 }

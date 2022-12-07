@@ -683,6 +683,11 @@ namespace ECE_323_LAB_10
             MaxSamplingFlag = true;
         }
 
+        private void chart1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void show_input_freq(object sender, EventArgs e) // DFT Algorithm 
         {
 
