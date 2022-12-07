@@ -665,7 +665,7 @@ namespace ECE_323_LAB_10
         private void button5_Click_1(object sender, EventArgs e)
         {
             char[] Sampling = new char[1];
-            Sampling[0] = '#'; // send trigger value flag
+            Sampling[0] = '#'; // send no trigger value flag
             _setting._serial.Write(Sampling, 0, 1);
         }
 
@@ -673,14 +673,14 @@ namespace ECE_323_LAB_10
         {
             char[] Sampling = new char[1];
             int index = 0;
-            while (index < data_length)
+            while (index < data_length) // clear the array with 0
             {
                 digi_array[index++] = 0;
             }
-            Sampling[0] = '@'; // send trigger value flag
-            _setting._serial.Write(Sampling, 0, 1);
-            DatabufferSize = 255;
-            MaxSamplingFlag = true;
+            Sampling[0] = '@'; 
+            _setting._serial.Write(Sampling, 0, 1); //send data over uart
+            DatabufferSize = 255; // change max buffer size
+            MaxSamplingFlag = true; // tell GUI to get ready for max sampling freq. data 
         }
 
         private void chart1_Click(object sender, EventArgs e)
